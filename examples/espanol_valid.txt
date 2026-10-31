@@ -1,0 +1,21 @@
+# Concordancia de género, número y sujeto-verbo
+el gato negro duerme.
+la gata negra corre.
+los gatos negros duermen.
+las gatas negras corren.
+
+# Adjetivo invariable en género
+los perros grandes juegan con la niña.
+la niña grande corre.
+
+# Intensificador, adverbio de modo y frase preposicional
+la gata muy rápida corre rápidamente en el jardín.
+el perro negro juega tranquilamente bajo la casa.
+
+# Relativa de sujeto (que + SV concordado)
+el niño que corre juega en la casa.
+las niñas que corren observan en el parque.
+
+# Completiva (que + cláusula con sujeto propio)
+el niño observa que la gata duerme.
+los gatos observan que las niñas juegan en el parque.

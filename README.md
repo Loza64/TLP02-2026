@@ -48,6 +48,13 @@ python -m parser.grammar
 
 # Demo: ejecuta examples/valid_examples.txt y examples/invalid_examples.txt
 python run_examples.py
+
+# Extensión al español (misma tabla LL(1), otro léxico y otras producciones)
+python -m espanol.parser_espanol
+python -m espanol.parser -c "el gato negro duerme." --tree --trace
+python -m espanol.parser -c "el gato negra duerme."
+python -m espanol.parser --conflicto
+python -m espanol.grammar
 ```
 
 Salida esperada para una entrada válida y una inválida:
@@ -70,9 +77,13 @@ python -m unittest discover -s tests -t . -v
 
 Las pruebas comprueban: FIRST/FOLLOW y ausencia de conflictos LL(1); que cada archivo de
 `tests/valid/` se acepte y cada archivo de `tests/invalid/` se rechace; posiciones de los errores;
-comportamiento del lexer; y precedencia/asociatividad en el AST. Resultado esperado: `OK` (19 pruebas).
+comportamiento del lexer; precedencia/asociatividad en el AST; y la extensión al español
+(`tests/test_espanol.py`: oraciones válidas, discordancias y el conflicto LL(1) de la
+coordinación). Resultado esperado: `OK` (31 pruebas).
 
-Para agregar un caso, basta con crear un archivo `.cpp` en `tests/valid/` o `tests/invalid/`.
+Para agregar un caso de C++, basta con crear un archivo `.cpp` en `tests/valid/` o
+`tests/invalid/`. Para el español, se añade una línea en `examples/espanol_valid.txt` o
+`examples/espanol_invalid.txt`.
 
 ## Estructura
 
@@ -83,10 +94,15 @@ TLP02-2026/
 ├── run_examples.py        # demo: acepta ✓ / rechaza ✗ sobre examples/
 ├── parser/
 │   ├── lexer.py           # texto -> tokens (con línea y columna)
-│   ├── grammar.py         # producciones, FIRST, FOLLOW, tabla predictiva LL(1)
+│   ├── ll1.py             # motor reutilizable: FIRST, FOLLOW, tabla LL(1)
+│   ├── grammar.py         # producciones del subconjunto de C++
 │   ├── parser.py          # parser predictivo no recursivo + línea de comandos
 │   └── tree.py            # árbol de análisis sintáctico y AST
-├── espanol/               # extensión de la gramática al español (Integrante 3)
+├── espanol/               # extensión al español (Integrante 3)
+│   ├── grammar.py         # producciones con concordancia y subordinadas
+│   ├── lexer.py           # léxico cerrado del español
+│   ├── parser.py          # mismo algoritmo LL(1), otro símbolo inicial
+│   └── parser_espanol.py  # demo de aceptación / rechazo
 ├── nlp/                   # comparación con NLTK/spaCy (Integrante 4)
 ├── tests/
 │   ├── test_parser.py
@@ -94,7 +110,7 @@ TLP02-2026/
 │   └── invalid/           # programas que deben rechazarse
 ├── examples/              # un caso por línea, para la demo
 └── docs/
-    ├── informe/           # secciones del informe (seccion4_parser.md, tabla_ll1.md)
+    ├── informe/           # secciones del informe (seccion4, seccion5, tablas LL(1))
     └── presentacion/
 ```
 

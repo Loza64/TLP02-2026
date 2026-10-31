@@ -1,0 +1,17 @@
+# Discordancia de género (sustantivo-adjetivo)
+el gato negra duerme.
+
+# Discordancia de número (determinante-sustantivo)
+los gato negros duermen.
+
+# Discordancia de número (sujeto-verbo)
+el gato negro duermen.
+
+# Discordancia de número dentro de la relativa
+los gatos que corre duermen.
+
+# Coordinación que altera el número después del primer determinante
+el niño y la niña duermen.
+
+# Palabra fuera del léxico
+el elefante negro duerme.

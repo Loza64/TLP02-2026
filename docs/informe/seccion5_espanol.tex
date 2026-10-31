@@ -1,0 +1,63 @@
+% -------------------------------------------------------------------
+% 5. EXTENSIÓN DE LA GRAMÁTICA AL ESPAÑOL
+% Pegar este bloque en main.tex (extensión sugerida: 1 página).
+% El análisis formal de los puntos de fallo continúa en la Sección 6.
+% -------------------------------------------------------------------
+\section{Extensión de la gramática al español}
+
+\subsection{Reglas incorporadas}
+Con el propósito de evaluar el analizador predictivo LL(1) frente a un lenguaje natural, se diseñó una segunda gramática libre de contexto para un subconjunto controlado del español. No se reescribió el algoritmo del parser: las producciones se entregaron al mismo motor que calcula los conjuntos FIRST y FOLLOW y construye la tabla predictiva del subconjunto de C++. El analizador sigue siendo predictivo no recursivo; solo cambian el léxico, el símbolo inicial y las reglas.
+
+Una gramática de Tipo~2 no dispone de atributos morfosintácticos. Por ello, la concordancia no se ``almacena'' en el no terminal, sino que se copia en su nombre. En lugar de un único \texttt{SN} aparecen cuatro variantes mutuamente excluyentes (\texttt{SN\_m\_sg}, \texttt{SN\_f\_sg}, \texttt{SN\_m\_pl} y \texttt{SN\_f\_pl}), de modo que el determinante, el sustantivo y el adjetivo deban compartir género y número. El mismo criterio se aplicó al sujeto y al verbo: \texttt{Oracion} se bifurca en \texttt{Sujeto\_sg SV\_sg} y \texttt{Sujeto\_pl SV\_pl}. Los modificadores opcionales se modelaron con colas anulables, análogas a \texttt{ExprTail} y \texttt{TermTail} de la Sección~4, para conservar la factorización por la izquierda y evitar recursión izquierda.
+
+Los fenómenos del enunciado se incorporaron así:
+\begin{itemize}
+    \item \textbf{Concordancia de género y de número} en el sintagma nominal, incluida la forma invariable \textit{grande}/\textit{grandes}, factorizada en \texttt{Adj\_*} para que \textit{muy} no provoque un conflicto FIRST/FIRST.
+    \item \textbf{Concordancia sujeto--verbo} de número, decidida desde el primer determinante.
+    \item \textbf{Modificadores:} adjetivo pospuesto, intensificador \textit{muy}, adverbio de modo (\textit{rápidamente}, \textit{tranquilamente}) y frase preposicional (\textit{en}, \textit{con}, \textit{bajo} + \texttt{SN}).
+    \item \textbf{Subordinadas:} relativa de sujeto (\textit{el niño que corre}) y completiva (\textit{observa que la gata duerme}), ambas introducidas por \texttt{que} pero en contextos distintos, de manera que el token de anticipación basta para distinguirlas.
+\end{itemize}
+
+Se ilustran las reglas del masculino singular; las variantes femenina y plural son análogas.
+
+\begin{quote}
+\small\ttfamily
+Oracion $\rightarrow$ Sujeto\_sg SV\_sg . | Sujeto\_pl SV\_pl .\\
+Sujeto\_sg $\rightarrow$ SN\_m\_sg SubOpt\_sg | SN\_f\_sg SubOpt\_sg\\
+SN\_m\_sg $\rightarrow$ det\_m\_sg n\_m\_sg ModNom\_m\_sg\\
+ModNom\_m\_sg $\rightarrow$ Adj\_m\_sg | adv\_intens Adj\_m\_sg | $\varepsilon$\\
+Adj\_m\_sg $\rightarrow$ adj\_m\_sg | adj\_inv\_sg\\
+SubOpt\_sg $\rightarrow$ que SV\_sg | $\varepsilon$\\
+SV\_sg $\rightarrow$ v\_sg RestoSV\\
+RestoSV $\rightarrow$ que Clausula | AdvOpt SPOpt\\
+Clausula $\rightarrow$ Sujeto\_sg SV\_sg | Sujeto\_pl SV\_pl\\
+AdvOpt $\rightarrow$ adv\_modo | $\varepsilon$\\
+SPOpt $\rightarrow$ prep SN\_Prep | $\varepsilon$\\
+SN\_Prep $\rightarrow$ SN\_m\_sg | SN\_f\_sg | SN\_m\_pl | SN\_f\_pl
+\end{quote}
+
+La gramática resultante tiene 48 producciones. Su tabla predictiva se construyó sin colisiones (77 celdas activas). \texttt{FIRST(Sujeto\_sg)}=$\{\texttt{det\_m\_sg},\texttt{det\_f\_sg}\}$ y \texttt{FIRST(Sujeto\_pl)}=$\{\texttt{det\_m\_pl},\texttt{det\_f\_pl}\}$ son disjuntos, de modo que \texttt{Oracion} es LL(1).
+
+\subsection{Resultados de los intentos de extensión}
+Se evaluaron oraciones que cubren los cinco fenómenos pedidos y otras que los violan a propósito. El parser produce árbol de derivación en los casos aceptados y se detiene en el primer error en los rechazados.
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{|p{0.40\textwidth}|l|p{0.38\textwidth}|}
+\hline
+\textbf{Oración evaluada} & \textbf{Resultado} & \textbf{Fenómeno} \\ \hline
+\textit{El gato negro duerme.} & Aceptó & Concordancia de género, número y sujeto--verbo. \\ \hline
+\textit{Los perros grandes juegan con la niña.} & Aceptó & Adjetivo invariable y complemento preposicional. \\ \hline
+\textit{La gata muy rápida corre rápidamente en el jardín.} & Aceptó & Intensificador, adjetivo, adverbio de modo y SP. \\ \hline
+\textit{El niño que corre juega en la casa.} & Aceptó & Relativa de sujeto en singular. \\ \hline
+\textit{El niño observa que la gata duerme.} & Aceptó & Completiva introducida por \textit{que}. \\ \hline
+\textit{El gato negra duerme.} & Rechazó & Discordancia de género (\texttt{n\_m\_sg} con \texttt{adj\_f\_sg}). \\ \hline
+\textit{El gato negro duermen.} & Rechazó & Discordancia sujeto--verbo (\texttt{v\_pl} tras \texttt{Sujeto\_sg}). \\ \hline
+\textit{Los gatos que corre duermen.} & Rechazó & Discordancia de número en la relativa. \\ \hline
+\textit{El niño y la niña duermen.} & Rechazó & Coordinación que altera el número del sujeto. \\ \hline
+\end{tabular}
+\caption{Resultados del parser LL(1) sobre la gramática extendida al español.}
+\end{table}
+
+Dentro del subconjunto cerrado, la CFG sí representa la concordancia local, los modificadores acotados y las dos subordinadas. El intento de añadir un sujeto coordinado (\texttt{Sujeto\_pl $\rightarrow$ SN\_m\_sg conj SN\_Coord}) produjo un conflicto \texttt{FIRST/FIRST} en $M[\texttt{Oracion},\texttt{det\_f\_sg}]$: el primer token de \textit{el niño} y el de \textit{el niño y la niña} coinciden, y el analizador LL(1) no puede decidir si el verbo será singular o plural. Ese fallo, junto con la explosión de no terminales y la adjunción preposicional rígida, se analiza en la Sección~6.
