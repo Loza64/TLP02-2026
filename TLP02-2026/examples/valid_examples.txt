@@ -1,6 +1,0 @@
-int edad;
-int edad = 20;
-int total = 3 + 4 * 2;
-total = (3 + 4) * 2;
-cout << total;
-cout << 3 + 4;
