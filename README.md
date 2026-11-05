@@ -103,7 +103,9 @@ TLP02-2026/
 │   ├── lexer.py           # léxico cerrado del español
 │   ├── parser.py          # mismo algoritmo LL(1), otro símbolo inicial
 │   └── parser_espanol.py  # demo de aceptación / rechazo
-├── nlp/                   # comparación con NLTK/spaCy (Integrante 4)
+├── nlp/                   # comparación con spaCy (Integrante 4)
+│   ├── nlp_comparison.py  # script principal de procesamiento y análisis
+│   └── results/           # visualizaciones HTML generadas por spaCy
 ├── tests/
 │   ├── test_parser.py
 │   ├── valid/             # programas que deben aceptarse
