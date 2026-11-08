@@ -1,6 +1,5 @@
-# El parser LL(1) (carpeta parser/) solo usa la biblioteca estándar de Python 3.10+.
-# Las pruebas usan unittest (incluido en Python), no hace falta instalar nada.
+# Parser LL(1) (parser/, espanol/): solo biblioteca estándar de Python 3.10+.
+# Las pruebas usan unittest (incluido en Python).
 #
-# Dependencias de las otras partes del proyecto (agregar aquí cuando se decidan):
-# spacy>=3.7        # comparación NLP (si el grupo elige spaCy)
-# nltk>=3.8         # comparación NLP (si el grupo elige NLTK)
+# Comparación NLP (nlp/nlp_comparison.py):
+spacy>=3.7

@@ -15,49 +15,50 @@ El parser **solo comprueba sintaxis**: no verifica que las variables estén decl
 
 ## Requisitos
 
-- Python **3.10 o superior** (el parser solo usa la biblioteca estándar).
-- Las pruebas usan `unittest`, incluido en Python. No hace falta instalar nada para el parser.
+- Python **3.10 o superior**. En macOS con Homebrew, preferir `python3.12` (el `python3` del
+  sistema suele ser 3.9 y choca con el nombre del paquete `parser/`).
+- Las pruebas usan `unittest` (incluido en Python). El parser de C++ y la extensión al español
+  no requieren dependencias externas.
+- spaCy solo hace falta para la comparación NLP (`nlp/`).
 
 ## Instalación
 
 ```bash
 git clone <url-del-repositorio>
 cd TLP02-2026
-# (opcional) entorno virtual
-python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
-pip install -r requirements.txt                         # no instala nada para el parser
+
+# Entorno virtual (recomendado en Mac/Linux/Windows)
+python3.12 -m venv .venv          # o: python3 -m venv .venv  /  py -3.12 -m venv .venv
+source .venv/bin/activate         # Windows: .venv\Scripts\activate
+
+python -m pip install -r requirements.txt
+python -m spacy download es_core_news_sm   # solo para la parte NLP
 ```
+
+Con el entorno activado, todos los comandos siguientes usan `python`.
 
 ## Ejecución
 
 Todos los comandos se ejecutan **desde la raíz del proyecto** y con `-m`
-(no ejecutar `python parser/parser.py` directamente):
+(no ejecutar `python parser/parser.py` ni `python espanol/parser_espanol.py` directamente).
+
+### Parser de C++
 
 ```bash
 # Analizar un archivo
 python -m parser.parser tests/valid/07_programa_completo.cpp
 
-# Analizar texto directamente, mostrando árbol, AST y traza paso a paso
+# Analizar texto, con árbol, AST y traza
 python -m parser.parser -c "int total = 3 + 4 * 2;" --tree --ast --trace
 
-# Desde la entrada estándar
-echo "cout << (3 + 4) * 2;" | python -m parser.parser
+# Entrada inválida
+python -m parser.parser -c "total = 5"
 
-# Ver producciones, FIRST, FOLLOW y tabla predictiva (añadir --markdown para el informe)
+# Producciones, FIRST, FOLLOW y tabla predictiva (--markdown para el informe)
 python -m parser.grammar
-
-# Demo: ejecuta examples/valid_examples.txt y examples/invalid_examples.txt
-python run_examples.py
-
-# Extensión al español (misma tabla LL(1), otro léxico y otras producciones)
-python -m espanol.parser_espanol
-python -m espanol.parser -c "el gato negro duerme." --tree --trace
-python -m espanol.parser -c "el gato negra duerme."
-python -m espanol.parser --conflicto
-python -m espanol.grammar
 ```
 
-Salida esperada para una entrada válida y una inválida:
+Salida esperada:
 
 ```
 $ python -m parser.parser -c "int edad = 20;"
@@ -69,11 +70,63 @@ $ python -m parser.parser -c "total = 5"
 
 El código de salida es `0` si el parser acepta y `1` si rechaza.
 
+### Extensión al español
+
+```bash
+# Demo: oraciones válidas (✓) e inválidas (✗)
+python -m espanol.parser_espanol
+python -m espanol --demo
+
+# Conflicto LL(1) al intentar coordinación ("el niño y la niña")
+python -m espanol --conflicto
+
+# Oración a mano, con árbol o rechazo
+python -m espanol -c "el gato negro duerme." --tree
+python -m espanol -c "el gato negra duerme."
+python -m espanol -c "el niño y la niña duermen."
+
+# Producciones, FIRST, FOLLOW y tabla
+python -m espanol.grammar
+```
+
+### Demo conjunta (C++ + español)
+
+```bash
+python run_examples.py
+```
+
+### Comparación NLP (spaCy)
+
+```bash
+python nlp/nlp_comparison.py
+```
+
+La visualización de dependencias queda en `nlp/results/arboles_dependencias_nlp.html`.
+Para abrirla:
+
+```bash
+# macOS
+open nlp/results/arboles_dependencias_nlp.html
+
+# Linux
+xdg-open nlp/results/arboles_dependencias_nlp.html
+
+# Windows
+start nlp/results/arboles_dependencias_nlp.html
+```
+
 ## Pruebas
 
 ```bash
+# C++ + español (31 pruebas)
 python -m unittest discover -s tests -t . -v
+
+# Solo la extensión al español
+python -m unittest tests.test_espanol -v
 ```
+
+Importante: el `-t .` hace que Python use el paquete local `parser/` y no el módulo
+homónimo de la biblioteca estándar (presente en Python 3.9).
 
 Las pruebas comprueban: FIRST/FOLLOW y ausencia de conflictos LL(1); que cada archivo de
 `tests/valid/` se acepte y cada archivo de `tests/invalid/` se rechace; posiciones de los errores;
@@ -108,6 +161,7 @@ TLP02-2026/
 │   └── results/           # visualizaciones HTML generadas por spaCy
 ├── tests/
 │   ├── test_parser.py
+│   ├── test_espanol.py
 │   ├── valid/             # programas que deben aceptarse
 │   └── invalid/           # programas que deben rechazarse
 ├── examples/              # un caso por línea, para la demo
