@@ -40,8 +40,11 @@ def main() -> int:
             marca = "✓ acepta " if aceptado else "✗ rechaza"
             detalle = f"   -> {motivo}" if motivo else ""
             print(f"  {marca} | {src:<28}{'' if ok else '  ¡RESULTADO INESPERADO!'}{detalle}")
-    print(f"\n{'Todos los casos se comportan como se esperaba.' if not fallos else f'{fallos} caso(s) inesperados.'}")
-    return 1 if fallos else 0
+    print(f"\n{'Todos los casos de C++ se comportan como se esperaba.' if not fallos else f'{fallos} caso(s) inesperados.'}")
+
+    from espanol.parser import run_demo
+    print("\n---- Extensión al español ----")
+    return 1 if fallos or run_demo() else 0
 
 
 if __name__ == "__main__":

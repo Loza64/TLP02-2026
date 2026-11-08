@@ -1,0 +1,33 @@
+# 7. Comparación con una herramienta de NLP
+
+## 7.1. Herramienta utilizada
+
+Para la comparación se seleccionó la biblioteca de procesamiento de lenguaje natural **spaCy** (versión $\ge 3.7$), utilizando el modelo optimizado para el idioma español `es_core_news_sm`. 
+
+A diferencia del parser propio, que opera mediante reglas formales deterministas de reescritura desde un símbolo inicial, spaCy procesa el texto mediante un pipeline estadístico basado en redes neuronales. Este realiza etiquetado gramatical (*Part-of-Speech Tagging*) y análisis de dependencias sintácticas (*Dependency Parsing*), asignando a cada palabra su categoría gramatical y un arco dirigido hacia su cabeza sintáctica.
+
+El script desarrollado (`nlp/nlp_comparison.py`) procesó de forma automatizada las nueve oraciones de prueba definidas para la extensión al español, imprimiendo el análisis tabulado y exportando las representaciones visuales de los árboles de dependencias a un archivo HTML interactivo (`nlp/results/arboles_dependencias_nlp.html`).
+
+## 7.2. Comparación de resultados
+
+A continuación se presentan los resultados obtenidos al evaluar el conjunto de oraciones de prueba tanto en el parser predictivo propio como en la herramienta de NLP.
+
+| Oración | Parser propio | Herramienta NLP | Diferencia observada |
+| :--- | :--- | :--- | :--- |
+| El gato negro duerme. | Aceptó | Procesó | Ambos identifican correctamente la estructura nominal y el verbo principal. |
+| Los perros grandes juegan con la niña. | Aceptó | Procesó | Reconocimiento correcto del adjetivo invariable (*grandes*) y el complemento preposicional. |
+| La gata muy rápida corre rápidamente en el jardín. | Aceptó | Procesó | spaCy asigna modificadores adverbiales y de intensidad de forma directa sobre sus núcleos sin requerir producciones intermedias. |
+| El niño que corre juega en la casa. | Aceptó | Procesó | La proposición relativa se enlaza mediante una relación de cláusula adjetival (`acl`). |
+| El niño observa que la gata duerme. | Aceptó | Procesó | La oración completiva se reconoce como complemento de la cláusula (`ccomp`). |
+| El gato negra duerme. | Rechazó | Procesó | **Tolerancia a discordancia:** spaCy asigna la relación de modificador (`amod`) a *negra* ignorando la discordancia de género local. |
+| El gato negro duermen. | Rechazó | Procesó | **Tolerancia a discordancia:** spaCy identifica *gato* como sujeto (`nsubj`) de *duermen* a pesar del error de número. |
+| Los gatos que corre duermen. | Rechazó | Procesó | El parser propio valida la concordancia interna de la subordinada; spaCy enruta los enlaces sintácticos de forma probabilística. |
+| El niño y la niña duermen. | Rechazó | Procesó | **Coordinación:** El parser propio rechaza la estructura por el conflicto LL(1); spaCy une los núcleos mediante relaciones conjuntivas (`conj` y `cc`). |
+
+### Análisis de diferencias y conclusiones
+
+Al contrastar ambos enfoques se observan diferencias clave en el análisis sintáctico y el tratamiento de las estructuras:
+
+* **Rigidez formal vs. Robustez:** El parser LL(1) actúa como un filtro determinista estricto que rechaza la cadena ante cualquier desviación de concordancia. En contraparte, spaCy prioriza la recuperación estructural y procesa oraciones con errores morfológicos locales asumiendo un enfoque probabilístico.
+* **Estructuras analizadas:** Herramientas de NLP como spaCy pueden analizar estructuras lingüísticas complejas y coordinaciones que la gramática propia no contempla debido a limitaciones de diseño y al límite de un solo token de anticipación ($k=1$).
+* **Alcance formal:** Es fundamental aclarar que los resultados obtenidos por spaCy **no demuestran por sí solos que una Gramática Libre de Contexto (CFG) sea formalmente insuficiente para el español**. La incapacidad del parser propio para aceptar ciertos fenómenos obedece a las restricciones del algoritmo determinista LL(1) y al acoplamiento de rasgos en los no terminales, más no a una imposibilidad teórica de la jerarquía de Chomsky para generar dichos lenguajes.

@@ -1,0 +1,41 @@
+% -------------------------------------------------------------------
+% 6. ANÁLISIS DE LAS LIMITACIONES DE LA CFG
+% Pegar este bloque en main.tex (extensión sugerida: 1 página).
+% Distingue fallos de ESTA gramática / del método LL(1) / de las CFG.
+% -------------------------------------------------------------------
+\section{Análisis de las limitaciones de la CFG}
+
+\subsection{Identificación de los puntos de fallo}
+Los casos problemáticos no se interpretaron como un único ``la CFG no puede''. Se clasificaron según la regla implicada y el fenómeno lingüístico, y se distinguió el resultado del parser del diagnóstico formal.
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{|p{0.28\textwidth}|p{0.14\textwidth}|p{0.20\textwidth}|p{0.26\textwidth}|}
+\hline
+\textbf{Oración} & \textbf{Esperado / obtenido} & \textbf{Regla} & \textbf{Fenómeno} \\ \hline
+\textit{El gato negra duerme.} & Rechazar / Rechazó & \texttt{ModNom\_m\_sg} exige \texttt{adj\_m\_sg} & Concordancia local de género. \\ \hline
+\textit{El gato negro duermen.} & Rechazar / Rechazó & \texttt{Oracion} $\rightarrow$ \texttt{Sujeto\_sg SV\_sg} & Concordancia sujeto--verbo. \\ \hline
+\textit{Los gatos que corre duermen.} & Rechazar / Rechazó & \texttt{SubOpt\_pl} $\rightarrow$ \texttt{que SV\_pl} & Concordancia en la subordinada. \\ \hline
+\textit{El niño y la niña duermen.} & Aceptar en español / Rechazó; además, al añadir la producción, conflicto LL(1) & $M[\texttt{Oracion},\texttt{det\_*}]$ & Coordinación que cambia el número. \\ \hline
+\textit{El gato duerme en el jardín} (el SP también podría modificar a \textit{gato}) & Dos análisis posibles / un solo árbol & \texttt{SPOpt} cuelga solo de \texttt{RestoSV} & Ambigüedad de adjunción. \\ \hline
+\end{tabular}
+\caption{Puntos de fallo observados al extender la gramática al español.}
+\end{table}
+
+Las tres primeras oraciones fallan porque violan reglas que sí pudieron escribirse como CFG. Son éxitos del diseño, no limitaciones de las gramáticas libres de contexto. Los dos últimos casos sí exhiben fronteras, pero de naturaleza distinta.
+
+\subsection{Explicación formal}
+Debe distinguirse con claridad lo que no pudo esta gramática, lo que no puede el método LL(1) y lo que no puede una CFG en general.
+
+\begin{enumerate}
+    \item \textbf{Concordancia con un inventario finito de rasgos.} Género y número en tercera persona forman un conjunto finito. Copiar esos rasgos en el nombre del no terminal es un procedimiento estándar: el lenguaje de las oraciones bien concordadas de este subconjunto \emph{sí} es libre de contexto, y el parser lo reconoce. La dificultad es práctica: cada rasgo nuevo (persona, tiempo, caso) multiplica las producciones. Esa explosión combinatoria no demuestra que el fenómeno sea de Tipo~1; solo muestra que una CFG ``ingenua'', sin unificación, escala mal.
+
+    \item \textbf{Prefijos compartidos y un token de anticipación.} \textit{El niño duerme} y \textit{el niño y la niña duermen} comienzan por el mismo terminal \texttt{det\_m\_sg}. Al intentar la producción \texttt{Sujeto\_pl $\rightarrow$ SN\_m\_sg conj SN\_Coord}, \texttt{FIRST(Sujeto\_sg)} y \texttt{FIRST(Sujeto\_pl)} dejan de ser disjuntos y la tabla choca en $M[\texttt{Oracion},\texttt{det\_f\_sg}]$ (producciones 1 y 2). Una CFG \emph{puede} generar esa coordinación; un parser LL(1) no puede decidir el número del verbo con un solo símbolo. El fallo es del análisis predictivo, no de las gramáticas de Tipo~2. Un analizador no determinista, o uno con más anticipación, resolvería la misma CFG.
+
+    \item \textbf{Ambigüedad estructural.} En español, \textit{en el jardín} puede modificar al verbo o al nombre. Una CFG ambigua admitiría ambos árboles; la tabla LL(1) exige una sola producción por celda, de modo que se fijó la adjunción al verbo (\texttt{SPOpt} dentro de \texttt{RestoSV}). Se perdió cobertura interpretativa, no la pertenencia formal de esas cadenas al lenguaje.
+
+    \item \textbf{Limitaciones que sí son de las CFG.} Las dependencias cruzadas (el clásico \textit{cross-serial} del flamenco suizo) y los lenguajes de copia $\{ww\}$ no son libres de contexto y requieren, como mínimo, el nivel ligeramente sensible al contexto. En este subconjunto no se implementó un fenómeno de esa clase: el español de las pruebas no los necesita. Afirmar que ``la CFG no puede el español'' a partir de un conflicto LL(1) o de un léxico cerrado sería incorrecto.
+\end{enumerate}
+
+En resumen, la experiencia confirma el lugar de las CFG en la jerarquía de Chomsky: bastan para el subconjunto de C++ y para un fragmento rígido del español con rasgos finitos, pero el método LL(1) no tolera prefijos compartidos ni ambigüedad, y la representación por multiplicación de no terminales no escala. Esas restricciones explican por qué el mismo motor que analiza \texttt{int x = 3 + 4;} se queda corto como modelo del lenguaje natural, sin confundir un límite del algoritmo con un límite de la clase de lenguajes.
