@@ -151,12 +151,12 @@ TLP02-2026/
 │   ├── grammar.py         # producciones del subconjunto de C++
 │   ├── parser.py          # parser predictivo no recursivo + línea de comandos
 │   └── tree.py            # árbol de análisis sintáctico y AST
-├── espanol/               # extensión al español (Integrante 3)
+├── espanol/               # extensión al español
 │   ├── grammar.py         # producciones con concordancia y subordinadas
 │   ├── lexer.py           # léxico cerrado del español
 │   ├── parser.py          # mismo algoritmo LL(1), otro símbolo inicial
 │   └── parser_espanol.py  # demo de aceptación / rechazo
-├── nlp/                   # comparación con spaCy (Integrante 4)
+├── nlp/                   # comparación con spaCy
 │   ├── nlp_comparison.py  # script principal de procesamiento y análisis
 │   └── results/           # visualizaciones HTML generadas por spaCy
 ├── tests/
