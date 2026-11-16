@@ -63,6 +63,24 @@ def parse(source: str, trace: list | None = None) -> Node:
             look = lookahead.value or lookahead.type
             trace.append((step, snapshot, look, action))
 
+    def fail(message: str, look: Token, top: Node, expected) -> ParseError:
+        """Crea el ParseError con el contexto del fallo (lo usa espanol.ejecutar_corpus).
+
+        Atributos extra: ``found`` (token encontrado), ``symbol`` (símbolo en el tope
+        de la pila), ``expected`` (terminales que habrían permitido seguir, en orden),
+        ``node`` y ``tree`` (nodo que falló y árbol parcial) y ``consumed`` (tokens ya
+        aceptados).
+        """
+        err = ParseError(message, look.line, look.col)
+        err.found = look
+        err.symbol = top.symbol
+        order = TERMINALS + [END]
+        err.expected = [s for s in order if s in expected]
+        err.node = top
+        err.tree = root
+        err.consumed = tokens[:pos]
+        return err
+
     while stack:
         look = tokens[pos]
         top = stack[-1]
@@ -73,16 +91,16 @@ def parse(source: str, trace: list | None = None) -> Node:
                 log("Aceptar", look)
                 stack.pop()
                 break
-            raise ParseError(
+            raise fail(
                 f"se encontró {_describe(look)} después de terminar la oración",
-                look.line, look.col,
+                look, top, [END],
             )
 
         if sym not in TABLE:
             if look.type != sym:
-                raise ParseError(
+                raise fail(
                     f"se encontró {_describe(look)}, se esperaba {_fmt_expected([sym])}",
-                    look.line, look.col,
+                    look, top, [sym],
                 )
             log(f"Emparejar {sym}", look)
             stack.pop()
@@ -92,9 +110,9 @@ def parse(source: str, trace: list | None = None) -> Node:
 
         idx = TABLE[sym].get(look.type)
         if idx is None:
-            raise ParseError(
+            raise fail(
                 f"se encontró {_describe(look)}, se esperaba {_fmt_expected(TABLE[sym])}",
-                look.line, look.col,
+                look, top, TABLE[sym],
             )
         log(f"Expandir {format_production(idx)}", look)
         stack.pop()
