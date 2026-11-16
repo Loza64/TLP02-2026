@@ -115,14 +115,52 @@ xdg-open nlp/results/arboles_dependencias_nlp.html
 start nlp/results/arboles_dependencias_nlp.html
 ```
 
+### Fase 2: parser propio con el corpus de prueba
+
+Ejecuta las 40 oraciones de `corpus/corpus_pruebas.csv` con el parser LL(1) del español y
+guarda la evidencia en `logs/`. No requiere dependencias externas.
+
+```bash
+# 1. Ejecutar el corpus y guardar el log
+python -m espanol.ejecutar_corpus
+
+# 2. Dibujar los árboles de las oraciones aceptadas (lee logs/parser_propio.json)
+python -m espanol.visualizacion_arboles
+python -m espanol.visualizacion_arboles --con-epsilon        # árbol completo, con ε
+
+# Un solo árbol, para una figura del informe
+python -m espanol.visualizacion_arboles --oracion "el gato negro duerme." --salida figuras
+```
+
+Archivos generados:
+
+| Archivo | Contenido |
+|---|---|
+| `logs/parser_propio.json` | Log completo: metadatos (fecha, versión de Python, commit, hash del corpus, tamaño de la gramática), resumen con VP/VN/FP/FN y, por oración: tokens, derivación, traza de la pila, árbol y motivo de rechazo. |
+| `logs/parser_propio.txt` | El mismo log en formato legible. |
+| `logs/parser_propio_resultados.csv` | Una fila por oración (`id, nivel, oracion, esperado, obtenido, coincide, motivo_categoria, regla, arbol`), para el script de evaluación. |
+| `logs/arboles/arbol_XX.svg` | Un árbol por oración aceptada. |
+| `logs/arboles/index.html` | Galería con todos los árboles. |
+| `logs/arboles/arboles_forest.tex` | Los árboles para LaTeX (`\usepackage{forest}`). |
+
+Criterio: **ACEPTADA** si el parser construye el árbol completo; **RECHAZADA** si falla el
+lexer o el análisis predictivo. El motivo de cada rechazo se clasifica en
+`palabra_fuera_del_lexico`, `discordancia_genero`, `discordancia_numero`,
+`discordancia_genero_y_numero`, `coordinacion_no_contemplada`, `estructura_incompleta`,
+`falta_determinante` o `estructura_no_contemplada`, junto con la regla de la gramática que lo
+decide.
+
 ## Pruebas
 
 ```bash
-# C++ + español (31 pruebas)
+# C++ + español + corpus de la Fase 2 (41 pruebas)
 python -m unittest discover -s tests -t . -v
 
 # Solo la extensión al español
 python -m unittest tests.test_espanol -v
+
+# Solo el corpus, el log y los árboles de la Fase 2
+python -m unittest tests.test_corpus -v
 ```
 
 Importante: el `-t .` hace que Python use el paquete local `parser/` y no el módulo
@@ -132,7 +170,9 @@ Las pruebas comprueban: FIRST/FOLLOW y ausencia de conflictos LL(1); que cada ar
 `tests/valid/` se acepte y cada archivo de `tests/invalid/` se rechace; posiciones de los errores;
 comportamiento del lexer; precedencia/asociatividad en el AST; y la extensión al español
 (`tests/test_espanol.py`: oraciones válidas, discordancias y el conflicto LL(1) de la
-coordinación). Resultado esperado: `OK` (31 pruebas).
+coordinación) y, en `tests/test_corpus.py`, que las 40 oraciones del corpus coincidan con su
+etiqueta, que los motivos de rechazo se clasifiquen bien y que se generen el log y los
+árboles. Resultado esperado: `OK` (41 pruebas).
 
 Para agregar un caso de C++, basta con crear un archivo `.cpp` en `tests/valid/` o
 `tests/invalid/`. Para el español, se añade una línea en `examples/espanol_valid.txt` o
@@ -155,13 +195,24 @@ TLP02-2026/
 │   ├── grammar.py         # producciones con concordancia y subordinadas
 │   ├── lexer.py           # léxico cerrado del español
 │   ├── parser.py          # mismo algoritmo LL(1), otro símbolo inicial
-│   └── parser_espanol.py  # demo de aceptación / rechazo
+│   ├── parser_espanol.py  # demo de aceptación / rechazo
+│   ├── ejecutar_corpus.py       # Fase 2: corpus -> logs/parser_propio.*
+│   └── visualizacion_arboles.py # Fase 2: árboles SVG / HTML / LaTeX
+├── corpus/
+│   ├── corpus_pruebas.csv       # 40 oraciones con etiqueta esperada
+│   └── criterios_diseno_corpus.md
+├── logs/
+│   ├── parser_propio.json       # log completo del parser propio
+│   ├── parser_propio.txt
+│   ├── parser_propio_resultados.csv
+│   └── arboles/                 # árboles de las oraciones aceptadas
 ├── nlp/                   # comparación con spaCy
 │   ├── nlp_comparison.py  # script principal de procesamiento y análisis
 │   └── results/           # visualizaciones HTML generadas por spaCy
 ├── tests/
 │   ├── test_parser.py
 │   ├── test_espanol.py
+│   ├── test_corpus.py
 │   ├── valid/             # programas que deben aceptarse
 │   └── invalid/           # programas que deben rechazarse
 ├── examples/              # un caso por línea, para la demo

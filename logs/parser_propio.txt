@@ -1,0 +1,1006 @@
+LOG DEL PARSER PROPIO — Fase 2 (TLP02-2026)
+========================================================================
+Fecha:      2026-11-15T23:49:31-06:00
+Comando:    python -m espanol.ejecutar_corpus
+Python:     3.15.2  (Windows-11-10.0.26300-SP0)
+Commit:     6ab8432
+Corpus:     corpus/corpus_pruebas.csv  (sha256 8e9ec84c5ccb235e…)
+Gramática:  48 producciones, 77 celdas LL(1), símbolo inicial Oracion
+Criterio:   ACEPTADA si el parser LL(1) construye el árbol completo; RECHAZADA si falla el lexer o el análisis predictivo. Positivo = ACEPTADA.
+========================================================================
+
+ID: 1    Nivel: 1    Fenómeno: concordancia_genero_numero_basica
+Oración:    El gato negro duerme.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     El/det_m_sg gato/n_m_sg negro/adj_m_sg duerme/v_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg gato) (ModNom_m_sg (Adj_m_sg (adj_m_sg negro))))) (SV_sg (v_sg duerme)) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_m_sg
+    │   │   ├── det_m_sg(El)
+    │   │   ├── n_m_sg(gato)
+    │   │   └── ModNom_m_sg
+    │   │       └── Adj_m_sg
+    │   │           └── adj_m_sg(negro)
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(duerme)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.0667 ms
+------------------------------------------------------------------------
+
+ID: 2    Nivel: 1    Fenómeno: concordancia_genero_numero_basica
+Oración:    La gata negra corre.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     La/det_f_sg gata/n_f_sg negra/adj_f_sg corre/v_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_f_sg (det_f_sg La) (n_f_sg gata) (ModNom_f_sg (Adj_f_sg (adj_f_sg negra))))) (SV_sg (v_sg corre)) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_f_sg
+    │   │   ├── det_f_sg(La)
+    │   │   ├── n_f_sg(gata)
+    │   │   └── ModNom_f_sg
+    │   │       └── Adj_f_sg
+    │   │           └── adj_f_sg(negra)
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(corre)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.0387 ms
+------------------------------------------------------------------------
+
+ID: 3    Nivel: 1    Fenómeno: concordancia_plural_masculino
+Oración:    Los gatos negros duermen.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     Los/det_m_pl gatos/n_m_pl negros/adj_m_pl duermen/v_pl ./.
+Árbol:      (Oracion (Sujeto_pl (SN_m_pl (det_m_pl Los) (n_m_pl gatos) (ModNom_m_pl (Adj_m_pl (adj_m_pl negros))))) (SV_pl (v_pl duermen)) (. .))
+
+    Oracion
+    ├── Sujeto_pl
+    │   ├── SN_m_pl
+    │   │   ├── det_m_pl(Los)
+    │   │   ├── n_m_pl(gatos)
+    │   │   └── ModNom_m_pl
+    │   │       └── Adj_m_pl
+    │   │           └── adj_m_pl(negros)
+    │   └── SubOpt_pl
+    │       └── ε
+    ├── SV_pl
+    │   ├── v_pl(duermen)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.0342 ms
+------------------------------------------------------------------------
+
+ID: 4    Nivel: 1    Fenómeno: concordancia_plural_femenino
+Oración:    Las gatas negras corren.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     Las/det_f_pl gatas/n_f_pl negras/adj_f_pl corren/v_pl ./.
+Árbol:      (Oracion (Sujeto_pl (SN_f_pl (det_f_pl Las) (n_f_pl gatas) (ModNom_f_pl (Adj_f_pl (adj_f_pl negras))))) (SV_pl (v_pl corren)) (. .))
+
+    Oracion
+    ├── Sujeto_pl
+    │   ├── SN_f_pl
+    │   │   ├── det_f_pl(Las)
+    │   │   ├── n_f_pl(gatas)
+    │   │   └── ModNom_f_pl
+    │   │       └── Adj_f_pl
+    │   │           └── adj_f_pl(negras)
+    │   └── SubOpt_pl
+    │       └── ε
+    ├── SV_pl
+    │   ├── v_pl(corren)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.036 ms
+------------------------------------------------------------------------
+
+ID: 5    Nivel: 1    Fenómeno: SN_sin_adjetivo
+Oración:    El niño juega.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     El/det_m_sg niño/n_m_sg juega/v_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg niño))) (SV_sg (v_sg juega)) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_m_sg
+    │   │   ├── det_m_sg(El)
+    │   │   ├── n_m_sg(niño)
+    │   │   └── ModNom_m_sg
+    │   │       └── ε
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(juega)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.028 ms
+------------------------------------------------------------------------
+
+ID: 6    Nivel: 1    Fenómeno: SN_sin_adjetivo
+Oración:    La niña duerme.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     La/det_f_sg niña/n_f_sg duerme/v_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_f_sg (det_f_sg La) (n_f_sg niña))) (SV_sg (v_sg duerme)) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_f_sg
+    │   │   ├── det_f_sg(La)
+    │   │   ├── n_f_sg(niña)
+    │   │   └── ModNom_f_sg
+    │   │       └── ε
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(duerme)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.0288 ms
+------------------------------------------------------------------------
+
+ID: 7    Nivel: 1    Fenómeno: determinante_indefinido_sg
+Oración:    Un perro corre.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     Un/det_m_sg perro/n_m_sg corre/v_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_m_sg (det_m_sg Un) (n_m_sg perro))) (SV_sg (v_sg corre)) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_m_sg
+    │   │   ├── det_m_sg(Un)
+    │   │   ├── n_m_sg(perro)
+    │   │   └── ModNom_m_sg
+    │   │       └── ε
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(corre)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.0286 ms
+------------------------------------------------------------------------
+
+ID: 8    Nivel: 1    Fenómeno: determinante_indefinido_sg
+Oración:    Una perra juega.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     Una/det_f_sg perra/n_f_sg juega/v_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_f_sg (det_f_sg Una) (n_f_sg perra))) (SV_sg (v_sg juega)) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_f_sg
+    │   │   ├── det_f_sg(Una)
+    │   │   ├── n_f_sg(perra)
+    │   │   └── ModNom_f_sg
+    │   │       └── ε
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(juega)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.0379 ms
+------------------------------------------------------------------------
+
+ID: 9    Nivel: 1    Fenómeno: plural_sin_adjetivo
+Oración:    Los niños juegan.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     Los/det_m_pl niños/n_m_pl juegan/v_pl ./.
+Árbol:      (Oracion (Sujeto_pl (SN_m_pl (det_m_pl Los) (n_m_pl niños))) (SV_pl (v_pl juegan)) (. .))
+
+    Oracion
+    ├── Sujeto_pl
+    │   ├── SN_m_pl
+    │   │   ├── det_m_pl(Los)
+    │   │   ├── n_m_pl(niños)
+    │   │   └── ModNom_m_pl
+    │   │       └── ε
+    │   └── SubOpt_pl
+    │       └── ε
+    ├── SV_pl
+    │   ├── v_pl(juegan)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.0494 ms
+------------------------------------------------------------------------
+
+ID: 10    Nivel: 1    Fenómeno: plural_sin_adjetivo
+Oración:    Las niñas duermen.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     Las/det_f_pl niñas/n_f_pl duermen/v_pl ./.
+Árbol:      (Oracion (Sujeto_pl (SN_f_pl (det_f_pl Las) (n_f_pl niñas))) (SV_pl (v_pl duermen)) (. .))
+
+    Oracion
+    ├── Sujeto_pl
+    │   ├── SN_f_pl
+    │   │   ├── det_f_pl(Las)
+    │   │   ├── n_f_pl(niñas)
+    │   │   └── ModNom_f_pl
+    │   │       └── ε
+    │   └── SubOpt_pl
+    │       └── ε
+    ├── SV_pl
+    │   ├── v_pl(duermen)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.0294 ms
+------------------------------------------------------------------------
+
+ID: 11    Nivel: 1    Fenómeno: adjetivo_invariable_sg
+Oración:    El perro grande duerme.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     El/det_m_sg perro/n_m_sg grande/adj_inv_sg duerme/v_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg perro) (ModNom_m_sg (Adj_m_sg (adj_inv_sg grande))))) (SV_sg (v_sg duerme)) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_m_sg
+    │   │   ├── det_m_sg(El)
+    │   │   ├── n_m_sg(perro)
+    │   │   └── ModNom_m_sg
+    │   │       └── Adj_m_sg
+    │   │           └── adj_inv_sg(grande)
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(duerme)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.0347 ms
+------------------------------------------------------------------------
+
+ID: 12    Nivel: 1    Fenómeno: adjetivo_invariable_sg
+Oración:    La niña grande corre.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     La/det_f_sg niña/n_f_sg grande/adj_inv_sg corre/v_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_f_sg (det_f_sg La) (n_f_sg niña) (ModNom_f_sg (Adj_f_sg (adj_inv_sg grande))))) (SV_sg (v_sg corre)) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_f_sg
+    │   │   ├── det_f_sg(La)
+    │   │   ├── n_f_sg(niña)
+    │   │   └── ModNom_f_sg
+    │   │       └── Adj_f_sg
+    │   │           └── adj_inv_sg(grande)
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(corre)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.0377 ms
+------------------------------------------------------------------------
+
+ID: 13    Nivel: 2    Fenómeno: intensificador_adv_modo_SP
+Oración:    La gata muy rápida corre rápidamente en el jardín.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     La/det_f_sg gata/n_f_sg muy/adv_intens rápida/adj_f_sg corre/v_sg rápidamente/adv_modo en/prep el/det_m_sg jardín/n_m_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_f_sg (det_f_sg La) (n_f_sg gata) (ModNom_f_sg (adv_intens muy) (Adj_f_sg (adj_f_sg rápida))))) (SV_sg (v_sg corre) (RestoSV (AdvOpt (adv_modo rápidamente)) (SPOpt (prep en) (SN_Prep (SN_m_sg (det_m_sg el) (n_m_sg jardín)))))) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_f_sg
+    │   │   ├── det_f_sg(La)
+    │   │   ├── n_f_sg(gata)
+    │   │   └── ModNom_f_sg
+    │   │       ├── adv_intens(muy)
+    │   │       └── Adj_f_sg
+    │   │           └── adj_f_sg(rápida)
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(corre)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── adv_modo(rápidamente)
+    │       └── SPOpt
+    │           ├── prep(en)
+    │           └── SN_Prep
+    │               └── SN_m_sg
+    │                   ├── det_m_sg(el)
+    │                   ├── n_m_sg(jardín)
+    │                   └── ModNom_m_sg
+    │                       └── ε
+    └── .(.)
+Tiempo:     0.0606 ms
+------------------------------------------------------------------------
+
+ID: 14    Nivel: 2    Fenómeno: adv_modo_SP_bajo
+Oración:    El perro negro juega tranquilamente bajo la casa.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     El/det_m_sg perro/n_m_sg negro/adj_m_sg juega/v_sg tranquilamente/adv_modo bajo/prep la/det_f_sg casa/n_f_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg perro) (ModNom_m_sg (Adj_m_sg (adj_m_sg negro))))) (SV_sg (v_sg juega) (RestoSV (AdvOpt (adv_modo tranquilamente)) (SPOpt (prep bajo) (SN_Prep (SN_f_sg (det_f_sg la) (n_f_sg casa)))))) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_m_sg
+    │   │   ├── det_m_sg(El)
+    │   │   ├── n_m_sg(perro)
+    │   │   └── ModNom_m_sg
+    │   │       └── Adj_m_sg
+    │   │           └── adj_m_sg(negro)
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(juega)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── adv_modo(tranquilamente)
+    │       └── SPOpt
+    │           ├── prep(bajo)
+    │           └── SN_Prep
+    │               └── SN_f_sg
+    │                   ├── det_f_sg(la)
+    │                   ├── n_f_sg(casa)
+    │                   └── ModNom_f_sg
+    │                       └── ε
+    └── .(.)
+Tiempo:     0.0484 ms
+------------------------------------------------------------------------
+
+ID: 15    Nivel: 2    Fenómeno: adverbio_de_modo
+Oración:    El gato negro corre rápidamente.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     El/det_m_sg gato/n_m_sg negro/adj_m_sg corre/v_sg rápidamente/adv_modo ./.
+Árbol:      (Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg gato) (ModNom_m_sg (Adj_m_sg (adj_m_sg negro))))) (SV_sg (v_sg corre) (RestoSV (AdvOpt (adv_modo rápidamente)))) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_m_sg
+    │   │   ├── det_m_sg(El)
+    │   │   ├── n_m_sg(gato)
+    │   │   └── ModNom_m_sg
+    │   │       └── Adj_m_sg
+    │   │           └── adj_m_sg(negro)
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(corre)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── adv_modo(rápidamente)
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.0347 ms
+------------------------------------------------------------------------
+
+ID: 16    Nivel: 2    Fenómeno: frase_preposicional
+Oración:    El niño juega en el parque.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     El/det_m_sg niño/n_m_sg juega/v_sg en/prep el/det_m_sg parque/n_m_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg niño))) (SV_sg (v_sg juega) (RestoSV (SPOpt (prep en) (SN_Prep (SN_m_sg (det_m_sg el) (n_m_sg parque)))))) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_m_sg
+    │   │   ├── det_m_sg(El)
+    │   │   ├── n_m_sg(niño)
+    │   │   └── ModNom_m_sg
+    │   │       └── ε
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(juega)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           ├── prep(en)
+    │           └── SN_Prep
+    │               └── SN_m_sg
+    │                   ├── det_m_sg(el)
+    │                   ├── n_m_sg(parque)
+    │                   └── ModNom_m_sg
+    │                       └── ε
+    └── .(.)
+Tiempo:     0.0448 ms
+------------------------------------------------------------------------
+
+ID: 17    Nivel: 2    Fenómeno: plural_con_adv_modo
+Oración:    Los gatos negros duermen tranquilamente.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     Los/det_m_pl gatos/n_m_pl negros/adj_m_pl duermen/v_pl tranquilamente/adv_modo ./.
+Árbol:      (Oracion (Sujeto_pl (SN_m_pl (det_m_pl Los) (n_m_pl gatos) (ModNom_m_pl (Adj_m_pl (adj_m_pl negros))))) (SV_pl (v_pl duermen) (RestoSV (AdvOpt (adv_modo tranquilamente)))) (. .))
+
+    Oracion
+    ├── Sujeto_pl
+    │   ├── SN_m_pl
+    │   │   ├── det_m_pl(Los)
+    │   │   ├── n_m_pl(gatos)
+    │   │   └── ModNom_m_pl
+    │   │       └── Adj_m_pl
+    │   │           └── adj_m_pl(negros)
+    │   └── SubOpt_pl
+    │       └── ε
+    ├── SV_pl
+    │   ├── v_pl(duermen)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── adv_modo(tranquilamente)
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.0365 ms
+------------------------------------------------------------------------
+
+ID: 18    Nivel: 2    Fenómeno: adv_modo_y_SP
+Oración:    La niña corre rápidamente en la casa.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     La/det_f_sg niña/n_f_sg corre/v_sg rápidamente/adv_modo en/prep la/det_f_sg casa/n_f_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_f_sg (det_f_sg La) (n_f_sg niña))) (SV_sg (v_sg corre) (RestoSV (AdvOpt (adv_modo rápidamente)) (SPOpt (prep en) (SN_Prep (SN_f_sg (det_f_sg la) (n_f_sg casa)))))) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_f_sg
+    │   │   ├── det_f_sg(La)
+    │   │   ├── n_f_sg(niña)
+    │   │   └── ModNom_f_sg
+    │   │       └── ε
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(corre)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── adv_modo(rápidamente)
+    │       └── SPOpt
+    │           ├── prep(en)
+    │           └── SN_Prep
+    │               └── SN_f_sg
+    │                   ├── det_f_sg(la)
+    │                   ├── n_f_sg(casa)
+    │                   └── ModNom_f_sg
+    │                       └── ε
+    └── .(.)
+Tiempo:     0.046 ms
+------------------------------------------------------------------------
+
+ID: 19    Nivel: 2    Fenómeno: relativa_de_sujeto
+Oración:    El niño que corre juega en la casa.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     El/det_m_sg niño/n_m_sg que/que corre/v_sg juega/v_sg en/prep la/det_f_sg casa/n_f_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg niño)) (SubOpt_sg (que que) (SV_sg (v_sg corre)))) (SV_sg (v_sg juega) (RestoSV (SPOpt (prep en) (SN_Prep (SN_f_sg (det_f_sg la) (n_f_sg casa)))))) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_m_sg
+    │   │   ├── det_m_sg(El)
+    │   │   ├── n_m_sg(niño)
+    │   │   └── ModNom_m_sg
+    │   │       └── ε
+    │   └── SubOpt_sg
+    │       ├── que(que)
+    │       └── SV_sg
+    │           ├── v_sg(corre)
+    │           └── RestoSV
+    │               ├── AdvOpt
+    │               │   └── ε
+    │               └── SPOpt
+    │                   └── ε
+    ├── SV_sg
+    │   ├── v_sg(juega)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           ├── prep(en)
+    │           └── SN_Prep
+    │               └── SN_f_sg
+    │                   ├── det_f_sg(la)
+    │                   ├── n_f_sg(casa)
+    │                   └── ModNom_f_sg
+    │                       └── ε
+    └── .(.)
+Tiempo:     0.0583 ms
+------------------------------------------------------------------------
+
+ID: 20    Nivel: 2    Fenómeno: completiva_basica
+Oración:    El niño observa que la gata duerme.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     El/det_m_sg niño/n_m_sg observa/v_sg que/que la/det_f_sg gata/n_f_sg duerme/v_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg niño))) (SV_sg (v_sg observa) (RestoSV (que que) (Clausula (Sujeto_sg (SN_f_sg (det_f_sg la) (n_f_sg gata))) (SV_sg (v_sg duerme))))) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_m_sg
+    │   │   ├── det_m_sg(El)
+    │   │   ├── n_m_sg(niño)
+    │   │   └── ModNom_m_sg
+    │   │       └── ε
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(observa)
+    │   └── RestoSV
+    │       ├── que(que)
+    │       └── Clausula
+    │           ├── Sujeto_sg
+    │           │   ├── SN_f_sg
+    │           │   │   ├── det_f_sg(la)
+    │           │   │   ├── n_f_sg(gata)
+    │           │   │   └── ModNom_f_sg
+    │           │   │       └── ε
+    │           │   └── SubOpt_sg
+    │           │       └── ε
+    │           └── SV_sg
+    │               ├── v_sg(duerme)
+    │               └── RestoSV
+    │                   ├── AdvOpt
+    │                   │   └── ε
+    │                   └── SPOpt
+    │                       └── ε
+    └── .(.)
+Tiempo:     0.0513 ms
+------------------------------------------------------------------------
+
+ID: 21    Nivel: 2    Fenómeno: intensificador_y_adv_modo
+Oración:    La gata muy negra duerme tranquilamente.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     La/det_f_sg gata/n_f_sg muy/adv_intens negra/adj_f_sg duerme/v_sg tranquilamente/adv_modo ./.
+Árbol:      (Oracion (Sujeto_sg (SN_f_sg (det_f_sg La) (n_f_sg gata) (ModNom_f_sg (adv_intens muy) (Adj_f_sg (adj_f_sg negra))))) (SV_sg (v_sg duerme) (RestoSV (AdvOpt (adv_modo tranquilamente)))) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_f_sg
+    │   │   ├── det_f_sg(La)
+    │   │   ├── n_f_sg(gata)
+    │   │   └── ModNom_f_sg
+    │   │       ├── adv_intens(muy)
+    │   │       └── Adj_f_sg
+    │   │           └── adj_f_sg(negra)
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(duerme)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── adv_modo(tranquilamente)
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.0405 ms
+------------------------------------------------------------------------
+
+ID: 22    Nivel: 2    Fenómeno: adj_invariable_pl_y_SP
+Oración:    Los perros grandes juegan en el parque.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     Los/det_m_pl perros/n_m_pl grandes/adj_inv_pl juegan/v_pl en/prep el/det_m_sg parque/n_m_sg ./.
+Árbol:      (Oracion (Sujeto_pl (SN_m_pl (det_m_pl Los) (n_m_pl perros) (ModNom_m_pl (Adj_m_pl (adj_inv_pl grandes))))) (SV_pl (v_pl juegan) (RestoSV (SPOpt (prep en) (SN_Prep (SN_m_sg (det_m_sg el) (n_m_sg parque)))))) (. .))
+
+    Oracion
+    ├── Sujeto_pl
+    │   ├── SN_m_pl
+    │   │   ├── det_m_pl(Los)
+    │   │   ├── n_m_pl(perros)
+    │   │   └── ModNom_m_pl
+    │   │       └── Adj_m_pl
+    │   │           └── adj_inv_pl(grandes)
+    │   └── SubOpt_pl
+    │       └── ε
+    ├── SV_pl
+    │   ├── v_pl(juegan)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           ├── prep(en)
+    │           └── SN_Prep
+    │               └── SN_m_sg
+    │                   ├── det_m_sg(el)
+    │                   ├── n_m_sg(parque)
+    │                   └── ModNom_m_sg
+    │                       └── ε
+    └── .(.)
+Tiempo:     0.0472 ms
+------------------------------------------------------------------------
+
+ID: 23    Nivel: 2    Fenómeno: plural_femenino_con_adv
+Oración:    Las niñas rápidas corren rápidamente.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     Las/det_f_pl niñas/n_f_pl rápidas/adj_f_pl corren/v_pl rápidamente/adv_modo ./.
+Árbol:      (Oracion (Sujeto_pl (SN_f_pl (det_f_pl Las) (n_f_pl niñas) (ModNom_f_pl (Adj_f_pl (adj_f_pl rápidas))))) (SV_pl (v_pl corren) (RestoSV (AdvOpt (adv_modo rápidamente)))) (. .))
+
+    Oracion
+    ├── Sujeto_pl
+    │   ├── SN_f_pl
+    │   │   ├── det_f_pl(Las)
+    │   │   ├── n_f_pl(niñas)
+    │   │   └── ModNom_f_pl
+    │   │       └── Adj_f_pl
+    │   │           └── adj_f_pl(rápidas)
+    │   └── SubOpt_pl
+    │       └── ε
+    ├── SV_pl
+    │   ├── v_pl(corren)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── adv_modo(rápidamente)
+    │       └── SPOpt
+    │           └── ε
+    └── .(.)
+Tiempo:     0.0416 ms
+------------------------------------------------------------------------
+
+ID: 24    Nivel: 2    Fenómeno: completiva_sujeto_masculino
+Oración:    El perro observa que el gato duerme.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     El/det_m_sg perro/n_m_sg observa/v_sg que/que el/det_m_sg gato/n_m_sg duerme/v_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg perro))) (SV_sg (v_sg observa) (RestoSV (que que) (Clausula (Sujeto_sg (SN_m_sg (det_m_sg el) (n_m_sg gato))) (SV_sg (v_sg duerme))))) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_m_sg
+    │   │   ├── det_m_sg(El)
+    │   │   ├── n_m_sg(perro)
+    │   │   └── ModNom_m_sg
+    │   │       └── ε
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(observa)
+    │   └── RestoSV
+    │       ├── que(que)
+    │       └── Clausula
+    │           ├── Sujeto_sg
+    │           │   ├── SN_m_sg
+    │           │   │   ├── det_m_sg(el)
+    │           │   │   ├── n_m_sg(gato)
+    │           │   │   └── ModNom_m_sg
+    │           │   │       └── ε
+    │           │   └── SubOpt_sg
+    │           │       └── ε
+    │           └── SV_sg
+    │               ├── v_sg(duerme)
+    │               └── RestoSV
+    │                   ├── AdvOpt
+    │                   │   └── ε
+    │                   └── SPOpt
+    │                       └── ε
+    └── .(.)
+Tiempo:     0.0602 ms
+------------------------------------------------------------------------
+
+ID: 25    Nivel: 2    Fenómeno: SP_con_y_adj_invariable
+Oración:    Un niño grande juega con la niña.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     Un/det_m_sg niño/n_m_sg grande/adj_inv_sg juega/v_sg con/prep la/det_f_sg niña/n_f_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_m_sg (det_m_sg Un) (n_m_sg niño) (ModNom_m_sg (Adj_m_sg (adj_inv_sg grande))))) (SV_sg (v_sg juega) (RestoSV (SPOpt (prep con) (SN_Prep (SN_f_sg (det_f_sg la) (n_f_sg niña)))))) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_m_sg
+    │   │   ├── det_m_sg(Un)
+    │   │   ├── n_m_sg(niño)
+    │   │   └── ModNom_m_sg
+    │   │       └── Adj_m_sg
+    │   │           └── adj_inv_sg(grande)
+    │   └── SubOpt_sg
+    │       └── ε
+    ├── SV_sg
+    │   ├── v_sg(juega)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           ├── prep(con)
+    │           └── SN_Prep
+    │               └── SN_f_sg
+    │                   ├── det_f_sg(la)
+    │                   ├── n_f_sg(niña)
+    │                   └── ModNom_f_sg
+    │                       └── ε
+    └── .(.)
+Tiempo:     0.0632 ms
+------------------------------------------------------------------------
+
+ID: 26    Nivel: 2    Fenómeno: plural_femenino_con_SP
+Oración:    Las gatas negras duermen bajo la casa.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     Las/det_f_pl gatas/n_f_pl negras/adj_f_pl duermen/v_pl bajo/prep la/det_f_sg casa/n_f_sg ./.
+Árbol:      (Oracion (Sujeto_pl (SN_f_pl (det_f_pl Las) (n_f_pl gatas) (ModNom_f_pl (Adj_f_pl (adj_f_pl negras))))) (SV_pl (v_pl duermen) (RestoSV (SPOpt (prep bajo) (SN_Prep (SN_f_sg (det_f_sg la) (n_f_sg casa)))))) (. .))
+
+    Oracion
+    ├── Sujeto_pl
+    │   ├── SN_f_pl
+    │   │   ├── det_f_pl(Las)
+    │   │   ├── n_f_pl(gatas)
+    │   │   └── ModNom_f_pl
+    │   │       └── Adj_f_pl
+    │   │           └── adj_f_pl(negras)
+    │   └── SubOpt_pl
+    │       └── ε
+    ├── SV_pl
+    │   ├── v_pl(duermen)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           ├── prep(bajo)
+    │           └── SN_Prep
+    │               └── SN_f_sg
+    │                   ├── det_f_sg(la)
+    │                   ├── n_f_sg(casa)
+    │                   └── ModNom_f_sg
+    │                       └── ε
+    └── .(.)
+Tiempo:     0.2028 ms
+------------------------------------------------------------------------
+
+ID: 27    Nivel: 2    Fenómeno: relativa_y_SP
+Oración:    El gato que duerme corre en el jardín.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     El/det_m_sg gato/n_m_sg que/que duerme/v_sg corre/v_sg en/prep el/det_m_sg jardín/n_m_sg ./.
+Árbol:      (Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg gato)) (SubOpt_sg (que que) (SV_sg (v_sg duerme)))) (SV_sg (v_sg corre) (RestoSV (SPOpt (prep en) (SN_Prep (SN_m_sg (det_m_sg el) (n_m_sg jardín)))))) (. .))
+
+    Oracion
+    ├── Sujeto_sg
+    │   ├── SN_m_sg
+    │   │   ├── det_m_sg(El)
+    │   │   ├── n_m_sg(gato)
+    │   │   └── ModNom_m_sg
+    │   │       └── ε
+    │   └── SubOpt_sg
+    │       ├── que(que)
+    │       └── SV_sg
+    │           ├── v_sg(duerme)
+    │           └── RestoSV
+    │               ├── AdvOpt
+    │               │   └── ε
+    │               └── SPOpt
+    │                   └── ε
+    ├── SV_sg
+    │   ├── v_sg(corre)
+    │   └── RestoSV
+    │       ├── AdvOpt
+    │       │   └── ε
+    │       └── SPOpt
+    │           ├── prep(en)
+    │           └── SN_Prep
+    │               └── SN_m_sg
+    │                   ├── det_m_sg(el)
+    │                   ├── n_m_sg(jardín)
+    │                   └── ModNom_m_sg
+    │                       └── ε
+    └── .(.)
+Tiempo:     0.0597 ms
+------------------------------------------------------------------------
+
+ID: 28    Nivel: 2    Fenómeno: relativa_y_completiva
+Oración:    Los niños que juegan observan que la gata corre.
+Resultado:  ACEPTADA   (esperado ACEPTADA: coincide)
+Tokens:     Los/det_m_pl niños/n_m_pl que/que juegan/v_pl observan/v_pl que/que la/det_f_sg gata/n_f_sg corre/v_sg ./.
+Árbol:      (Oracion (Sujeto_pl (SN_m_pl (det_m_pl Los) (n_m_pl niños)) (SubOpt_pl (que que) (SV_pl (v_pl juegan)))) (SV_pl (v_pl observan) (RestoSV (que que) (Clausula (Sujeto_sg (SN_f_sg (det_f_sg la) (n_f_sg gata))) (SV_sg (v_sg corre))))) (. .))
+
+    Oracion
+    ├── Sujeto_pl
+    │   ├── SN_m_pl
+    │   │   ├── det_m_pl(Los)
+    │   │   ├── n_m_pl(niños)
+    │   │   └── ModNom_m_pl
+    │   │       └── ε
+    │   └── SubOpt_pl
+    │       ├── que(que)
+    │       └── SV_pl
+    │           ├── v_pl(juegan)
+    │           └── RestoSV
+    │               ├── AdvOpt
+    │               │   └── ε
+    │               └── SPOpt
+    │                   └── ε
+    ├── SV_pl
+    │   ├── v_pl(observan)
+    │   └── RestoSV
+    │       ├── que(que)
+    │       └── Clausula
+    │           ├── Sujeto_sg
+    │           │   ├── SN_f_sg
+    │           │   │   ├── det_f_sg(la)
+    │           │   │   ├── n_f_sg(gata)
+    │           │   │   └── ModNom_f_sg
+    │           │   │       └── ε
+    │           │   └── SubOpt_sg
+    │           │       └── ε
+    │           └── SV_sg
+    │               ├── v_sg(corre)
+    │               └── RestoSV
+    │                   ├── AdvOpt
+    │                   │   └── ε
+    │                   └── SPOpt
+    │                       └── ε
+    └── .(.)
+Tiempo:     0.062 ms
+------------------------------------------------------------------------
+
+ID: 29    Nivel: 3    Fenómeno: discordancia_genero_adj
+Oración:    El gato negra duerme.
+Resultado:  RECHAZADA   (esperado RECHAZADA: coincide)
+Tokens:     El/det_m_sg gato/n_m_sg negra/adj_f_sg duerme/v_sg ./.
+Motivo:     [discordancia_genero] Discordancia de género entre el sustantivo y el adjetivo: se encontró 'negra' (adjetivo femenino singular) y la regla SN_m_sg → det_m_sg n_m_sg ModNom_m_sg exige adjetivo masculino singular o adjetivo singular invariable en género.
+Regla:      SN_m_sg → det_m_sg n_m_sg ModNom_m_sg   (falló en ModNom_m_sg)
+Mensaje:    Error (línea 1, columna 9): se encontró 'negra' (adj_f_sg), se esperaba uno de: 'adj_m_sg', 'adj_inv_sg', 'v_sg', 'v_pl', 'adv_intens', 'que', '.'
+Tiempo:     0.0491 ms
+------------------------------------------------------------------------
+
+ID: 30    Nivel: 3    Fenómeno: coordinacion_conflicto_LL1
+Oración:    El niño y la niña duermen.
+Resultado:  RECHAZADA   (esperado RECHAZADA: coincide)
+Tokens:     El/det_m_sg niño/n_m_sg y/conj la/det_f_sg niña/n_f_sg duermen/v_pl ./.
+Motivo:     [coordinacion_no_contemplada] La gramática no tiene reglas de coordinación con 'y'. Agregarlas produce un conflicto LL(1) en M[Oracion, det_m_sg] (ver: python -m espanol --conflicto).
+Regla:      SN_m_sg → det_m_sg n_m_sg ModNom_m_sg   (falló en ModNom_m_sg)
+Mensaje:    Error (línea 1, columna 9): se encontró 'y' (conj), se esperaba uno de: 'adj_m_sg', 'adj_inv_sg', 'v_sg', 'v_pl', 'adv_intens', 'que', '.'
+Tiempo:     0.0391 ms
+------------------------------------------------------------------------
+
+ID: 31    Nivel: 3    Fenómeno: discordancia_numero_det_sust
+Oración:    Los gato negros duermen.
+Resultado:  RECHAZADA   (esperado RECHAZADA: coincide)
+Tokens:     Los/det_m_pl gato/n_m_sg negros/adj_m_pl duermen/v_pl ./.
+Motivo:     [discordancia_numero] Discordancia de número entre el determinante y el sustantivo: se encontró 'gato' (sustantivo masculino singular) y la regla SN_m_pl → det_m_pl n_m_pl ModNom_m_pl exige sustantivo masculino plural.
+Regla:      SN_m_pl → det_m_pl n_m_pl ModNom_m_pl   (falló en n_m_pl)
+Mensaje:    Error (línea 1, columna 5): se encontró 'gato' (n_m_sg), se esperaba 'n_m_pl'
+Tiempo:     0.0306 ms
+------------------------------------------------------------------------
+
+ID: 32    Nivel: 3    Fenómeno: discordancia_numero_sujeto_verbo
+Oración:    El gato negro duermen.
+Resultado:  RECHAZADA   (esperado RECHAZADA: coincide)
+Tokens:     El/det_m_sg gato/n_m_sg negro/adj_m_sg duermen/v_pl ./.
+Motivo:     [discordancia_numero] Discordancia de número entre el sujeto y el verbo: se encontró 'duermen' (verbo plural) y la regla Oracion → Sujeto_sg SV_sg . exige verbo singular.
+Regla:      Oracion → Sujeto_sg SV_sg .   (falló en SubOpt_sg)
+Mensaje:    Error (línea 1, columna 15): se encontró 'duermen' (v_pl), se esperaba uno de: 'v_sg', 'que'
+Tiempo:     0.031 ms
+------------------------------------------------------------------------
+
+ID: 33    Nivel: 3    Fenómeno: discordancia_numero_en_relativa
+Oración:    Los gatos que corre duermen.
+Resultado:  RECHAZADA   (esperado RECHAZADA: coincide)
+Tokens:     Los/det_m_pl gatos/n_m_pl que/que corre/v_sg duermen/v_pl ./.
+Motivo:     [discordancia_numero] Discordancia de número entre el sujeto y el verbo dentro de la oración relativa: se encontró 'corre' (verbo singular) y la regla SubOpt_pl → que SV_pl exige verbo plural.
+Regla:      SubOpt_pl → que SV_pl   (falló en SV_pl)
+Mensaje:    Error (línea 1, columna 15): se encontró 'corre' (v_sg), se esperaba 'v_pl'
+Tiempo:     0.0308 ms
+------------------------------------------------------------------------
+
+ID: 34    Nivel: 3    Fenómeno: discordancia_genero_adj_inverso
+Oración:    La gata negro duerme.
+Resultado:  RECHAZADA   (esperado RECHAZADA: coincide)
+Tokens:     La/det_f_sg gata/n_f_sg negro/adj_m_sg duerme/v_sg ./.
+Motivo:     [discordancia_genero] Discordancia de género entre el sustantivo y el adjetivo: se encontró 'negro' (adjetivo masculino singular) y la regla SN_f_sg → det_f_sg n_f_sg ModNom_f_sg exige adjetivo femenino singular o adjetivo singular invariable en género.
+Regla:      SN_f_sg → det_f_sg n_f_sg ModNom_f_sg   (falló en ModNom_f_sg)
+Mensaje:    Error (línea 1, columna 9): se encontró 'negro' (adj_m_sg), se esperaba uno de: 'adj_f_sg', 'adj_inv_sg', 'v_sg', 'v_pl', 'adv_intens', 'que', '.'
+Tiempo:     0.0263 ms
+------------------------------------------------------------------------
+
+ID: 35    Nivel: 3    Fenómeno: palabra_fuera_del_lexico
+Oración:    El elefante negro duerme.
+Resultado:  RECHAZADA   (esperado RECHAZADA: coincide)
+Motivo:     [palabra_fuera_del_lexico] La palabra 'elefante' no está en el léxico de la gramática.
+Mensaje:    Error (línea 1, columna 4): palabra fuera del léxico 'elefante'
+Tiempo:     0.0052 ms
+------------------------------------------------------------------------
+
+ID: 36    Nivel: 3    Fenómeno: determinante_ausente
+Oración:    Gato negro duerme.
+Resultado:  RECHAZADA   (esperado RECHAZADA: coincide)
+Tokens:     Gato/n_m_sg negro/adj_m_sg duerme/v_sg ./.
+Motivo:     [falta_determinante] Se encontró 'Gato' (sustantivo masculino singular) donde la gramática exige un determinante: todo sintagma nominal empieza con determinante.
+Regla:      Oracion (símbolo inicial)   (falló en Oracion)
+Mensaje:    Error (línea 1, columna 1): se encontró 'Gato' (n_m_sg), se esperaba uno de: 'det_m_sg', 'det_f_sg', 'det_m_pl', 'det_f_pl'
+Tiempo:     0.0162 ms
+------------------------------------------------------------------------
+
+ID: 37    Nivel: 3    Fenómeno: SP_incompleta
+Oración:    El gato duerme en.
+Resultado:  RECHAZADA   (esperado RECHAZADA: coincide)
+Tokens:     El/det_m_sg gato/n_m_sg duerme/v_sg en/prep ./.
+Motivo:     [estructura_incompleta] La oración termina antes de completar la regla SPOpt → prep SN_Prep: se esperaba un determinante.
+Regla:      SPOpt → prep SN_Prep   (falló en SN_Prep)
+Mensaje:    Error (línea 1, columna 18): se encontró '.' (.), se esperaba uno de: 'det_m_sg', 'det_f_sg', 'det_m_pl', 'det_f_pl'
+Tiempo:     0.0369 ms
+------------------------------------------------------------------------
+
+ID: 38    Nivel: 3    Fenómeno: completiva_incompleta
+Oración:    El niño observa que.
+Resultado:  RECHAZADA   (esperado RECHAZADA: coincide)
+Tokens:     El/det_m_sg niño/n_m_sg observa/v_sg que/que ./.
+Motivo:     [estructura_incompleta] La oración termina antes de completar la regla RestoSV → que Clausula: se esperaba un determinante.
+Regla:      RestoSV → que Clausula   (falló en Clausula)
+Mensaje:    Error (línea 1, columna 20): se encontró '.' (.), se esperaba uno de: 'det_m_sg', 'det_f_sg', 'det_m_pl', 'det_f_pl'
+Tiempo:     0.0325 ms
+------------------------------------------------------------------------
+
+ID: 39    Nivel: 3    Fenómeno: coordinacion_plural_conflicto_LL1
+Oración:    Los niños y las niñas juegan.
+Resultado:  RECHAZADA   (esperado RECHAZADA: coincide)
+Tokens:     Los/det_m_pl niños/n_m_pl y/conj las/det_f_pl niñas/n_f_pl juegan/v_pl ./.
+Motivo:     [coordinacion_no_contemplada] La gramática no tiene reglas de coordinación con 'y'. Agregarlas produce un conflicto LL(1) en M[Oracion, det_m_sg] (ver: python -m espanol --conflicto).
+Regla:      SN_m_pl → det_m_pl n_m_pl ModNom_m_pl   (falló en ModNom_m_pl)
+Mensaje:    Error (línea 1, columna 11): se encontró 'y' (conj), se esperaba uno de: 'adj_m_pl', 'adj_inv_pl', 'v_sg', 'v_pl', 'adv_intens', 'que', '.'
+Tiempo:     0.0317 ms
+------------------------------------------------------------------------
+
+ID: 40    Nivel: 3    Fenómeno: discordancia_numero_tras_intensificador
+Oración:    El gato muy negras duerme.
+Resultado:  RECHAZADA   (esperado RECHAZADA: coincide)
+Tokens:     El/det_m_sg gato/n_m_sg muy/adv_intens negras/adj_f_pl duerme/v_sg ./.
+Motivo:     [discordancia_genero_y_numero] Discordancia de género y número entre el sustantivo y el adjetivo: se encontró 'negras' (adjetivo femenino plural) y la regla ModNom_m_sg → adv_intens Adj_m_sg exige adjetivo masculino singular o adjetivo singular invariable en género.
+Regla:      ModNom_m_sg → adv_intens Adj_m_sg   (falló en Adj_m_sg)
+Mensaje:    Error (línea 1, columna 13): se encontró 'negras' (adj_f_pl), se esperaba uno de: 'adj_m_sg', 'adj_inv_sg'
+Tiempo:     0.0307 ms
+------------------------------------------------------------------------
+
+RESUMEN
+========================================================================
+Oraciones: 40   Aceptadas: 28   Rechazadas: 12   Coinciden con lo esperado: 40/40
+VP=28  VN=12  FP=0  FN=0
+Precisión=1.0  Recall=1.0  Rechazo correcto=1.0  Exactitud=1.0
+Por nivel:
+  Nivel 1: 12 oraciones, 12 aceptadas, 0 rechazadas, 12 coinciden
+  Nivel 2: 16 oraciones, 16 aceptadas, 0 rechazadas, 16 coinciden
+  Nivel 3: 12 oraciones, 0 aceptadas, 12 rechazadas, 12 coinciden
+Motivos de rechazo:
+  coordinacion_no_contemplada: 2
+  discordancia_genero: 2
+  discordancia_genero_y_numero: 1
+  discordancia_numero: 3
+  estructura_incompleta: 2
+  falta_determinante: 1
+  palabra_fuera_del_lexico: 1
+Tiempo de análisis: total 1.768 ms, promedio 0.0442 ms, máximo 0.2028 ms

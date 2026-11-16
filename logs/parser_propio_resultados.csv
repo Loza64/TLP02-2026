@@ -1,0 +1,41 @@
+id,nivel,oracion,esperado,obtenido,coincide,motivo_categoria,regla,arbol
+1,1,El gato negro duerme.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg gato) (ModNom_m_sg (Adj_m_sg (adj_m_sg negro))))) (SV_sg (v_sg duerme)) (. .))
+2,1,La gata negra corre.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_f_sg (det_f_sg La) (n_f_sg gata) (ModNom_f_sg (Adj_f_sg (adj_f_sg negra))))) (SV_sg (v_sg corre)) (. .))
+3,1,Los gatos negros duermen.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_pl (SN_m_pl (det_m_pl Los) (n_m_pl gatos) (ModNom_m_pl (Adj_m_pl (adj_m_pl negros))))) (SV_pl (v_pl duermen)) (. .))
+4,1,Las gatas negras corren.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_pl (SN_f_pl (det_f_pl Las) (n_f_pl gatas) (ModNom_f_pl (Adj_f_pl (adj_f_pl negras))))) (SV_pl (v_pl corren)) (. .))
+5,1,El niño juega.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg niño))) (SV_sg (v_sg juega)) (. .))
+6,1,La niña duerme.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_f_sg (det_f_sg La) (n_f_sg niña))) (SV_sg (v_sg duerme)) (. .))
+7,1,Un perro corre.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_m_sg (det_m_sg Un) (n_m_sg perro))) (SV_sg (v_sg corre)) (. .))
+8,1,Una perra juega.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_f_sg (det_f_sg Una) (n_f_sg perra))) (SV_sg (v_sg juega)) (. .))
+9,1,Los niños juegan.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_pl (SN_m_pl (det_m_pl Los) (n_m_pl niños))) (SV_pl (v_pl juegan)) (. .))
+10,1,Las niñas duermen.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_pl (SN_f_pl (det_f_pl Las) (n_f_pl niñas))) (SV_pl (v_pl duermen)) (. .))
+11,1,El perro grande duerme.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg perro) (ModNom_m_sg (Adj_m_sg (adj_inv_sg grande))))) (SV_sg (v_sg duerme)) (. .))
+12,1,La niña grande corre.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_f_sg (det_f_sg La) (n_f_sg niña) (ModNom_f_sg (Adj_f_sg (adj_inv_sg grande))))) (SV_sg (v_sg corre)) (. .))
+13,2,La gata muy rápida corre rápidamente en el jardín.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_f_sg (det_f_sg La) (n_f_sg gata) (ModNom_f_sg (adv_intens muy) (Adj_f_sg (adj_f_sg rápida))))) (SV_sg (v_sg corre) (RestoSV (AdvOpt (adv_modo rápidamente)) (SPOpt (prep en) (SN_Prep (SN_m_sg (det_m_sg el) (n_m_sg jardín)))))) (. .))
+14,2,El perro negro juega tranquilamente bajo la casa.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg perro) (ModNom_m_sg (Adj_m_sg (adj_m_sg negro))))) (SV_sg (v_sg juega) (RestoSV (AdvOpt (adv_modo tranquilamente)) (SPOpt (prep bajo) (SN_Prep (SN_f_sg (det_f_sg la) (n_f_sg casa)))))) (. .))
+15,2,El gato negro corre rápidamente.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg gato) (ModNom_m_sg (Adj_m_sg (adj_m_sg negro))))) (SV_sg (v_sg corre) (RestoSV (AdvOpt (adv_modo rápidamente)))) (. .))
+16,2,El niño juega en el parque.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg niño))) (SV_sg (v_sg juega) (RestoSV (SPOpt (prep en) (SN_Prep (SN_m_sg (det_m_sg el) (n_m_sg parque)))))) (. .))
+17,2,Los gatos negros duermen tranquilamente.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_pl (SN_m_pl (det_m_pl Los) (n_m_pl gatos) (ModNom_m_pl (Adj_m_pl (adj_m_pl negros))))) (SV_pl (v_pl duermen) (RestoSV (AdvOpt (adv_modo tranquilamente)))) (. .))
+18,2,La niña corre rápidamente en la casa.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_f_sg (det_f_sg La) (n_f_sg niña))) (SV_sg (v_sg corre) (RestoSV (AdvOpt (adv_modo rápidamente)) (SPOpt (prep en) (SN_Prep (SN_f_sg (det_f_sg la) (n_f_sg casa)))))) (. .))
+19,2,El niño que corre juega en la casa.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg niño)) (SubOpt_sg (que que) (SV_sg (v_sg corre)))) (SV_sg (v_sg juega) (RestoSV (SPOpt (prep en) (SN_Prep (SN_f_sg (det_f_sg la) (n_f_sg casa)))))) (. .))
+20,2,El niño observa que la gata duerme.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg niño))) (SV_sg (v_sg observa) (RestoSV (que que) (Clausula (Sujeto_sg (SN_f_sg (det_f_sg la) (n_f_sg gata))) (SV_sg (v_sg duerme))))) (. .))
+21,2,La gata muy negra duerme tranquilamente.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_f_sg (det_f_sg La) (n_f_sg gata) (ModNom_f_sg (adv_intens muy) (Adj_f_sg (adj_f_sg negra))))) (SV_sg (v_sg duerme) (RestoSV (AdvOpt (adv_modo tranquilamente)))) (. .))
+22,2,Los perros grandes juegan en el parque.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_pl (SN_m_pl (det_m_pl Los) (n_m_pl perros) (ModNom_m_pl (Adj_m_pl (adj_inv_pl grandes))))) (SV_pl (v_pl juegan) (RestoSV (SPOpt (prep en) (SN_Prep (SN_m_sg (det_m_sg el) (n_m_sg parque)))))) (. .))
+23,2,Las niñas rápidas corren rápidamente.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_pl (SN_f_pl (det_f_pl Las) (n_f_pl niñas) (ModNom_f_pl (Adj_f_pl (adj_f_pl rápidas))))) (SV_pl (v_pl corren) (RestoSV (AdvOpt (adv_modo rápidamente)))) (. .))
+24,2,El perro observa que el gato duerme.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg perro))) (SV_sg (v_sg observa) (RestoSV (que que) (Clausula (Sujeto_sg (SN_m_sg (det_m_sg el) (n_m_sg gato))) (SV_sg (v_sg duerme))))) (. .))
+25,2,Un niño grande juega con la niña.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_m_sg (det_m_sg Un) (n_m_sg niño) (ModNom_m_sg (Adj_m_sg (adj_inv_sg grande))))) (SV_sg (v_sg juega) (RestoSV (SPOpt (prep con) (SN_Prep (SN_f_sg (det_f_sg la) (n_f_sg niña)))))) (. .))
+26,2,Las gatas negras duermen bajo la casa.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_pl (SN_f_pl (det_f_pl Las) (n_f_pl gatas) (ModNom_f_pl (Adj_f_pl (adj_f_pl negras))))) (SV_pl (v_pl duermen) (RestoSV (SPOpt (prep bajo) (SN_Prep (SN_f_sg (det_f_sg la) (n_f_sg casa)))))) (. .))
+27,2,El gato que duerme corre en el jardín.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_sg (SN_m_sg (det_m_sg El) (n_m_sg gato)) (SubOpt_sg (que que) (SV_sg (v_sg duerme)))) (SV_sg (v_sg corre) (RestoSV (SPOpt (prep en) (SN_Prep (SN_m_sg (det_m_sg el) (n_m_sg jardín)))))) (. .))
+28,2,Los niños que juegan observan que la gata corre.,ACEPTADA,ACEPTADA,True,,,(Oracion (Sujeto_pl (SN_m_pl (det_m_pl Los) (n_m_pl niños)) (SubOpt_pl (que que) (SV_pl (v_pl juegan)))) (SV_pl (v_pl observan) (RestoSV (que que) (Clausula (Sujeto_sg (SN_f_sg (det_f_sg la) (n_f_sg gata))) (SV_sg (v_sg corre))))) (. .))
+29,3,El gato negra duerme.,RECHAZADA,RECHAZADA,True,discordancia_genero,SN_m_sg → det_m_sg n_m_sg ModNom_m_sg,
+30,3,El niño y la niña duermen.,RECHAZADA,RECHAZADA,True,coordinacion_no_contemplada,SN_m_sg → det_m_sg n_m_sg ModNom_m_sg,
+31,3,Los gato negros duermen.,RECHAZADA,RECHAZADA,True,discordancia_numero,SN_m_pl → det_m_pl n_m_pl ModNom_m_pl,
+32,3,El gato negro duermen.,RECHAZADA,RECHAZADA,True,discordancia_numero,Oracion → Sujeto_sg SV_sg .,
+33,3,Los gatos que corre duermen.,RECHAZADA,RECHAZADA,True,discordancia_numero,SubOpt_pl → que SV_pl,
+34,3,La gata negro duerme.,RECHAZADA,RECHAZADA,True,discordancia_genero,SN_f_sg → det_f_sg n_f_sg ModNom_f_sg,
+35,3,El elefante negro duerme.,RECHAZADA,RECHAZADA,True,palabra_fuera_del_lexico,,
+36,3,Gato negro duerme.,RECHAZADA,RECHAZADA,True,falta_determinante,Oracion (símbolo inicial),
+37,3,El gato duerme en.,RECHAZADA,RECHAZADA,True,estructura_incompleta,SPOpt → prep SN_Prep,
+38,3,El niño observa que.,RECHAZADA,RECHAZADA,True,estructura_incompleta,RestoSV → que Clausula,
+39,3,Los niños y las niñas juegan.,RECHAZADA,RECHAZADA,True,coordinacion_no_contemplada,SN_m_pl → det_m_pl n_m_pl ModNom_m_pl,
+40,3,El gato muy negras duerme.,RECHAZADA,RECHAZADA,True,discordancia_genero_y_numero,ModNom_m_sg → adv_intens Adj_m_sg,

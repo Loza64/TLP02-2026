@@ -105,7 +105,9 @@ class LL1Grammar:
             lookaheads = f - {EPSILON}
             if EPSILON in f:
                 lookaheads |= follow[lhs]
-            for t in lookaheads:
+            # Orden fijo (el de TERMINALS) para que un conflicto se reporte
+            # siempre en la misma celda, sin depender del orden de un set.
+            for t in self._ordered(lookaheads):
                 if t in table[lhs]:
                     raise GrammarError(
                         f"Conflicto LL(1) en M[{lhs}, {t}]: producciones "

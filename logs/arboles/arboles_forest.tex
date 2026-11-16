@@ -1,0 +1,171 @@
+% Árboles sintácticos generados por: python -m espanol.visualizacion_arboles
+% Uso: \usepackage{forest} en el preámbulo y \input{arboles_forest.tex}
+% (o copiar el entorno forest de la oración que se necesite).
+
+% ID 1: El gato negro duerme.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_m\_sg} [{det\_m\_sg} [{El}, tier=palabra]] [{n\_m\_sg} [{gato}, tier=palabra]] [{ModNom\_m\_sg} [{Adj\_m\_sg} [{adj\_m\_sg} [{negro}, tier=palabra]]]]]] [{SV\_sg} [{v\_sg} [{duerme}, tier=palabra]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 2: La gata negra corre.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_f\_sg} [{det\_f\_sg} [{La}, tier=palabra]] [{n\_f\_sg} [{gata}, tier=palabra]] [{ModNom\_f\_sg} [{Adj\_f\_sg} [{adj\_f\_sg} [{negra}, tier=palabra]]]]]] [{SV\_sg} [{v\_sg} [{corre}, tier=palabra]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 3: Los gatos negros duermen.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_pl} [{SN\_m\_pl} [{det\_m\_pl} [{Los}, tier=palabra]] [{n\_m\_pl} [{gatos}, tier=palabra]] [{ModNom\_m\_pl} [{Adj\_m\_pl} [{adj\_m\_pl} [{negros}, tier=palabra]]]]]] [{SV\_pl} [{v\_pl} [{duermen}, tier=palabra]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 4: Las gatas negras corren.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_pl} [{SN\_f\_pl} [{det\_f\_pl} [{Las}, tier=palabra]] [{n\_f\_pl} [{gatas}, tier=palabra]] [{ModNom\_f\_pl} [{Adj\_f\_pl} [{adj\_f\_pl} [{negras}, tier=palabra]]]]]] [{SV\_pl} [{v\_pl} [{corren}, tier=palabra]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 5: El niño juega.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_m\_sg} [{det\_m\_sg} [{El}, tier=palabra]] [{n\_m\_sg} [{niño}, tier=palabra]]]] [{SV\_sg} [{v\_sg} [{juega}, tier=palabra]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 6: La niña duerme.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_f\_sg} [{det\_f\_sg} [{La}, tier=palabra]] [{n\_f\_sg} [{niña}, tier=palabra]]]] [{SV\_sg} [{v\_sg} [{duerme}, tier=palabra]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 7: Un perro corre.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_m\_sg} [{det\_m\_sg} [{Un}, tier=palabra]] [{n\_m\_sg} [{perro}, tier=palabra]]]] [{SV\_sg} [{v\_sg} [{corre}, tier=palabra]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 8: Una perra juega.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_f\_sg} [{det\_f\_sg} [{Una}, tier=palabra]] [{n\_f\_sg} [{perra}, tier=palabra]]]] [{SV\_sg} [{v\_sg} [{juega}, tier=palabra]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 9: Los niños juegan.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_pl} [{SN\_m\_pl} [{det\_m\_pl} [{Los}, tier=palabra]] [{n\_m\_pl} [{niños}, tier=palabra]]]] [{SV\_pl} [{v\_pl} [{juegan}, tier=palabra]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 10: Las niñas duermen.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_pl} [{SN\_f\_pl} [{det\_f\_pl} [{Las}, tier=palabra]] [{n\_f\_pl} [{niñas}, tier=palabra]]]] [{SV\_pl} [{v\_pl} [{duermen}, tier=palabra]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 11: El perro grande duerme.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_m\_sg} [{det\_m\_sg} [{El}, tier=palabra]] [{n\_m\_sg} [{perro}, tier=palabra]] [{ModNom\_m\_sg} [{Adj\_m\_sg} [{adj\_inv\_sg} [{grande}, tier=palabra]]]]]] [{SV\_sg} [{v\_sg} [{duerme}, tier=palabra]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 12: La niña grande corre.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_f\_sg} [{det\_f\_sg} [{La}, tier=palabra]] [{n\_f\_sg} [{niña}, tier=palabra]] [{ModNom\_f\_sg} [{Adj\_f\_sg} [{adj\_inv\_sg} [{grande}, tier=palabra]]]]]] [{SV\_sg} [{v\_sg} [{corre}, tier=palabra]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 13: La gata muy rápida corre rápidamente en el jardín.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_f\_sg} [{det\_f\_sg} [{La}, tier=palabra]] [{n\_f\_sg} [{gata}, tier=palabra]] [{ModNom\_f\_sg} [{adv\_intens} [{muy}, tier=palabra]] [{Adj\_f\_sg} [{adj\_f\_sg} [{rápida}, tier=palabra]]]]]] [{SV\_sg} [{v\_sg} [{corre}, tier=palabra]] [{RestoSV} [{AdvOpt} [{adv\_modo} [{rápidamente}, tier=palabra]]] [{SPOpt} [{prep} [{en}, tier=palabra]] [{SN\_Prep} [{SN\_m\_sg} [{det\_m\_sg} [{el}, tier=palabra]] [{n\_m\_sg} [{jardín}, tier=palabra]]]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 14: El perro negro juega tranquilamente bajo la casa.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_m\_sg} [{det\_m\_sg} [{El}, tier=palabra]] [{n\_m\_sg} [{perro}, tier=palabra]] [{ModNom\_m\_sg} [{Adj\_m\_sg} [{adj\_m\_sg} [{negro}, tier=palabra]]]]]] [{SV\_sg} [{v\_sg} [{juega}, tier=palabra]] [{RestoSV} [{AdvOpt} [{adv\_modo} [{tranquilamente}, tier=palabra]]] [{SPOpt} [{prep} [{bajo}, tier=palabra]] [{SN\_Prep} [{SN\_f\_sg} [{det\_f\_sg} [{la}, tier=palabra]] [{n\_f\_sg} [{casa}, tier=palabra]]]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 15: El gato negro corre rápidamente.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_m\_sg} [{det\_m\_sg} [{El}, tier=palabra]] [{n\_m\_sg} [{gato}, tier=palabra]] [{ModNom\_m\_sg} [{Adj\_m\_sg} [{adj\_m\_sg} [{negro}, tier=palabra]]]]]] [{SV\_sg} [{v\_sg} [{corre}, tier=palabra]] [{RestoSV} [{AdvOpt} [{adv\_modo} [{rápidamente}, tier=palabra]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 16: El niño juega en el parque.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_m\_sg} [{det\_m\_sg} [{El}, tier=palabra]] [{n\_m\_sg} [{niño}, tier=palabra]]]] [{SV\_sg} [{v\_sg} [{juega}, tier=palabra]] [{RestoSV} [{SPOpt} [{prep} [{en}, tier=palabra]] [{SN\_Prep} [{SN\_m\_sg} [{det\_m\_sg} [{el}, tier=palabra]] [{n\_m\_sg} [{parque}, tier=palabra]]]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 17: Los gatos negros duermen tranquilamente.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_pl} [{SN\_m\_pl} [{det\_m\_pl} [{Los}, tier=palabra]] [{n\_m\_pl} [{gatos}, tier=palabra]] [{ModNom\_m\_pl} [{Adj\_m\_pl} [{adj\_m\_pl} [{negros}, tier=palabra]]]]]] [{SV\_pl} [{v\_pl} [{duermen}, tier=palabra]] [{RestoSV} [{AdvOpt} [{adv\_modo} [{tranquilamente}, tier=palabra]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 18: La niña corre rápidamente en la casa.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_f\_sg} [{det\_f\_sg} [{La}, tier=palabra]] [{n\_f\_sg} [{niña}, tier=palabra]]]] [{SV\_sg} [{v\_sg} [{corre}, tier=palabra]] [{RestoSV} [{AdvOpt} [{adv\_modo} [{rápidamente}, tier=palabra]]] [{SPOpt} [{prep} [{en}, tier=palabra]] [{SN\_Prep} [{SN\_f\_sg} [{det\_f\_sg} [{la}, tier=palabra]] [{n\_f\_sg} [{casa}, tier=palabra]]]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 19: El niño que corre juega en la casa.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_m\_sg} [{det\_m\_sg} [{El}, tier=palabra]] [{n\_m\_sg} [{niño}, tier=palabra]]] [{SubOpt\_sg} [{que} [{que}, tier=palabra]] [{SV\_sg} [{v\_sg} [{corre}, tier=palabra]]]]] [{SV\_sg} [{v\_sg} [{juega}, tier=palabra]] [{RestoSV} [{SPOpt} [{prep} [{en}, tier=palabra]] [{SN\_Prep} [{SN\_f\_sg} [{det\_f\_sg} [{la}, tier=palabra]] [{n\_f\_sg} [{casa}, tier=palabra]]]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 20: El niño observa que la gata duerme.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_m\_sg} [{det\_m\_sg} [{El}, tier=palabra]] [{n\_m\_sg} [{niño}, tier=palabra]]]] [{SV\_sg} [{v\_sg} [{observa}, tier=palabra]] [{RestoSV} [{que} [{que}, tier=palabra]] [{Clausula} [{Sujeto\_sg} [{SN\_f\_sg} [{det\_f\_sg} [{la}, tier=palabra]] [{n\_f\_sg} [{gata}, tier=palabra]]]] [{SV\_sg} [{v\_sg} [{duerme}, tier=palabra]]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 21: La gata muy negra duerme tranquilamente.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_f\_sg} [{det\_f\_sg} [{La}, tier=palabra]] [{n\_f\_sg} [{gata}, tier=palabra]] [{ModNom\_f\_sg} [{adv\_intens} [{muy}, tier=palabra]] [{Adj\_f\_sg} [{adj\_f\_sg} [{negra}, tier=palabra]]]]]] [{SV\_sg} [{v\_sg} [{duerme}, tier=palabra]] [{RestoSV} [{AdvOpt} [{adv\_modo} [{tranquilamente}, tier=palabra]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 22: Los perros grandes juegan en el parque.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_pl} [{SN\_m\_pl} [{det\_m\_pl} [{Los}, tier=palabra]] [{n\_m\_pl} [{perros}, tier=palabra]] [{ModNom\_m\_pl} [{Adj\_m\_pl} [{adj\_inv\_pl} [{grandes}, tier=palabra]]]]]] [{SV\_pl} [{v\_pl} [{juegan}, tier=palabra]] [{RestoSV} [{SPOpt} [{prep} [{en}, tier=palabra]] [{SN\_Prep} [{SN\_m\_sg} [{det\_m\_sg} [{el}, tier=palabra]] [{n\_m\_sg} [{parque}, tier=palabra]]]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 23: Las niñas rápidas corren rápidamente.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_pl} [{SN\_f\_pl} [{det\_f\_pl} [{Las}, tier=palabra]] [{n\_f\_pl} [{niñas}, tier=palabra]] [{ModNom\_f\_pl} [{Adj\_f\_pl} [{adj\_f\_pl} [{rápidas}, tier=palabra]]]]]] [{SV\_pl} [{v\_pl} [{corren}, tier=palabra]] [{RestoSV} [{AdvOpt} [{adv\_modo} [{rápidamente}, tier=palabra]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 24: El perro observa que el gato duerme.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_m\_sg} [{det\_m\_sg} [{El}, tier=palabra]] [{n\_m\_sg} [{perro}, tier=palabra]]]] [{SV\_sg} [{v\_sg} [{observa}, tier=palabra]] [{RestoSV} [{que} [{que}, tier=palabra]] [{Clausula} [{Sujeto\_sg} [{SN\_m\_sg} [{det\_m\_sg} [{el}, tier=palabra]] [{n\_m\_sg} [{gato}, tier=palabra]]]] [{SV\_sg} [{v\_sg} [{duerme}, tier=palabra]]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 25: Un niño grande juega con la niña.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_m\_sg} [{det\_m\_sg} [{Un}, tier=palabra]] [{n\_m\_sg} [{niño}, tier=palabra]] [{ModNom\_m\_sg} [{Adj\_m\_sg} [{adj\_inv\_sg} [{grande}, tier=palabra]]]]]] [{SV\_sg} [{v\_sg} [{juega}, tier=palabra]] [{RestoSV} [{SPOpt} [{prep} [{con}, tier=palabra]] [{SN\_Prep} [{SN\_f\_sg} [{det\_f\_sg} [{la}, tier=palabra]] [{n\_f\_sg} [{niña}, tier=palabra]]]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 26: Las gatas negras duermen bajo la casa.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_pl} [{SN\_f\_pl} [{det\_f\_pl} [{Las}, tier=palabra]] [{n\_f\_pl} [{gatas}, tier=palabra]] [{ModNom\_f\_pl} [{Adj\_f\_pl} [{adj\_f\_pl} [{negras}, tier=palabra]]]]]] [{SV\_pl} [{v\_pl} [{duermen}, tier=palabra]] [{RestoSV} [{SPOpt} [{prep} [{bajo}, tier=palabra]] [{SN\_Prep} [{SN\_f\_sg} [{det\_f\_sg} [{la}, tier=palabra]] [{n\_f\_sg} [{casa}, tier=palabra]]]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 27: El gato que duerme corre en el jardín.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_sg} [{SN\_m\_sg} [{det\_m\_sg} [{El}, tier=palabra]] [{n\_m\_sg} [{gato}, tier=palabra]]] [{SubOpt\_sg} [{que} [{que}, tier=palabra]] [{SV\_sg} [{v\_sg} [{duerme}, tier=palabra]]]]] [{SV\_sg} [{v\_sg} [{corre}, tier=palabra]] [{RestoSV} [{SPOpt} [{prep} [{en}, tier=palabra]] [{SN\_Prep} [{SN\_m\_sg} [{det\_m\_sg} [{el}, tier=palabra]] [{n\_m\_sg} [{jardín}, tier=palabra]]]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
+
+% ID 28: Los niños que juegan observan que la gata corre.
+\begin{forest}
+  for tree={font=\ttfamily\small, s sep=4mm}
+  [{Oracion} [{Sujeto\_pl} [{SN\_m\_pl} [{det\_m\_pl} [{Los}, tier=palabra]] [{n\_m\_pl} [{niños}, tier=palabra]]] [{SubOpt\_pl} [{que} [{que}, tier=palabra]] [{SV\_pl} [{v\_pl} [{juegan}, tier=palabra]]]]] [{SV\_pl} [{v\_pl} [{observan}, tier=palabra]] [{RestoSV} [{que} [{que}, tier=palabra]] [{Clausula} [{Sujeto\_sg} [{SN\_f\_sg} [{det\_f\_sg} [{la}, tier=palabra]] [{n\_f\_sg} [{gata}, tier=palabra]]]] [{SV\_sg} [{v\_sg} [{corre}, tier=palabra]]]]]] [{.} [{.}, tier=palabra]]]
+\end{forest}
