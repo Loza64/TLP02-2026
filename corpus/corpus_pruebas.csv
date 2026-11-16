@@ -1,0 +1,41 @@
+id,oracion,nivel,esperado,fenomeno
+1,El gato negro duerme.,1,ACEPTADA,concordancia_genero_numero_basica
+2,La gata negra corre.,1,ACEPTADA,concordancia_genero_numero_basica
+3,Los gatos negros duermen.,1,ACEPTADA,concordancia_plural_masculino
+4,Las gatas negras corren.,1,ACEPTADA,concordancia_plural_femenino
+5,El niño juega.,1,ACEPTADA,SN_sin_adjetivo
+6,La niña duerme.,1,ACEPTADA,SN_sin_adjetivo
+7,Un perro corre.,1,ACEPTADA,determinante_indefinido_sg
+8,Una perra juega.,1,ACEPTADA,determinante_indefinido_sg
+9,Los niños juegan.,1,ACEPTADA,plural_sin_adjetivo
+10,Las niñas duermen.,1,ACEPTADA,plural_sin_adjetivo
+11,El perro grande duerme.,1,ACEPTADA,adjetivo_invariable_sg
+12,La niña grande corre.,1,ACEPTADA,adjetivo_invariable_sg
+13,La gata muy rápida corre rápidamente en el jardín.,2,ACEPTADA,intensificador_adv_modo_SP
+14,El perro negro juega tranquilamente bajo la casa.,2,ACEPTADA,adv_modo_SP_bajo
+15,El gato negro corre rápidamente.,2,ACEPTADA,adverbio_de_modo
+16,El niño juega en el parque.,2,ACEPTADA,frase_preposicional
+17,Los gatos negros duermen tranquilamente.,2,ACEPTADA,plural_con_adv_modo
+18,La niña corre rápidamente en la casa.,2,ACEPTADA,adv_modo_y_SP
+19,El niño que corre juega en la casa.,2,ACEPTADA,relativa_de_sujeto
+20,El niño observa que la gata duerme.,2,ACEPTADA,completiva_basica
+21,La gata muy negra duerme tranquilamente.,2,ACEPTADA,intensificador_y_adv_modo
+22,Los perros grandes juegan en el parque.,2,ACEPTADA,adj_invariable_pl_y_SP
+23,Las niñas rápidas corren rápidamente.,2,ACEPTADA,plural_femenino_con_adv
+24,El perro observa que el gato duerme.,2,ACEPTADA,completiva_sujeto_masculino
+25,Un niño grande juega con la niña.,2,ACEPTADA,SP_con_y_adj_invariable
+26,Las gatas negras duermen bajo la casa.,2,ACEPTADA,plural_femenino_con_SP
+27,El gato que duerme corre en el jardín.,2,ACEPTADA,relativa_y_SP
+28,Los niños que juegan observan que la gata corre.,2,ACEPTADA,relativa_y_completiva
+29,El gato negra duerme.,3,RECHAZADA,discordancia_genero_adj
+30,El niño y la niña duermen.,3,RECHAZADA,coordinacion_conflicto_LL1
+31,Los gato negros duermen.,3,RECHAZADA,discordancia_numero_det_sust
+32,El gato negro duermen.,3,RECHAZADA,discordancia_numero_sujeto_verbo
+33,Los gatos que corre duermen.,3,RECHAZADA,discordancia_numero_en_relativa
+34,La gata negro duerme.,3,RECHAZADA,discordancia_genero_adj_inverso
+35,El elefante negro duerme.,3,RECHAZADA,palabra_fuera_del_lexico
+36,Gato negro duerme.,3,RECHAZADA,determinante_ausente
+37,El gato duerme en.,3,RECHAZADA,SP_incompleta
+38,El niño observa que.,3,RECHAZADA,completiva_incompleta
+39,Los niños y las niñas juegan.,3,RECHAZADA,coordinacion_plural_conflicto_LL1
+40,El gato muy negras duerme.,3,RECHAZADA,discordancia_numero_tras_intensificador
