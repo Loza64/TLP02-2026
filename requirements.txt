@@ -1,5 +1,12 @@
-# Parser LL(1) (parser/, espanol/): solo biblioteca estándar de Python 3.10+.
-# Las pruebas usan unittest (incluido en Python).
-#
-# Comparación NLP (nlp/nlp_comparison.py):
-spacy>=3.7
+# El parser LL(1) (carpetas parser/ y espanol/) solo usa la biblioteca estándar de Python 3.10+.
+# Las pruebas usan unittest (incluido en Python), no hace falta instalar nada.
+
+# --- Fase 2: herramientas modernas de NLP (nlp/) ---
+# Versiones con las que se generaron los logs de logs/.
+spacy==3.8.18
+# Modelo de español:  python -m spacy download es_core_news_sm   (versión 3.8.0)
+
+transformers==5.23.0
+# torch solo CPU (más liviano); instalar ANTES con:
+#   pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
+torch==2.15.0

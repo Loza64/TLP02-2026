@@ -1,0 +1,5520 @@
+{
+  "herramienta": "spaCy",
+  "version_libreria": "3.8.18",
+  "modelo": "es_core_news_sm",
+  "version_modelo": "3.8.0",
+  "configuracion": {
+    "pipeline": [
+      "tok2vec",
+      "morphologizer",
+      "parser",
+      "attribute_ruler",
+      "lemmatizer",
+      "ner"
+    ],
+    "descripcion_modelo": "Spanish pipeline optimized for CPU. Components: tok2vec, morphologizer, parser, senter, ner, attribute_ruler, lemmatizer.",
+    "dispositivo": "CPU"
+  },
+  "entorno": {
+    "python": "3.13.13",
+    "plataforma": "Windows-11-10.0.26300-SP0",
+    "comando": "python -m nlp.spacy_comparison"
+  },
+  "inicio": "2026-11-17T21:56:38-06:00",
+  "fin": "2026-11-17T21:56:38-06:00",
+  "corpus": {
+    "ruta": "corpus/corpus_pruebas.csv",
+    "sha256": "8e9ec84c5ccb235e48564f50eea44079c6a42d575b723c5f4b3694b4e6160f89",
+    "n_oraciones": 40
+  },
+  "metodologia": {
+    "version_criterios": "1.0",
+    "criterios": {
+      "C1_raiz_verbal": "Exactamente un núcleo principal y es un verbo conjugado.",
+      "C2_sujeto_nominal": "El verbo principal tiene un sujeto con núcleo sustantivo y determinante.",
+      "C3_concordancia": "Concordancia det–n, adj–n (género/número) y sujeto–verbo (número), según los rasgos que predice la herramienta.",
+      "C4_alcance_cfg": "Todas las relaciones/funciones del análisis tienen una producción equivalente en la CFG."
+    },
+    "regla_decision": "ACEPTADA si C1, C2, C3 y C4 se cumplen; RECHAZADA en otro caso.",
+    "relaciones_permitidas": {
+      "ROOT": "Oracion → Sujeto SV .   (núcleo del SV)",
+      "nsubj": "Oracion → Sujeto_x SV_x . / Clausula → Sujeto SV / relativa: que",
+      "det": "SN_g_n → det_g_n n_g_n ModNom_g_n",
+      "amod": "ModNom → Adj | adv_intens Adj",
+      "advmod": "ModNom → adv_intens Adj  /  AdvOpt → adv_modo",
+      "obl": "SPOpt → prep SN_Prep",
+      "case": "SPOpt → prep SN_Prep   (la preposición)",
+      "acl": "SubOpt_x → que SV_x   (relativa de sujeto)",
+      "acl:relcl": "SubOpt_x → que SV_x   (relativa de sujeto)",
+      "ccomp": "RestoSV → que Clausula   (completiva)",
+      "mark": "RestoSV → que Clausula   (el «que» completivo)",
+      "punct": "Oracion → ... '.'"
+    }
+  },
+  "resultados": [
+    {
+      "id": "1",
+      "oracion": "El gato negro duerme.",
+      "nivel": "1",
+      "fenomeno": "concordancia_genero_numero_basica",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 3.85,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 1,
+          "texto": "gato",
+          "lema": "gato",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 2,
+          "texto": "negro",
+          "lema": "negro",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 3,
+          "texto": "duerme",
+          "lema": "dormir",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 4,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "duerme"
+        }
+      ],
+      "arbol": "(ROOT duerme/VERB (nsubj gato/NOUN (det El/DET) (amod negro/ADJ)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gato",
+        "verbo": "duerme",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'duerme'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gato'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "5 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "2",
+      "oracion": "La gata negra corre.",
+      "nivel": "1",
+      "fenomeno": "concordancia_genero_numero_basica",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 3.36,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "La",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gata"
+        },
+        {
+          "i": 1,
+          "texto": "gata",
+          "lema": "gata",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "corre"
+        },
+        {
+          "i": 2,
+          "texto": "negra",
+          "lema": "negro",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "gata"
+        },
+        {
+          "i": 3,
+          "texto": "corre",
+          "lema": "correr",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "corre"
+        },
+        {
+          "i": 4,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "corre"
+        }
+      ],
+      "arbol": "(ROOT corre/VERB (nsubj gata/NOUN (det La/DET) (amod negra/ADJ)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gata",
+        "verbo": "corre",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'corre'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gata'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "5 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "3",
+      "oracion": "Los gatos negros duermen.",
+      "nivel": "1",
+      "fenomeno": "concordancia_plural_masculino",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 3.93,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Los",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Plur",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gatos"
+        },
+        {
+          "i": 1,
+          "texto": "gatos",
+          "lema": "gato",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Plur"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 2,
+          "texto": "negros",
+          "lema": "negro",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Plur"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "gatos"
+        },
+        {
+          "i": 3,
+          "texto": "duermen",
+          "lema": "dormir",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Plur",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 4,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "duermen"
+        }
+      ],
+      "arbol": "(ROOT duermen/VERB (nsubj gatos/NOUN (det Los/DET) (amod negros/ADJ)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gatos",
+        "verbo": "duermen",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'duermen'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gatos'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "5 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "4",
+      "oracion": "Las gatas negras corren.",
+      "nivel": "1",
+      "fenomeno": "concordancia_plural_femenino",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 3.06,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Las",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Plur",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gatas"
+        },
+        {
+          "i": 1,
+          "texto": "gatas",
+          "lema": "gata",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Plur"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "corren"
+        },
+        {
+          "i": 2,
+          "texto": "negras",
+          "lema": "negro",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Plur"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "gatas"
+        },
+        {
+          "i": 3,
+          "texto": "corren",
+          "lema": "correr",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Plur",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "corren"
+        },
+        {
+          "i": 4,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "corren"
+        }
+      ],
+      "arbol": "(ROOT corren/VERB (nsubj gatas/NOUN (det Las/DET) (amod negras/ADJ)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gatas",
+        "verbo": "corren",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'corren'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gatas'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "5 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "5",
+      "oracion": "El niño juega.",
+      "nivel": "1",
+      "fenomeno": "SN_sin_adjetivo",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 3.0,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niño"
+        },
+        {
+          "i": 1,
+          "texto": "niño",
+          "lema": "niño",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 2,
+          "head_texto": "juega"
+        },
+        {
+          "i": 2,
+          "texto": "juega",
+          "lema": "jugar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 2,
+          "head_texto": "juega"
+        },
+        {
+          "i": 3,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 2,
+          "head_texto": "juega"
+        }
+      ],
+      "arbol": "(ROOT juega/VERB (nsubj niño/NOUN (det El/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niño",
+        "verbo": "juega",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'juega'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niño'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "3 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "6",
+      "oracion": "La niña duerme.",
+      "nivel": "1",
+      "fenomeno": "SN_sin_adjetivo",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.82,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "La",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niña"
+        },
+        {
+          "i": 1,
+          "texto": "niña",
+          "lema": "niña",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 2,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 2,
+          "texto": "duerme",
+          "lema": "dormir",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 2,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 3,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 2,
+          "head_texto": "duerme"
+        }
+      ],
+      "arbol": "(ROOT duerme/VERB (nsubj niña/NOUN (det La/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niña",
+        "verbo": "duerme",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'duerme'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niña'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "3 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "7",
+      "oracion": "Un perro corre.",
+      "nivel": "1",
+      "fenomeno": "determinante_indefinido_sg",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 3.01,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Un",
+          "lema": "uno",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Ind",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "perro"
+        },
+        {
+          "i": 1,
+          "texto": "perro",
+          "lema": "perro",
+          "pos": "PROPN",
+          "tag": "PROPN",
+          "morph": {},
+          "dep": "nsubj",
+          "head_i": 2,
+          "head_texto": "corre"
+        },
+        {
+          "i": 2,
+          "texto": "corre",
+          "lema": "correr",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 2,
+          "head_texto": "corre"
+        },
+        {
+          "i": 3,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 2,
+          "head_texto": "corre"
+        }
+      ],
+      "arbol": "(ROOT corre/VERB (nsubj perro/PROPN (det Un/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "perro",
+        "verbo": "corre",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'corre'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": false,
+          "detalle": "el núcleo del sujeto 'perro' es PROPN"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "0 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "RECHAZADA",
+      "motivos_rechazo": [
+        "C2_sujeto_nominal: el núcleo del sujeto 'perro' es PROPN"
+      ],
+      "clasificacion": "FN",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [
+          {
+            "palabra": "perro",
+            "categoria_cfg": "n",
+            "pos_herramienta": "PROPN",
+            "pos_aceptables": [
+              "NOUN"
+            ]
+          }
+        ],
+        "roles_vs_estructura_esperada": null,
+        "total": 1
+      }
+    },
+    {
+      "id": "8",
+      "oracion": "Una perra juega.",
+      "nivel": "1",
+      "fenomeno": "determinante_indefinido_sg",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.64,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Una",
+          "lema": "uno",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Ind",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "perra"
+        },
+        {
+          "i": 1,
+          "texto": "perra",
+          "lema": "perra",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 2,
+          "head_texto": "juega"
+        },
+        {
+          "i": 2,
+          "texto": "juega",
+          "lema": "jugar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 2,
+          "head_texto": "juega"
+        },
+        {
+          "i": 3,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 2,
+          "head_texto": "juega"
+        }
+      ],
+      "arbol": "(ROOT juega/VERB (nsubj perra/NOUN (det Una/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "perra",
+        "verbo": "juega",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'juega'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'perra'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "3 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "9",
+      "oracion": "Los niños juegan.",
+      "nivel": "1",
+      "fenomeno": "plural_sin_adjetivo",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 3.66,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Los",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Plur",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niños"
+        },
+        {
+          "i": 1,
+          "texto": "niños",
+          "lema": "niño",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Plur"
+          },
+          "dep": "nsubj",
+          "head_i": 2,
+          "head_texto": "juegan"
+        },
+        {
+          "i": 2,
+          "texto": "juegan",
+          "lema": "jugar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Plur",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 2,
+          "head_texto": "juegan"
+        },
+        {
+          "i": 3,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 2,
+          "head_texto": "juegan"
+        }
+      ],
+      "arbol": "(ROOT juegan/VERB (nsubj niños/NOUN (det Los/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niños",
+        "verbo": "juegan",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'juegan'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niños'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "3 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "10",
+      "oracion": "Las niñas duermen.",
+      "nivel": "1",
+      "fenomeno": "plural_sin_adjetivo",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.48,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Las",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Plur",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niñas"
+        },
+        {
+          "i": 1,
+          "texto": "niñas",
+          "lema": "niña",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Plur"
+          },
+          "dep": "nsubj",
+          "head_i": 2,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 2,
+          "texto": "duermen",
+          "lema": "dormir",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Plur",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 2,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 3,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 2,
+          "head_texto": "duermen"
+        }
+      ],
+      "arbol": "(ROOT duermen/VERB (nsubj niñas/NOUN (det Las/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niñas",
+        "verbo": "duermen",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'duermen'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niñas'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "3 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "11",
+      "oracion": "El perro grande duerme.",
+      "nivel": "1",
+      "fenomeno": "adjetivo_invariable_sg",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.82,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "perro"
+        },
+        {
+          "i": 1,
+          "texto": "perro",
+          "lema": "perro",
+          "pos": "PROPN",
+          "tag": "PROPN",
+          "morph": {},
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 2,
+          "texto": "grande",
+          "lema": "grande",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Number": "Sing"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "perro"
+        },
+        {
+          "i": 3,
+          "texto": "duerme",
+          "lema": "dormir",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 4,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "duerme"
+        }
+      ],
+      "arbol": "(ROOT duerme/VERB (nsubj perro/PROPN (det El/DET) (amod grande/ADJ)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "perro",
+        "verbo": "duerme",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'duerme'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": false,
+          "detalle": "el núcleo del sujeto 'perro' es PROPN"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "0 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "RECHAZADA",
+      "motivos_rechazo": [
+        "C2_sujeto_nominal: el núcleo del sujeto 'perro' es PROPN"
+      ],
+      "clasificacion": "FN",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [
+          {
+            "palabra": "perro",
+            "categoria_cfg": "n",
+            "pos_herramienta": "PROPN",
+            "pos_aceptables": [
+              "NOUN"
+            ]
+          }
+        ],
+        "roles_vs_estructura_esperada": null,
+        "total": 1
+      }
+    },
+    {
+      "id": "12",
+      "oracion": "La niña grande corre.",
+      "nivel": "1",
+      "fenomeno": "adjetivo_invariable_sg",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.61,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "La",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niña"
+        },
+        {
+          "i": 1,
+          "texto": "niña",
+          "lema": "niña",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "corre"
+        },
+        {
+          "i": 2,
+          "texto": "grande",
+          "lema": "grande",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Number": "Sing"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "niña"
+        },
+        {
+          "i": 3,
+          "texto": "corre",
+          "lema": "correr",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "corre"
+        },
+        {
+          "i": 4,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "corre"
+        }
+      ],
+      "arbol": "(ROOT corre/VERB (nsubj niña/NOUN (det La/DET) (amod grande/ADJ)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niña",
+        "verbo": "corre",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'corre'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niña'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "4 rasgos comparados, 1 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 1
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "13",
+      "oracion": "La gata muy rápida corre rápidamente en el jardín.",
+      "nivel": "2",
+      "fenomeno": "intensificador_adv_modo_SP",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 3.18,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "La",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gata"
+        },
+        {
+          "i": 1,
+          "texto": "gata",
+          "lema": "gata",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 4,
+          "head_texto": "corre"
+        },
+        {
+          "i": 2,
+          "texto": "muy",
+          "lema": "mucho",
+          "pos": "ADV",
+          "tag": "ADV",
+          "morph": {},
+          "dep": "advmod",
+          "head_i": 3,
+          "head_texto": "rápida"
+        },
+        {
+          "i": 3,
+          "texto": "rápida",
+          "lema": "rápido",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "gata"
+        },
+        {
+          "i": 4,
+          "texto": "corre",
+          "lema": "correr",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 4,
+          "head_texto": "corre"
+        },
+        {
+          "i": 5,
+          "texto": "rápidamente",
+          "lema": "rápidamente",
+          "pos": "ADV",
+          "tag": "ADV",
+          "morph": {},
+          "dep": "advmod",
+          "head_i": 4,
+          "head_texto": "corre"
+        },
+        {
+          "i": 6,
+          "texto": "en",
+          "lema": "en",
+          "pos": "ADP",
+          "tag": "ADP",
+          "morph": {},
+          "dep": "case",
+          "head_i": 8,
+          "head_texto": "jardín"
+        },
+        {
+          "i": 7,
+          "texto": "el",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 8,
+          "head_texto": "jardín"
+        },
+        {
+          "i": 8,
+          "texto": "jardín",
+          "lema": "jardín",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "obl",
+          "head_i": 4,
+          "head_texto": "corre"
+        },
+        {
+          "i": 9,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 4,
+          "head_texto": "corre"
+        }
+      ],
+      "arbol": "(ROOT corre/VERB (nsubj gata/NOUN (det La/DET) (amod rápida/ADJ (advmod muy/ADV))) (advmod rápidamente/ADV) (obl jardín/NOUN (case en/ADP) (det el/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gata",
+        "verbo": "corre",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'corre'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gata'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "7 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "14",
+      "oracion": "El perro negro juega tranquilamente bajo la casa.",
+      "nivel": "2",
+      "fenomeno": "adv_modo_SP_bajo",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 3.19,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "perro"
+        },
+        {
+          "i": 1,
+          "texto": "perro",
+          "lema": "perro",
+          "pos": "PROPN",
+          "tag": "PROPN",
+          "morph": {},
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "juega"
+        },
+        {
+          "i": 2,
+          "texto": "negro",
+          "lema": "negro",
+          "pos": "PROPN",
+          "tag": "PROPN",
+          "morph": {},
+          "dep": "flat",
+          "head_i": 1,
+          "head_texto": "perro"
+        },
+        {
+          "i": 3,
+          "texto": "juega",
+          "lema": "jugar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "juega"
+        },
+        {
+          "i": 4,
+          "texto": "tranquilamente",
+          "lema": "tranquilamente",
+          "pos": "ADV",
+          "tag": "ADV",
+          "morph": {},
+          "dep": "advmod",
+          "head_i": 3,
+          "head_texto": "juega"
+        },
+        {
+          "i": 5,
+          "texto": "bajo",
+          "lema": "bajo",
+          "pos": "ADP",
+          "tag": "ADP",
+          "morph": {},
+          "dep": "case",
+          "head_i": 7,
+          "head_texto": "casa"
+        },
+        {
+          "i": 6,
+          "texto": "la",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 7,
+          "head_texto": "casa"
+        },
+        {
+          "i": 7,
+          "texto": "casa",
+          "lema": "casa",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "obl",
+          "head_i": 3,
+          "head_texto": "juega"
+        },
+        {
+          "i": 8,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "juega"
+        }
+      ],
+      "arbol": "(ROOT juega/VERB (nsubj perro/PROPN (det El/DET) (flat negro/PROPN)) (advmod tranquilamente/ADV) (obl casa/NOUN (case bajo/ADP) (det la/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "perro",
+        "verbo": "juega",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'juega'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": false,
+          "detalle": "el núcleo del sujeto 'perro' es PROPN"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "2 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": false,
+          "detalle": "'negro' con relación 'flat' sin producción en la CFG"
+        }
+      },
+      "decision": "RECHAZADA",
+      "motivos_rechazo": [
+        "C2_sujeto_nominal: el núcleo del sujeto 'perro' es PROPN",
+        "C4_alcance_cfg: 'negro' con relación 'flat' sin producción en la CFG"
+      ],
+      "clasificacion": "FN",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [
+          {
+            "palabra": "perro",
+            "categoria_cfg": "n",
+            "pos_herramienta": "PROPN",
+            "pos_aceptables": [
+              "NOUN"
+            ]
+          },
+          {
+            "palabra": "negro",
+            "categoria_cfg": "adj",
+            "pos_herramienta": "PROPN",
+            "pos_aceptables": [
+              "ADJ"
+            ]
+          }
+        ],
+        "roles_vs_estructura_esperada": null,
+        "total": 2
+      }
+    },
+    {
+      "id": "15",
+      "oracion": "El gato negro corre rápidamente.",
+      "nivel": "2",
+      "fenomeno": "adverbio_de_modo",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 3.7,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 1,
+          "texto": "gato",
+          "lema": "gato",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "corre"
+        },
+        {
+          "i": 2,
+          "texto": "negro",
+          "lema": "negro",
+          "pos": "PROPN",
+          "tag": "PROPN",
+          "morph": {},
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 3,
+          "texto": "corre",
+          "lema": "correr",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "corre"
+        },
+        {
+          "i": 4,
+          "texto": "rápidamente",
+          "lema": "rápidamente",
+          "pos": "ADV",
+          "tag": "ADV",
+          "morph": {},
+          "dep": "advmod",
+          "head_i": 3,
+          "head_texto": "corre"
+        },
+        {
+          "i": 5,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "corre"
+        }
+      ],
+      "arbol": "(ROOT corre/VERB (nsubj gato/NOUN (det El/DET) (amod negro/PROPN)) (advmod rápidamente/ADV) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gato",
+        "verbo": "corre",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'corre'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gato'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "3 rasgos comparados, 2 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 2
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [
+          {
+            "palabra": "negro",
+            "categoria_cfg": "adj",
+            "pos_herramienta": "PROPN",
+            "pos_aceptables": [
+              "ADJ"
+            ]
+          }
+        ],
+        "roles_vs_estructura_esperada": null,
+        "total": 1
+      }
+    },
+    {
+      "id": "16",
+      "oracion": "El niño juega en el parque.",
+      "nivel": "2",
+      "fenomeno": "frase_preposicional",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 3.32,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niño"
+        },
+        {
+          "i": 1,
+          "texto": "niño",
+          "lema": "niño",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 2,
+          "head_texto": "juega"
+        },
+        {
+          "i": 2,
+          "texto": "juega",
+          "lema": "jugar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 2,
+          "head_texto": "juega"
+        },
+        {
+          "i": 3,
+          "texto": "en",
+          "lema": "en",
+          "pos": "ADP",
+          "tag": "ADP",
+          "morph": {},
+          "dep": "case",
+          "head_i": 5,
+          "head_texto": "parque"
+        },
+        {
+          "i": 4,
+          "texto": "el",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 5,
+          "head_texto": "parque"
+        },
+        {
+          "i": 5,
+          "texto": "parque",
+          "lema": "parque",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "obl",
+          "head_i": 2,
+          "head_texto": "juega"
+        },
+        {
+          "i": 6,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 2,
+          "head_texto": "juega"
+        }
+      ],
+      "arbol": "(ROOT juega/VERB (nsubj niño/NOUN (det El/DET)) (obl parque/NOUN (case en/ADP) (det el/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niño",
+        "verbo": "juega",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'juega'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niño'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "5 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "17",
+      "oracion": "Los gatos negros duermen tranquilamente.",
+      "nivel": "2",
+      "fenomeno": "plural_con_adv_modo",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.68,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Los",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Plur",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gatos"
+        },
+        {
+          "i": 1,
+          "texto": "gatos",
+          "lema": "gato",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Plur"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 2,
+          "texto": "negros",
+          "lema": "negro",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Plur"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "gatos"
+        },
+        {
+          "i": 3,
+          "texto": "duermen",
+          "lema": "duermar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Sub",
+            "Number": "Plur",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 4,
+          "texto": "tranquilamente",
+          "lema": "tranquilamente",
+          "pos": "ADV",
+          "tag": "ADV",
+          "morph": {},
+          "dep": "advmod",
+          "head_i": 3,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 5,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "duermen"
+        }
+      ],
+      "arbol": "(ROOT duermen/VERB (nsubj gatos/NOUN (det Los/DET) (amod negros/ADJ)) (advmod tranquilamente/ADV) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gatos",
+        "verbo": "duermen",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'duermen'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gatos'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "5 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "18",
+      "oracion": "La niña corre rápidamente en la casa.",
+      "nivel": "2",
+      "fenomeno": "adv_modo_y_SP",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.75,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "La",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niña"
+        },
+        {
+          "i": 1,
+          "texto": "niña",
+          "lema": "niña",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 2,
+          "head_texto": "corre"
+        },
+        {
+          "i": 2,
+          "texto": "corre",
+          "lema": "correr",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 2,
+          "head_texto": "corre"
+        },
+        {
+          "i": 3,
+          "texto": "rápidamente",
+          "lema": "rápidamente",
+          "pos": "ADV",
+          "tag": "ADV",
+          "morph": {},
+          "dep": "advmod",
+          "head_i": 2,
+          "head_texto": "corre"
+        },
+        {
+          "i": 4,
+          "texto": "en",
+          "lema": "en",
+          "pos": "ADP",
+          "tag": "ADP",
+          "morph": {},
+          "dep": "case",
+          "head_i": 6,
+          "head_texto": "casa"
+        },
+        {
+          "i": 5,
+          "texto": "la",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 6,
+          "head_texto": "casa"
+        },
+        {
+          "i": 6,
+          "texto": "casa",
+          "lema": "casa",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "obl",
+          "head_i": 2,
+          "head_texto": "corre"
+        },
+        {
+          "i": 7,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 2,
+          "head_texto": "corre"
+        }
+      ],
+      "arbol": "(ROOT corre/VERB (nsubj niña/NOUN (det La/DET)) (advmod rápidamente/ADV) (obl casa/NOUN (case en/ADP) (det la/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niña",
+        "verbo": "corre",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'corre'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niña'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "5 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "19",
+      "oracion": "El niño que corre juega en la casa.",
+      "nivel": "2",
+      "fenomeno": "relativa_de_sujeto",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 3.25,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niño"
+        },
+        {
+          "i": 1,
+          "texto": "niño",
+          "lema": "niño",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 4,
+          "head_texto": "juega"
+        },
+        {
+          "i": 2,
+          "texto": "que",
+          "lema": "que",
+          "pos": "PRON",
+          "tag": "PRON",
+          "morph": {
+            "PronType": "Int,Rel"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "corre"
+        },
+        {
+          "i": 3,
+          "texto": "corre",
+          "lema": "correr",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "acl",
+          "head_i": 1,
+          "head_texto": "niño"
+        },
+        {
+          "i": 4,
+          "texto": "juega",
+          "lema": "jugar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 4,
+          "head_texto": "juega"
+        },
+        {
+          "i": 5,
+          "texto": "en",
+          "lema": "en",
+          "pos": "ADP",
+          "tag": "ADP",
+          "morph": {},
+          "dep": "case",
+          "head_i": 7,
+          "head_texto": "casa"
+        },
+        {
+          "i": 6,
+          "texto": "la",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 7,
+          "head_texto": "casa"
+        },
+        {
+          "i": 7,
+          "texto": "casa",
+          "lema": "casa",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "obl",
+          "head_i": 4,
+          "head_texto": "juega"
+        },
+        {
+          "i": 8,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 4,
+          "head_texto": "juega"
+        }
+      ],
+      "arbol": "(ROOT juega/VERB (nsubj niño/NOUN (det El/DET) (acl corre/VERB (nsubj que/PRON))) (obl casa/NOUN (case en/ADP) (det la/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niño",
+        "verbo": "juega",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'juega'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niño'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "6 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "20",
+      "oracion": "El niño observa que la gata duerme.",
+      "nivel": "2",
+      "fenomeno": "completiva_basica",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 4.88,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niño"
+        },
+        {
+          "i": 1,
+          "texto": "niño",
+          "lema": "niño",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 2,
+          "head_texto": "observa"
+        },
+        {
+          "i": 2,
+          "texto": "observa",
+          "lema": "observar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 2,
+          "head_texto": "observa"
+        },
+        {
+          "i": 3,
+          "texto": "que",
+          "lema": "que",
+          "pos": "SCONJ",
+          "tag": "SCONJ",
+          "morph": {},
+          "dep": "mark",
+          "head_i": 6,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 4,
+          "texto": "la",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 5,
+          "head_texto": "gata"
+        },
+        {
+          "i": 5,
+          "texto": "gata",
+          "lema": "gata",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 6,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 6,
+          "texto": "duerme",
+          "lema": "duerme",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Sub",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Imp",
+            "VerbForm": "Fin"
+          },
+          "dep": "ccomp",
+          "head_i": 2,
+          "head_texto": "observa"
+        },
+        {
+          "i": 7,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 2,
+          "head_texto": "observa"
+        }
+      ],
+      "arbol": "(ROOT observa/VERB (nsubj niño/NOUN (det El/DET)) (ccomp duerme/VERB (mark que/SCONJ) (nsubj gata/NOUN (det la/DET))) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niño",
+        "verbo": "observa",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'observa'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niño'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "6 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "21",
+      "oracion": "La gata muy negra duerme tranquilamente.",
+      "nivel": "2",
+      "fenomeno": "intensificador_y_adv_modo",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.44,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "La",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gata"
+        },
+        {
+          "i": 1,
+          "texto": "gata",
+          "lema": "gata",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 4,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 2,
+          "texto": "muy",
+          "lema": "mucho",
+          "pos": "ADV",
+          "tag": "ADV",
+          "morph": {},
+          "dep": "advmod",
+          "head_i": 3,
+          "head_texto": "negra"
+        },
+        {
+          "i": 3,
+          "texto": "negra",
+          "lema": "negro",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "gata"
+        },
+        {
+          "i": 4,
+          "texto": "duerme",
+          "lema": "dormir",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 4,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 5,
+          "texto": "tranquilamente",
+          "lema": "tranquilamente",
+          "pos": "ADV",
+          "tag": "ADV",
+          "morph": {},
+          "dep": "advmod",
+          "head_i": 4,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 6,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 4,
+          "head_texto": "duerme"
+        }
+      ],
+      "arbol": "(ROOT duerme/VERB (nsubj gata/NOUN (det La/DET) (amod negra/ADJ (advmod muy/ADV))) (advmod tranquilamente/ADV) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gata",
+        "verbo": "duerme",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'duerme'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gata'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "5 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "22",
+      "oracion": "Los perros grandes juegan en el parque.",
+      "nivel": "2",
+      "fenomeno": "adj_invariable_pl_y_SP",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.9,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Los",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Plur",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "perros"
+        },
+        {
+          "i": 1,
+          "texto": "perros",
+          "lema": "perro",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Plur"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "juegan"
+        },
+        {
+          "i": 2,
+          "texto": "grandes",
+          "lema": "grande",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Number": "Plur"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "perros"
+        },
+        {
+          "i": 3,
+          "texto": "juegan",
+          "lema": "jugar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Plur",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "juegan"
+        },
+        {
+          "i": 4,
+          "texto": "en",
+          "lema": "en",
+          "pos": "ADP",
+          "tag": "ADP",
+          "morph": {},
+          "dep": "case",
+          "head_i": 6,
+          "head_texto": "parque"
+        },
+        {
+          "i": 5,
+          "texto": "el",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 6,
+          "head_texto": "parque"
+        },
+        {
+          "i": 6,
+          "texto": "parque",
+          "lema": "parque",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "obl",
+          "head_i": 3,
+          "head_texto": "juegan"
+        },
+        {
+          "i": 7,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "juegan"
+        }
+      ],
+      "arbol": "(ROOT juegan/VERB (nsubj perros/NOUN (det Los/DET) (amod grandes/ADJ)) (obl parque/NOUN (case en/ADP) (det el/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "perros",
+        "verbo": "juegan",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'juegan'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'perros'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "6 rasgos comparados, 1 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 1
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "23",
+      "oracion": "Las niñas rápidas corren rápidamente.",
+      "nivel": "2",
+      "fenomeno": "plural_femenino_con_adv",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.49,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Las",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Plur",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niñas"
+        },
+        {
+          "i": 1,
+          "texto": "niñas",
+          "lema": "niña",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Plur"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "corren"
+        },
+        {
+          "i": 2,
+          "texto": "rápidas",
+          "lema": "rápido",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Plur"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "niñas"
+        },
+        {
+          "i": 3,
+          "texto": "corren",
+          "lema": "correr",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Plur",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "corren"
+        },
+        {
+          "i": 4,
+          "texto": "rápidamente",
+          "lema": "rápidamente",
+          "pos": "ADV",
+          "tag": "ADV",
+          "morph": {},
+          "dep": "advmod",
+          "head_i": 3,
+          "head_texto": "corren"
+        },
+        {
+          "i": 5,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "corren"
+        }
+      ],
+      "arbol": "(ROOT corren/VERB (nsubj niñas/NOUN (det Las/DET) (amod rápidas/ADJ)) (advmod rápidamente/ADV) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niñas",
+        "verbo": "corren",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'corren'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niñas'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "5 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "24",
+      "oracion": "El perro observa que el gato duerme.",
+      "nivel": "2",
+      "fenomeno": "completiva_sujeto_masculino",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.7,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "perro"
+        },
+        {
+          "i": 1,
+          "texto": "perro",
+          "lema": "perro",
+          "pos": "PROPN",
+          "tag": "PROPN",
+          "morph": {},
+          "dep": "nsubj",
+          "head_i": 2,
+          "head_texto": "observa"
+        },
+        {
+          "i": 2,
+          "texto": "observa",
+          "lema": "observar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 2,
+          "head_texto": "observa"
+        },
+        {
+          "i": 3,
+          "texto": "que",
+          "lema": "que",
+          "pos": "SCONJ",
+          "tag": "SCONJ",
+          "morph": {},
+          "dep": "mark",
+          "head_i": 6,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 4,
+          "texto": "el",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 5,
+          "head_texto": "gato"
+        },
+        {
+          "i": 5,
+          "texto": "gato",
+          "lema": "gato",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 6,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 6,
+          "texto": "duerme",
+          "lema": "dormir",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ccomp",
+          "head_i": 2,
+          "head_texto": "observa"
+        },
+        {
+          "i": 7,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 2,
+          "head_texto": "observa"
+        }
+      ],
+      "arbol": "(ROOT observa/VERB (nsubj perro/PROPN (det El/DET)) (ccomp duerme/VERB (mark que/SCONJ) (nsubj gato/NOUN (det el/DET))) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "perro",
+        "verbo": "observa",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'observa'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": false,
+          "detalle": "el núcleo del sujeto 'perro' es PROPN"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "3 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "RECHAZADA",
+      "motivos_rechazo": [
+        "C2_sujeto_nominal: el núcleo del sujeto 'perro' es PROPN"
+      ],
+      "clasificacion": "FN",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [
+          {
+            "palabra": "perro",
+            "categoria_cfg": "n",
+            "pos_herramienta": "PROPN",
+            "pos_aceptables": [
+              "NOUN"
+            ]
+          }
+        ],
+        "roles_vs_estructura_esperada": null,
+        "total": 1
+      }
+    },
+    {
+      "id": "25",
+      "oracion": "Un niño grande juega con la niña.",
+      "nivel": "2",
+      "fenomeno": "SP_con_y_adj_invariable",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.36,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Un",
+          "lema": "uno",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Ind",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niño"
+        },
+        {
+          "i": 1,
+          "texto": "niño",
+          "lema": "niño",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "juega"
+        },
+        {
+          "i": 2,
+          "texto": "grande",
+          "lema": "grande",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Number": "Sing"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "niño"
+        },
+        {
+          "i": 3,
+          "texto": "juega",
+          "lema": "jugar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "juega"
+        },
+        {
+          "i": 4,
+          "texto": "con",
+          "lema": "con",
+          "pos": "ADP",
+          "tag": "ADP",
+          "morph": {},
+          "dep": "case",
+          "head_i": 6,
+          "head_texto": "niña"
+        },
+        {
+          "i": 5,
+          "texto": "la",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 6,
+          "head_texto": "niña"
+        },
+        {
+          "i": 6,
+          "texto": "niña",
+          "lema": "niña",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "obl",
+          "head_i": 3,
+          "head_texto": "juega"
+        },
+        {
+          "i": 7,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "juega"
+        }
+      ],
+      "arbol": "(ROOT juega/VERB (nsubj niño/NOUN (det Un/DET) (amod grande/ADJ)) (obl niña/NOUN (case con/ADP) (det la/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niño",
+        "verbo": "juega",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'juega'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niño'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "6 rasgos comparados, 1 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 1
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "26",
+      "oracion": "Las gatas negras duermen bajo la casa.",
+      "nivel": "2",
+      "fenomeno": "plural_femenino_con_SP",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.89,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Las",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Plur",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gatas"
+        },
+        {
+          "i": 1,
+          "texto": "gatas",
+          "lema": "gata",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Plur"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 2,
+          "texto": "negras",
+          "lema": "negro",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Plur"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "gatas"
+        },
+        {
+          "i": 3,
+          "texto": "duermen",
+          "lema": "duermen ",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Case": "Acc",
+            "Person": "3",
+            "PrepCase": "Npr",
+            "PronType": "Prs",
+            "Reflex": "Yes",
+            "VerbForm": "Inf"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 4,
+          "texto": "bajo",
+          "lema": "bajo",
+          "pos": "ADP",
+          "tag": "ADP",
+          "morph": {},
+          "dep": "case",
+          "head_i": 6,
+          "head_texto": "casa"
+        },
+        {
+          "i": 5,
+          "texto": "la",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 6,
+          "head_texto": "casa"
+        },
+        {
+          "i": 6,
+          "texto": "casa",
+          "lema": "casa",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "obl",
+          "head_i": 3,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 7,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "duermen"
+        }
+      ],
+      "arbol": "(ROOT duermen/VERB (nsubj gatas/NOUN (det Las/DET) (amod negras/ADJ)) (obl casa/NOUN (case bajo/ADP) (det la/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gatas",
+        "verbo": "duermen",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": false,
+          "detalle": "la raíz 'duermen' no está conjugada (VerbForm=Inf)"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gatas'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "6 rasgos comparados, 1 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 1
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "RECHAZADA",
+      "motivos_rechazo": [
+        "C1_raiz_verbal: la raíz 'duermen' no está conjugada (VerbForm=Inf)"
+      ],
+      "clasificacion": "FN",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "27",
+      "oracion": "El gato que duerme corre en el jardín.",
+      "nivel": "2",
+      "fenomeno": "relativa_y_SP",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.32,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 1,
+          "texto": "gato",
+          "lema": "gato",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 4,
+          "head_texto": "corre"
+        },
+        {
+          "i": 2,
+          "texto": "que",
+          "lema": "que",
+          "pos": "PRON",
+          "tag": "PRON",
+          "morph": {
+            "PronType": "Int,Rel"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 3,
+          "texto": "duerme",
+          "lema": "dormir",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "acl",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 4,
+          "texto": "corre",
+          "lema": "correr",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 4,
+          "head_texto": "corre"
+        },
+        {
+          "i": 5,
+          "texto": "en",
+          "lema": "en",
+          "pos": "ADP",
+          "tag": "ADP",
+          "morph": {},
+          "dep": "case",
+          "head_i": 7,
+          "head_texto": "jardín"
+        },
+        {
+          "i": 6,
+          "texto": "el",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 7,
+          "head_texto": "jardín"
+        },
+        {
+          "i": 7,
+          "texto": "jardín",
+          "lema": "jardín",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "obl",
+          "head_i": 4,
+          "head_texto": "corre"
+        },
+        {
+          "i": 8,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 4,
+          "head_texto": "corre"
+        }
+      ],
+      "arbol": "(ROOT corre/VERB (nsubj gato/NOUN (det El/DET) (acl duerme/VERB (nsubj que/PRON))) (obl jardín/NOUN (case en/ADP) (det el/DET)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gato",
+        "verbo": "corre",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'corre'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gato'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "6 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "28",
+      "oracion": "Los niños que juegan observan que la gata corre.",
+      "nivel": "2",
+      "fenomeno": "relativa_y_completiva",
+      "esperado": "ACEPTADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.94,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Los",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Plur",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niños"
+        },
+        {
+          "i": 1,
+          "texto": "niños",
+          "lema": "niño",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Plur"
+          },
+          "dep": "nsubj",
+          "head_i": 4,
+          "head_texto": "observan"
+        },
+        {
+          "i": 2,
+          "texto": "que",
+          "lema": "que",
+          "pos": "PRON",
+          "tag": "PRON",
+          "morph": {
+            "PronType": "Int,Rel"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "juegan"
+        },
+        {
+          "i": 3,
+          "texto": "juegan",
+          "lema": "jugar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Plur",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "acl",
+          "head_i": 1,
+          "head_texto": "niños"
+        },
+        {
+          "i": 4,
+          "texto": "observan",
+          "lema": "observar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Plur",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 4,
+          "head_texto": "observan"
+        },
+        {
+          "i": 5,
+          "texto": "que",
+          "lema": "que",
+          "pos": "SCONJ",
+          "tag": "SCONJ",
+          "morph": {},
+          "dep": "mark",
+          "head_i": 8,
+          "head_texto": "corre"
+        },
+        {
+          "i": 6,
+          "texto": "la",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 7,
+          "head_texto": "gata"
+        },
+        {
+          "i": 7,
+          "texto": "gata",
+          "lema": "gata",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 8,
+          "head_texto": "corre"
+        },
+        {
+          "i": 8,
+          "texto": "corre",
+          "lema": "correr",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ccomp",
+          "head_i": 4,
+          "head_texto": "observan"
+        },
+        {
+          "i": 9,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 4,
+          "head_texto": "observan"
+        }
+      ],
+      "arbol": "(ROOT observan/VERB (nsubj niños/NOUN (det Los/DET) (acl juegan/VERB (nsubj que/PRON))) (ccomp corre/VERB (mark que/SCONJ) (nsubj gata/NOUN (det la/DET))) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niños",
+        "verbo": "observan",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'observan'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niños'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "7 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "VP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "29",
+      "oracion": "El gato negra duerme.",
+      "nivel": "3",
+      "fenomeno": "discordancia_genero_adj",
+      "esperado": "RECHAZADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.21,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 1,
+          "texto": "gato",
+          "lema": "gato",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 2,
+          "texto": "negra",
+          "lema": "negra",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 3,
+          "texto": "duerme",
+          "lema": "dormir",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 4,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "duerme"
+        }
+      ],
+      "arbol": "(ROOT duerme/VERB (nsubj gato/NOUN (det El/DET) (amod negra/ADJ)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gato",
+        "verbo": "duerme",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'duerme'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gato'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "5 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "FP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "30",
+      "oracion": "El niño y la niña duermen.",
+      "nivel": "3",
+      "fenomeno": "coordinacion_conflicto_LL1",
+      "esperado": "RECHAZADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.29,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niño"
+        },
+        {
+          "i": 1,
+          "texto": "niño",
+          "lema": "niño",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 5,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 2,
+          "texto": "y",
+          "lema": "y",
+          "pos": "CCONJ",
+          "tag": "CCONJ",
+          "morph": {},
+          "dep": "cc",
+          "head_i": 4,
+          "head_texto": "niña"
+        },
+        {
+          "i": 3,
+          "texto": "la",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 4,
+          "head_texto": "niña"
+        },
+        {
+          "i": 4,
+          "texto": "niña",
+          "lema": "niña",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "conj",
+          "head_i": 1,
+          "head_texto": "niño"
+        },
+        {
+          "i": 5,
+          "texto": "duermen",
+          "lema": "duermen",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "VerbForm": "Inf"
+          },
+          "dep": "ROOT",
+          "head_i": 5,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 6,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 5,
+          "head_texto": "duermen"
+        }
+      ],
+      "arbol": "(ROOT duermen/VERB (nsubj niño/NOUN (det El/DET) (conj niña/NOUN (cc y/CCONJ) (det la/DET))) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niño",
+        "verbo": "duermen",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": false,
+          "detalle": "la raíz 'duermen' no está conjugada (VerbForm=Inf)"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niño'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "4 rasgos comparados, 1 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 1
+        },
+        "C4_alcance_cfg": {
+          "cumple": false,
+          "detalle": "'y' con relación 'cc' sin producción en la CFG; 'niña' con relación 'conj' sin producción en la CFG"
+        }
+      },
+      "decision": "RECHAZADA",
+      "motivos_rechazo": [
+        "C1_raiz_verbal: la raíz 'duermen' no está conjugada (VerbForm=Inf)",
+        "C4_alcance_cfg: 'y' con relación 'cc' sin producción en la CFG; 'niña' con relación 'conj' sin producción en la CFG"
+      ],
+      "clasificacion": "VN",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "31",
+      "oracion": "Los gato negros duermen.",
+      "nivel": "3",
+      "fenomeno": "discordancia_numero_det_sust",
+      "esperado": "RECHAZADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.54,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Los",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Plur",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 1,
+          "texto": "gato",
+          "lema": "gato",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {},
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 2,
+          "texto": "negros",
+          "lema": "negro",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Plur"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 3,
+          "texto": "duermen",
+          "lema": "dormir",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Plur",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 4,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "duermen"
+        }
+      ],
+      "arbol": "(ROOT duermen/VERB (nsubj gato/NOUN (det Los/DET) (amod negros/ADJ)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gato",
+        "verbo": "duermen",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'duermen'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gato'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "0 rasgos comparados, 5 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 5
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "FP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "32",
+      "oracion": "El gato negro duermen.",
+      "nivel": "3",
+      "fenomeno": "discordancia_numero_sujeto_verbo",
+      "esperado": "RECHAZADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.2,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 1,
+          "texto": "gato",
+          "lema": "gato",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 2,
+          "texto": "negro",
+          "lema": "negro",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 3,
+          "texto": "duermen",
+          "lema": "duermen",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "VerbForm": "Inf"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "duermen"
+        },
+        {
+          "i": 4,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "duermen"
+        }
+      ],
+      "arbol": "(ROOT duermen/VERB (nsubj gato/NOUN (det El/DET) (amod negro/ADJ)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gato",
+        "verbo": "duermen",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": false,
+          "detalle": "la raíz 'duermen' no está conjugada (VerbForm=Inf)"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gato'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "4 rasgos comparados, 1 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 1
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "RECHAZADA",
+      "motivos_rechazo": [
+        "C1_raiz_verbal: la raíz 'duermen' no está conjugada (VerbForm=Inf)"
+      ],
+      "clasificacion": "VN",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "33",
+      "oracion": "Los gatos que corre duermen.",
+      "nivel": "3",
+      "fenomeno": "discordancia_numero_en_relativa",
+      "esperado": "RECHAZADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.79,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Los",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Plur",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gatos"
+        },
+        {
+          "i": 1,
+          "texto": "gatos",
+          "lema": "gato",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Plur"
+          },
+          "dep": "ROOT",
+          "head_i": 1,
+          "head_texto": "gatos"
+        },
+        {
+          "i": 2,
+          "texto": "que",
+          "lema": "que",
+          "pos": "PRON",
+          "tag": "PRON",
+          "morph": {
+            "PronType": "Int,Rel"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "corre"
+        },
+        {
+          "i": 3,
+          "texto": "corre",
+          "lema": "correr",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "acl",
+          "head_i": 1,
+          "head_texto": "gatos"
+        },
+        {
+          "i": 4,
+          "texto": "duermen",
+          "lema": "duermen",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "VerbForm": "Inf"
+          },
+          "dep": "xcomp",
+          "head_i": 3,
+          "head_texto": "corre"
+        },
+        {
+          "i": 5,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 1,
+          "head_texto": "gatos"
+        }
+      ],
+      "arbol": "(ROOT gatos/NOUN (det Los/DET) (acl corre/VERB (nsubj que/PRON) (xcomp duermen/VERB)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": null,
+        "verbo": "gatos",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": false,
+          "detalle": "la raíz 'gatos' es NOUN, no un verbo"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": false,
+          "detalle": "el verbo principal tiene 0 sujetos"
+        },
+        "C3_concordancia": {
+          "cumple": false,
+          "detalle": "relativa–antecedente 'corre'(Sing) ≠ 'gatos'(Plur) en Number",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": false,
+          "detalle": "relativa 'corre' no modifica a un sujeto; 'duermen' con relación 'xcomp' sin producción en la CFG"
+        }
+      },
+      "decision": "RECHAZADA",
+      "motivos_rechazo": [
+        "C1_raiz_verbal: la raíz 'gatos' es NOUN, no un verbo",
+        "C2_sujeto_nominal: el verbo principal tiene 0 sujetos",
+        "C3_concordancia: relativa–antecedente 'corre'(Sing) ≠ 'gatos'(Plur) en Number",
+        "C4_alcance_cfg: relativa 'corre' no modifica a un sujeto; 'duermen' con relación 'xcomp' sin producción en la CFG"
+      ],
+      "clasificacion": "VN",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "34",
+      "oracion": "La gata negro duerme.",
+      "nivel": "3",
+      "fenomeno": "discordancia_genero_adj_inverso",
+      "esperado": "RECHAZADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.35,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "La",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gata"
+        },
+        {
+          "i": 1,
+          "texto": "gata",
+          "lema": "gata",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 2,
+          "texto": "negro",
+          "lema": "negro",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "gata"
+        },
+        {
+          "i": 3,
+          "texto": "duerme",
+          "lema": "dormir",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 4,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "duerme"
+        }
+      ],
+      "arbol": "(ROOT duerme/VERB (nsubj gata/NOUN (det La/DET) (amod negro/ADJ)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gata",
+        "verbo": "duerme",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'duerme'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gata'"
+        },
+        "C3_concordancia": {
+          "cumple": false,
+          "detalle": "amod 'negro'(Masc) ≠ 'gata'(Fem) en Gender",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "RECHAZADA",
+      "motivos_rechazo": [
+        "C3_concordancia: amod 'negro'(Masc) ≠ 'gata'(Fem) en Gender"
+      ],
+      "clasificacion": "VN",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "35",
+      "oracion": "El elefante negro duerme.",
+      "nivel": "3",
+      "fenomeno": "palabra_fuera_del_lexico",
+      "esperado": "RECHAZADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.44,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "elefante"
+        },
+        {
+          "i": 1,
+          "texto": "elefante",
+          "lema": "elefante",
+          "pos": "PROPN",
+          "tag": "PROPN",
+          "morph": {},
+          "dep": "nsubj",
+          "head_i": 3,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 2,
+          "texto": "negro",
+          "lema": "negro",
+          "pos": "PROPN",
+          "tag": "PROPN",
+          "morph": {},
+          "dep": "flat",
+          "head_i": 1,
+          "head_texto": "elefante"
+        },
+        {
+          "i": 3,
+          "texto": "duerme",
+          "lema": "dormir",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 3,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 4,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 3,
+          "head_texto": "duerme"
+        }
+      ],
+      "arbol": "(ROOT duerme/VERB (nsubj elefante/PROPN (det El/DET) (flat negro/PROPN)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "elefante",
+        "verbo": "duerme",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'duerme'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": false,
+          "detalle": "el núcleo del sujeto 'elefante' es PROPN"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "0 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": false,
+          "detalle": "'negro' con relación 'flat' sin producción en la CFG"
+        }
+      },
+      "decision": "RECHAZADA",
+      "motivos_rechazo": [
+        "C2_sujeto_nominal: el núcleo del sujeto 'elefante' es PROPN",
+        "C4_alcance_cfg: 'negro' con relación 'flat' sin producción en la CFG"
+      ],
+      "clasificacion": "VN",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [
+          {
+            "palabra": "negro",
+            "categoria_cfg": "adj",
+            "pos_herramienta": "PROPN",
+            "pos_aceptables": [
+              "ADJ"
+            ]
+          }
+        ],
+        "roles_vs_estructura_esperada": null,
+        "total": 1
+      }
+    },
+    {
+      "id": "36",
+      "oracion": "Gato negro duerme.",
+      "nivel": "3",
+      "fenomeno": "determinante_ausente",
+      "esperado": "RECHAZADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 1.87,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Gato",
+          "lema": "Gato",
+          "pos": "PROPN",
+          "tag": "PROPN",
+          "morph": {},
+          "dep": "nsubj",
+          "head_i": 2,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 1,
+          "texto": "negro",
+          "lema": "negro",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "flat",
+          "head_i": 0,
+          "head_texto": "Gato"
+        },
+        {
+          "i": 2,
+          "texto": "duerme",
+          "lema": "dormir",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 2,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 3,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 2,
+          "head_texto": "duerme"
+        }
+      ],
+      "arbol": "(ROOT duerme/VERB (nsubj Gato/PROPN (flat negro/ADJ)) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "Gato",
+        "verbo": "duerme",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'duerme'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": false,
+          "detalle": "el núcleo del sujeto 'Gato' es PROPN"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "0 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": false,
+          "detalle": "'negro' con relación 'flat' sin producción en la CFG"
+        }
+      },
+      "decision": "RECHAZADA",
+      "motivos_rechazo": [
+        "C2_sujeto_nominal: el núcleo del sujeto 'Gato' es PROPN",
+        "C4_alcance_cfg: 'negro' con relación 'flat' sin producción en la CFG"
+      ],
+      "clasificacion": "VN",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [
+          {
+            "palabra": "Gato",
+            "categoria_cfg": "n",
+            "pos_herramienta": "PROPN",
+            "pos_aceptables": [
+              "NOUN"
+            ]
+          }
+        ],
+        "roles_vs_estructura_esperada": null,
+        "total": 1
+      }
+    },
+    {
+      "id": "37",
+      "oracion": "El gato duerme en.",
+      "nivel": "3",
+      "fenomeno": "SP_incompleta",
+      "esperado": "RECHAZADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.02,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 1,
+          "texto": "gato",
+          "lema": "gato",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 2,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 2,
+          "texto": "duerme",
+          "lema": "dormir",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 2,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 3,
+          "texto": "en",
+          "lema": "en",
+          "pos": "ADP",
+          "tag": "ADP",
+          "morph": {},
+          "dep": "advmod",
+          "head_i": 2,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 4,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 2,
+          "head_texto": "duerme"
+        }
+      ],
+      "arbol": "(ROOT duerme/VERB (nsubj gato/NOUN (det El/DET)) (advmod en/ADP) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gato",
+        "verbo": "duerme",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'duerme'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gato'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "3 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "ACEPTADA",
+      "motivos_rechazo": [],
+      "clasificacion": "FP",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "38",
+      "oracion": "El niño observa que.",
+      "nivel": "3",
+      "fenomeno": "completiva_incompleta",
+      "esperado": "RECHAZADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.51,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niño"
+        },
+        {
+          "i": 1,
+          "texto": "niño",
+          "lema": "niño",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 2,
+          "head_texto": "observa"
+        },
+        {
+          "i": 2,
+          "texto": "observa",
+          "lema": "observar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 2,
+          "head_texto": "observa"
+        },
+        {
+          "i": 3,
+          "texto": "que",
+          "lema": "que",
+          "pos": "SCONJ",
+          "tag": "SCONJ",
+          "morph": {},
+          "dep": "dep",
+          "head_i": 2,
+          "head_texto": "observa"
+        },
+        {
+          "i": 4,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 2,
+          "head_texto": "observa"
+        }
+      ],
+      "arbol": "(ROOT observa/VERB (nsubj niño/NOUN (det El/DET)) (dep que/SCONJ) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niño",
+        "verbo": "observa",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'observa'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niño'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "3 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": false,
+          "detalle": "'que' con relación 'dep' sin producción en la CFG"
+        }
+      },
+      "decision": "RECHAZADA",
+      "motivos_rechazo": [
+        "C4_alcance_cfg: 'que' con relación 'dep' sin producción en la CFG"
+      ],
+      "clasificacion": "VN",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "39",
+      "oracion": "Los niños y las niñas juegan.",
+      "nivel": "3",
+      "fenomeno": "coordinacion_plural_conflicto_LL1",
+      "esperado": "RECHAZADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.15,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "Los",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Plur",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "niños"
+        },
+        {
+          "i": 1,
+          "texto": "niños",
+          "lema": "niño",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Plur"
+          },
+          "dep": "nsubj",
+          "head_i": 5,
+          "head_texto": "juegan"
+        },
+        {
+          "i": 2,
+          "texto": "y",
+          "lema": "y",
+          "pos": "CCONJ",
+          "tag": "CCONJ",
+          "morph": {},
+          "dep": "cc",
+          "head_i": 4,
+          "head_texto": "niñas"
+        },
+        {
+          "i": 3,
+          "texto": "las",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Fem",
+            "Number": "Plur",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 4,
+          "head_texto": "niñas"
+        },
+        {
+          "i": 4,
+          "texto": "niñas",
+          "lema": "niña",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Plur"
+          },
+          "dep": "conj",
+          "head_i": 1,
+          "head_texto": "niños"
+        },
+        {
+          "i": 5,
+          "texto": "juegan",
+          "lema": "jugar",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Mood": "Ind",
+            "Number": "Plur",
+            "Person": "3",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          },
+          "dep": "ROOT",
+          "head_i": 5,
+          "head_texto": "juegan"
+        },
+        {
+          "i": 6,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 5,
+          "head_texto": "juegan"
+        }
+      ],
+      "arbol": "(ROOT juegan/VERB (nsubj niños/NOUN (det Los/DET) (conj niñas/NOUN (cc y/CCONJ) (det las/DET))) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "niños",
+        "verbo": "juegan",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": true,
+          "detalle": "raíz verbal 'juegan'"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'niños'"
+        },
+        "C3_concordancia": {
+          "cumple": true,
+          "detalle": "5 rasgos comparados, 0 no evaluables (la herramienta no predijo el rasgo)",
+          "no_evaluables": 0
+        },
+        "C4_alcance_cfg": {
+          "cumple": false,
+          "detalle": "'y' con relación 'cc' sin producción en la CFG; 'niñas' con relación 'conj' sin producción en la CFG"
+        }
+      },
+      "decision": "RECHAZADA",
+      "motivos_rechazo": [
+        "C4_alcance_cfg: 'y' con relación 'cc' sin producción en la CFG; 'niñas' con relación 'conj' sin producción en la CFG"
+      ],
+      "clasificacion": "VN",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    },
+    {
+      "id": "40",
+      "oracion": "El gato muy negras duerme.",
+      "nivel": "3",
+      "fenomeno": "discordancia_numero_tras_intensificador",
+      "esperado": "RECHAZADA",
+      "timestamp": "2026-11-17T21:56:38-06:00",
+      "tiempo_ms": 2.73,
+      "produjo_analisis": true,
+      "tokens": [
+        {
+          "i": 0,
+          "texto": "El",
+          "lema": "el",
+          "pos": "DET",
+          "tag": "DET",
+          "morph": {
+            "Definite": "Def",
+            "Gender": "Masc",
+            "Number": "Sing",
+            "PronType": "Art"
+          },
+          "dep": "det",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 1,
+          "texto": "gato",
+          "lema": "gato",
+          "pos": "NOUN",
+          "tag": "NOUN",
+          "morph": {
+            "Gender": "Masc",
+            "Number": "Sing"
+          },
+          "dep": "nsubj",
+          "head_i": 4,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 2,
+          "texto": "muy",
+          "lema": "mucho",
+          "pos": "ADV",
+          "tag": "ADV",
+          "morph": {},
+          "dep": "advmod",
+          "head_i": 3,
+          "head_texto": "negras"
+        },
+        {
+          "i": 3,
+          "texto": "negras",
+          "lema": "negro",
+          "pos": "ADJ",
+          "tag": "ADJ",
+          "morph": {
+            "Gender": "Fem",
+            "Number": "Plur"
+          },
+          "dep": "amod",
+          "head_i": 1,
+          "head_texto": "gato"
+        },
+        {
+          "i": 4,
+          "texto": "duerme",
+          "lema": "duer yo",
+          "pos": "VERB",
+          "tag": "VERB",
+          "morph": {
+            "Case": "Acc",
+            "Person": "3",
+            "PrepCase": "Npr",
+            "PronType": "Prs",
+            "Reflex": "Yes",
+            "VerbForm": "Ger"
+          },
+          "dep": "ROOT",
+          "head_i": 4,
+          "head_texto": "duerme"
+        },
+        {
+          "i": 5,
+          "texto": ".",
+          "lema": ".",
+          "pos": "PUNCT",
+          "tag": "PUNCT",
+          "morph": {
+            "PunctType": "Peri"
+          },
+          "dep": "punct",
+          "head_i": 4,
+          "head_texto": "duerme"
+        }
+      ],
+      "arbol": "(ROOT duerme/VERB (nsubj gato/NOUN (det El/DET) (amod negras/ADJ (advmod muy/ADV))) (punct ./PUNCT))",
+      "roles": {
+        "sujeto": "gato",
+        "verbo": "duerme",
+        "objeto": null
+      },
+      "criterios": {
+        "C1_raiz_verbal": {
+          "cumple": false,
+          "detalle": "la raíz 'duerme' no está conjugada (VerbForm=Ger)"
+        },
+        "C2_sujeto_nominal": {
+          "cumple": true,
+          "detalle": "sujeto 'gato'"
+        },
+        "C3_concordancia": {
+          "cumple": false,
+          "detalle": "amod 'negras'(Fem) ≠ 'gato'(Masc) en Gender; amod 'negras'(Plur) ≠ 'gato'(Sing) en Number",
+          "no_evaluables": 1
+        },
+        "C4_alcance_cfg": {
+          "cumple": true,
+          "detalle": "todas las relaciones tienen producción equivalente"
+        }
+      },
+      "decision": "RECHAZADA",
+      "motivos_rechazo": [
+        "C1_raiz_verbal: la raíz 'duerme' no está conjugada (VerbForm=Ger)",
+        "C3_concordancia: amod 'negras'(Fem) ≠ 'gato'(Masc) en Gender; amod 'negras'(Plur) ≠ 'gato'(Sing) en Number"
+      ],
+      "clasificacion": "VN",
+      "errores_etiquetado": {
+        "pos_vs_lexico_cfg": [],
+        "roles_vs_estructura_esperada": null,
+        "total": 0
+      }
+    }
+  ],
+  "resumen": {
+    "VP": 23,
+    "VN": 9,
+    "FP": 3,
+    "FN": 5,
+    "precision": 0.8846,
+    "recall": 0.8214,
+    "rechazo_correcto": 0.75,
+    "exactitud": 0.8,
+    "errores_etiquetado": 8,
+    "oraciones_con_error_etiquetado": 7,
+    "por_nivel": {
+      "1": {
+        "VP": 10,
+        "VN": 0,
+        "FP": 0,
+        "FN": 2
+      },
+      "2": {
+        "VP": 13,
+        "VN": 0,
+        "FP": 0,
+        "FN": 3
+      },
+      "3": {
+        "VP": 0,
+        "VN": 9,
+        "FP": 3,
+        "FN": 0
+      }
+    }
+  }
+}

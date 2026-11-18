@@ -95,13 +95,16 @@ python -m espanol.grammar
 python run_examples.py
 ```
 
-### Comparación NLP (spaCy)
+### Comparación NLP (spaCy y Transformers)
 
 ```bash
-python nlp/nlp_comparison.py
+python -m nlp.spacy_comparison       # -> logs/spacy.json
+python -m nlp.segunda_herramienta    # -> logs/segunda_herramienta.json
 ```
 
-La visualización de dependencias queda en `nlp/results/arboles_dependencias_nlp.html`.
+Detalles de instalación, metodología y esquema de los logs en `nlp/README.md`.
+La visualización de dependencias de la Fase 2 queda en `nlp/results/arboles_spacy.html`
+(la de la Fase 1, en `nlp/results/arboles_dependencias_nlp.html`).
 Para abrirla:
 
 ```bash
@@ -205,10 +208,15 @@ TLP02-2026/
 │   ├── parser_propio.json       # log completo del parser propio
 │   ├── parser_propio.txt
 │   ├── parser_propio_resultados.csv
+│   ├── spacy.json               # log de spaCy (nlp/spacy_comparison.py)
+│   ├── segunda_herramienta.json # log de Transformers (nlp/segunda_herramienta.py)
 │   └── arboles/                 # árboles de las oraciones aceptadas
-├── nlp/                   # comparación con spaCy
-│   ├── nlp_comparison.py  # script principal de procesamiento y análisis
-│   └── results/           # visualizaciones HTML generadas por spaCy
+├── nlp/                   # Fase 2: herramientas modernas de NLP (ver nlp/README.md)
+│   ├── spacy_comparison.py     # spaCy + es_core_news_sm -> logs/spacy.json
+│   ├── segunda_herramienta.py  # Transformers (BETO) -> logs/segunda_herramienta.json
+│   ├── criterios.py            # metodología común de aceptación/rechazo (C1–C4)
+│   ├── comun.py                # corpus, métricas y escritura de logs
+│   └── results/                # árboles de dependencias HTML (displaCy)
 ├── tests/
 │   ├── test_parser.py
 │   ├── test_espanol.py
