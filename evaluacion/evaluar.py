@@ -108,47 +108,112 @@ def calcular_metricas(conteo):
 
 def parsear_corchetes(texto):
     """
-    Convierte '[Oracion [Sujeto_sg ...] .]' en (etiqueta, [hijos]).
+    Convierte arboles en notacion de corchetes o funcional en:
+        (etiqueta, [hijos])
+
+    Formatos admitidos:
+        [Oracion [Sujeto_sg [SN_m_sg ...]]]
+        Oracion(Sujeto_sg(SN_m_sg(det_m_sg(El))))
+
     Los hijos son tuplas (subarboles) o cadenas (palabras/simbolos).
     Devuelve None si el texto no es un arbol bien formado.
     """
     if not isinstance(texto, str):
         return None
-    tokens = re.findall(r"\[|\]|[^\s\[\]]+", texto)
-    if not tokens or tokens[0] != "[":
+
+    texto = texto.replace(",", " ")
+    tokens = re.findall(r"\[|\]|\(|\)|[^\s\[\]()]+", texto)
+
+    if not tokens:
         return None
+
     pos = 0
 
-    def hoja(token):
-        # El LLM a veces usa notacion funcional: det_m_sg(El) == [det_m_sg El]
-        m = re.fullmatch(r"([^()]+)\(([^()]*)\)", token)
-        return (m.group(1), [m.group(2)]) if m else token
-
-    def nodo():
+    def parsear_funcional(etiqueta):
         nonlocal pos
-        if tokens[pos] != "[":
+
+        if pos >= len(tokens) or tokens[pos] != "(":
             raise ValueError
+
         pos += 1
-        if pos >= len(tokens) or tokens[pos] in "[]":
+        hijos = []
+
+        while pos < len(tokens) and tokens[pos] != ")":
+            if tokens[pos] == "[":
+                hijos.append(parsear_bloque())
+
+            elif (
+                pos + 1 < len(tokens)
+                and tokens[pos + 1] == "("
+            ):
+                etiqueta_hijo = tokens[pos]
+                pos += 1
+                hijos.append(parsear_funcional(etiqueta_hijo))
+
+            elif tokens[pos] in ("]", ")"):
+                raise ValueError
+
+            else:
+                hijos.append(tokens[pos])
+                pos += 1
+
+        if pos >= len(tokens) or tokens[pos] != ")":
             raise ValueError
+
+        pos += 1
+        return (etiqueta, hijos)
+
+    def parsear_bloque():
+        nonlocal pos
+
+        if pos >= len(tokens) or tokens[pos] != "[":
+            raise ValueError
+
+        pos += 1
+
+        if pos >= len(tokens) or tokens[pos] in ("[", "]", "(", ")"):
+            raise ValueError
+
         etiqueta = tokens[pos]
         pos += 1
         hijos = []
+
         while pos < len(tokens) and tokens[pos] != "]":
             if tokens[pos] == "[":
-                hijos.append(nodo())
-            else:
-                hijos.append(hoja(tokens[pos]))
+                hijos.append(parsear_bloque())
+
+            elif (
+                pos + 1 < len(tokens)
+                and tokens[pos + 1] == "("
+            ):
+                etiqueta_hijo = tokens[pos]
                 pos += 1
-        if pos >= len(tokens):
+                hijos.append(parsear_funcional(etiqueta_hijo))
+
+            elif tokens[pos] in ("(", ")"):
+                raise ValueError
+
+            else:
+                hijos.append(tokens[pos])
+                pos += 1
+
+        if pos >= len(tokens) or tokens[pos] != "]":
             raise ValueError
+
         pos += 1
         return (etiqueta, hijos)
 
     try:
-        arbol = nodo()
+        if tokens[0] == "[":
+            arbol = parsear_bloque()
+        else:
+            etiqueta = tokens[pos]
+            pos += 1
+            arbol = parsear_funcional(etiqueta)
+
     except (ValueError, IndexError):
         return None
+
     return arbol if pos == len(tokens) else None
 
 
@@ -192,8 +257,14 @@ def errores_etiquetado_llm(oracion, decision, estructura):
         escrita de otra forma, p. ej. sin tilde) en la estructura.
     Solo se evalua cuando el LLM acepta la oracion o entrega una estructura.
     """
+    """
+    Compara las palabras del arbol del LLM con el lexico de la CFG.
+    Los arboles no reconocidos no se evalúan para evitar falsos errores.
+    """
     arbol = parsear_corchetes(estructura)
-    if decision != "ACEPTADA" and arbol is None:
+
+    # No evaluar árboles inexistentes o mal formados.
+    if arbol is None:
         return []
 
     hojas = []  # (palabra, etiqueta_padre)
@@ -203,35 +274,49 @@ def errores_etiquetado_llm(oracion, decision, estructura):
         for h in hijos:
             if isinstance(h, tuple):
                 recorrer(h)
-            elif h not in ("ε", "."):
+            elif h not in ("Îµ", "."):
                 hojas.append((h, etiqueta))
 
-    if arbol is not None:
-        recorrer(arbol)
+    recorrer(arbol)
 
     errores = []
     restantes = Counter(p.casefold() for p, _ in hojas)
+
     for palabra, padre in hojas:
         esperado = LEXICON.get(palabra.casefold())
-        # 'que' es a la vez palabra y terminal: puede ir sin envoltorio.
+
+        # 'que' es a la vez palabra y terminal.
         if esperado is None or padre == esperado or esperado == palabra.casefold():
             continue
+
         tipo = ("categoria_incorrecta" if padre in TERMINALS
                 else "sin_categoria")
-        errores.append({"palabra": palabra, "tipo": tipo,
-                        "etiqueta_llm": padre, "categoria_cfg": esperado})
+
+        errores.append({
+            "palabra": palabra,
+            "tipo": tipo,
+            "etiqueta_llm": padre,
+            "categoria_cfg": esperado
+        })
 
     for palabra in re.findall(r"[^\W\d_]+", oracion):
         clave = palabra.casefold()
+
         if clave not in LEXICON:
             continue
+
         if restantes[clave] > 0:
             restantes[clave] -= 1
         else:
-            errores.append({"palabra": palabra, "tipo": "palabra_omitida_o_alterada",
-                            "etiqueta_llm": None,
-                            "categoria_cfg": LEXICON[clave]})
+            errores.append({
+                "palabra": palabra,
+                "tipo": "palabra_omitida_o_alterada",
+                "etiqueta_llm": None,
+                "categoria_cfg": LEXICON[clave]
+            })
+
     return errores
+
 
 
 def _norm_regla(texto):
@@ -340,8 +425,19 @@ def cargar_llm(modo):
         identificador = int(r["id"])
         if identificador in salida:
             raise ValueError(f"ID duplicado en {fuente}: {identificador}")
-        errores = errores_etiquetado_llm(r["oracion"], r["decision"],
-                                         r.get("estructura"))
+        arbol = parsear_corchetes(r.get("estructura"))
+
+        errores = errores_etiquetado_llm(
+            r["oracion"],
+            r["decision"],
+            r.get("estructura")
+        )
+
+        arbol_mal_formado = (
+            r["decision"] == "ACEPTADA"
+            and bool(r.get("estructura"))
+            and arbol is None
+        )
         reglas = r.get("producciones_aplicadas") or []
         clases = [clasificar_regla(x) for x in reglas]
         salida[identificador] = {
@@ -351,7 +447,8 @@ def cargar_llm(modo):
             "reglas_citadas": len(reglas),
             "reglas_inexistentes": [x for x, c in zip(reglas, clases)
                                     if c == "inexistente"],
-            "arbol": parsear_corchetes(r.get("estructura")),
+            "arbol": arbol,
+            "arbol_mal_formado": arbol_mal_formado,
         }
     return info, salida
 
@@ -417,26 +514,58 @@ def evaluar(corpus, enfoques):
     return resumen, por_oracion
 
 
+
 def cumplimiento_llm(corpus, enfoques):
     """Respeto de la CFG por el LLM: reglas inventadas y arboles."""
     _, parser = enfoques["parser_propio"]
     filas, resumen = [], {}
+
     for clave in ("llm_zero_shot", "llm_few_shot"):
         _, preds = enfoques[clave]
-        citadas = inexistentes = comparables = identicos = 0
+
+        citadas = inexistentes = 0
+        aceptados = mal_formados = reconocidos = 0
+        comparables = identicos = 0
+
         tipos = Counter()
+
         for i in sorted(corpus):
             p = preds[i]
             ref = parser[i]["arbol"]
+
             coincide = None
-            if p["decision"] == "ACEPTADA" and ref is not None:
+
+            es_aceptada = p["decision"] == "ACEPTADA"
+            arbol = p["arbol"]
+            arbol_mal_formado = p.get("arbol_mal_formado", False)
+
+            if es_aceptada:
+                aceptados += 1
+
+                if arbol_mal_formado:
+                    mal_formados += 1
+                elif arbol is not None:
+                    reconocidos += 1
+
+            # Comparar solamente árboles aceptados y reconocidos.
+            if es_aceptada and arbol is not None and ref is not None:
                 comparables += 1
-                coincide = (normalizar_arbol(p["arbol"]) == normalizar_arbol(ref)
-                            if p["arbol"] is not None else False)
-                identicos += coincide
+
+                coincide = (
+                    normalizar_arbol(arbol)
+                    == normalizar_arbol(ref)
+                )
+
+                if coincide:
+                    identicos += 1
+
             citadas += p["reglas_citadas"]
             inexistentes += len(p["reglas_inexistentes"])
-            tipos.update(e["tipo"] for e in p["detalle_etiquetado"])
+
+            tipos.update(
+                e["tipo"] for e in p["detalle_etiquetado"]
+            )
+
             filas.append({
                 "modo": clave.replace("llm_", "").replace("_", "-"),
                 "id": i,
@@ -445,20 +574,40 @@ def cumplimiento_llm(corpus, enfoques):
                 "decision": p["decision"],
                 "reglas_citadas": p["reglas_citadas"],
                 "reglas_inexistentes": len(p["reglas_inexistentes"]),
-                "detalle_reglas_inexistentes": " | ".join(p["reglas_inexistentes"]),
+                "detalle_reglas_inexistentes": " | ".join(
+                    p["reglas_inexistentes"]
+                ),
                 "errores_etiquetado": p["errores_etiquetado"],
                 "detalle_etiquetado": " | ".join(
-                    f"{e['palabra']}:{e['tipo']}" for e in p["detalle_etiquetado"]),
-                "arbol_igual_al_parser": "" if coincide is None else coincide,
+                    f"{e['palabra']}:{e['tipo']}"
+                    for e in p["detalle_etiquetado"]
+                ),
+                "arbol_mal_formado": arbol_mal_formado,
+                "arbol_reconocido": arbol is not None,
+                "arbol_igual_al_parser": (
+                    "" if coincide is None else coincide
+                ),
             })
+
         resumen[clave] = {
             "reglas_citadas": citadas,
             "reglas_inexistentes": inexistentes,
+            "arboles_aceptados": aceptados,
+            "arboles_mal_formados": mal_formados,
+            "arboles_reconocidos": reconocidos,
             "arboles_comparables": comparables,
             "arboles_identicos_al_parser": identicos,
-            "errores_etiquetado_por_tipo": dict(sorted(tipos.items())),
+            "porcentaje_arboles_identicos": (
+                round(identicos / comparables * 100, 2)
+                if comparables else 0
+            ),
+            "errores_etiquetado_por_tipo": dict(
+                sorted(tipos.items())
+            ),
         }
+
     return resumen, filas
+
 
 
 # ======================================================================
@@ -574,16 +723,29 @@ def escribir_markdown(resumen, cumplimiento):
     lineas += ["", "## Cumplimiento de la CFG por el LLM", "",
                "| Indicador | LLM zero-shot | LLM few-shot |",
                "|---|---:|---:|"]
-    z, f = cumplimiento["llm_zero_shot"], cumplimiento["llm_few_shot"]
+
+    z = cumplimiento["llm_zero_shot"]
+    f = cumplimiento["llm_few_shot"]
+
     lineas += [
         f"| Reglas citadas | {z['reglas_citadas']} | {f['reglas_citadas']} |",
-        f"| Reglas citadas que no existen en la CFG | {z['reglas_inexistentes']} "
+        f"| Reglas inexistentes en la CFG | {z['reglas_inexistentes']} "
         f"| {f['reglas_inexistentes']} |",
+        f"| Árboles generados para oraciones aceptadas | "
+        f"{z['arboles_aceptados']} | {f['arboles_aceptados']} |",
+        f"| Árboles reconocidos | "
+        f"{z['arboles_reconocidos']} | {f['arboles_reconocidos']} |",
+        f"| Árboles mal formados | "
+        f"{z['arboles_mal_formados']} | {f['arboles_mal_formados']} |",
         f"| Árboles idénticos al del parser propio | "
         f"{z['arboles_identicos_al_parser']}/{z['arboles_comparables']} | "
         f"{f['arboles_identicos_al_parser']}/{f['arboles_comparables']} |",
-        f"| Errores de etiquetado | {resumen['llm_zero_shot']['errores_etiquetado']} "
-        f"| {resumen['llm_few_shot']['errores_etiquetado']} |",
+        f"| Coincidencia estructural (%) | "
+        f"{z['porcentaje_arboles_identicos']:.2f}% | "
+        f"{f['porcentaje_arboles_identicos']:.2f}% |",
+        f"| Errores de etiquetado | "
+        f"{resumen['llm_zero_shot']['errores_etiquetado']} | "
+        f"{resumen['llm_few_shot']['errores_etiquetado']} |",
     ]
 
     lineas += ["", "## Fuentes", ""]

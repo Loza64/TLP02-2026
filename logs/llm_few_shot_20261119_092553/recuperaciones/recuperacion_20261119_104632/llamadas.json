@@ -1,0 +1,70 @@
+[
+  {
+    "lote": 4,
+    "ids": [
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "intento": 1,
+    "tipo_ejecucion": "recuperacion",
+    "inicio": "2026-11-19T10:46:32.739655-06:00",
+    "fin": "2026-11-19T10:46:44.671811-06:00",
+    "duracion_segundos": 11.932,
+    "estado": "error",
+    "error": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "modelo_respondio": null,
+    "tokens": null,
+    "prompt": "logs/llm_few_shot_20261119_092553/prompt_lote_04.txt",
+    "respuesta_bruta": null
+  },
+  {
+    "lote": 4,
+    "ids": [
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "intento": 2,
+    "tipo_ejecucion": "recuperacion",
+    "inicio": "2026-11-19T10:46:54.684667-06:00",
+    "fin": "2026-11-19T10:46:55.364950-06:00",
+    "duracion_segundos": 0.68,
+    "estado": "error",
+    "error": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "modelo_respondio": null,
+    "tokens": null,
+    "prompt": "logs/llm_few_shot_20261119_092553/prompt_lote_04.txt",
+    "respuesta_bruta": null
+  },
+  {
+    "lote": 4,
+    "ids": [
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "intento": 3,
+    "tipo_ejecucion": "recuperacion",
+    "inicio": "2026-11-19T10:47:15.370363-06:00",
+    "fin": "2026-11-19T10:47:28.852748-06:00",
+    "duracion_segundos": 13.482,
+    "estado": "ok",
+    "error": null,
+    "modelo_respondio": "gemini-3.5-flash-lite",
+    "tokens": {
+      "prompt": 2246,
+      "respuesta": 1908,
+      "razonamiento": null,
+      "total": 4154
+    },
+    "prompt": "logs/llm_few_shot_20261119_092553/prompt_lote_04.txt",
+    "respuesta_bruta": "logs/llm_few_shot_20261119_092553/recuperaciones/recuperacion_20261119_104632/respuesta_bruta_lote_04_intento_03.txt"
+  }
+]

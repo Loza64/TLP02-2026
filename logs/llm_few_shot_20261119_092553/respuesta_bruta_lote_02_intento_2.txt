@@ -1,0 +1,94 @@
+{
+  "resultados": [
+    {
+      "id": 6,
+      "oracion": "La niña duerme.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion contiene un determinante femenino singular, un sustantivo femenino singular y un verbo en singular que concuerdan perfectamente. ModNom, SubOpt, AdvOpt y SPOpt se resuelven a epsilon.",
+      "estructura": "[Oracion [Sujeto_sg [SN_f_sg [det_f_sg La] [n_f_sg niña] [ModNom_f_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg duerme] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 7,
+      "oracion": "Un perro corre.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion presenta un determinante masculino singular, un sustantivo masculino singular y un verbo singular con correcta concordancia. Los modificadores y complementos opcionales se resuelven a epsilon.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg Un] [n_m_sg perro] [ModNom_m_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg corre] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 8,
+      "oracion": "Una perra juega.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "Derivacion valida con determinante femenino singular, sustantivo femenino singular y verbo singular.",
+      "estructura": "[Oracion [Sujeto_sg [SN_f_sg [det_f_sg Una] [n_f_sg perra] [ModNom_f_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg juega] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 9,
+      "oracion": "Los niños juegan.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_m_pl SubOpt_pl",
+        "SN_m_pl -> det_m_pl n_m_pl ModNom_m_pl",
+        "ModNom_m_pl -> ε",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "Derivacion valida utilizando determinante masculino plural, sustantivo masculino plural y verbo plural.",
+      "estructura": "[Oracion [Sujeto_pl [SN_m_pl [det_m_pl Los] [n_m_pl niños] [ModNom_m_pl ε]] [SubOpt_pl ε]] [SV_pl [v_pl juegan] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 10,
+      "oracion": "Las niñas duermen.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_f_pl SubOpt_pl",
+        "SN_f_pl -> det_f_pl n_f_pl ModNom_f_pl",
+        "ModNom_f_pl -> ε",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "Derivacion valida con determinante femenino plural, sustantivo femenino plural y verbo en plural.",
+      "estructura": "[Oracion [Sujeto_pl [SN_f_pl [det_f_pl Las] [n_f_pl niñas] [ModNom_f_pl ε]] [SubOpt_pl ε]] [SV_pl [v_pl duermen] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    }
+  ]
+}

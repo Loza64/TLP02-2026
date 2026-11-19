@@ -1,0 +1,107 @@
+[
+  {
+    "lote": 4,
+    "ids": [
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "intento": 1,
+    "tipo_ejecucion": "recuperacion",
+    "inicio": "2026-11-19T10:35:02.213224-06:00",
+    "fin": "2026-11-19T10:35:20.336085-06:00",
+    "duracion_segundos": 18.123,
+    "estado": "error",
+    "error": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "modelo_respondio": null,
+    "tokens": null,
+    "prompt": "logs/llm_few_shot_20261119_092553/prompt_lote_04.txt",
+    "respuesta_bruta": null
+  },
+  {
+    "lote": 4,
+    "ids": [
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "intento": 2,
+    "tipo_ejecucion": "recuperacion",
+    "inicio": "2026-11-19T10:35:30.341496-06:00",
+    "fin": "2026-11-19T10:35:41.548692-06:00",
+    "duracion_segundos": 11.207,
+    "estado": "error",
+    "error": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "modelo_respondio": null,
+    "tokens": null,
+    "prompt": "logs/llm_few_shot_20261119_092553/prompt_lote_04.txt",
+    "respuesta_bruta": null
+  },
+  {
+    "lote": 4,
+    "ids": [
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "intento": 3,
+    "tipo_ejecucion": "recuperacion",
+    "inicio": "2026-11-19T10:36:01.552254-06:00",
+    "fin": "2026-11-19T10:36:16.192771-06:00",
+    "duracion_segundos": 14.641,
+    "estado": "error",
+    "error": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "modelo_respondio": null,
+    "tokens": null,
+    "prompt": "logs/llm_few_shot_20261119_092553/prompt_lote_04.txt",
+    "respuesta_bruta": null
+  },
+  {
+    "lote": 4,
+    "ids": [
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "intento": 4,
+    "tipo_ejecucion": "recuperacion",
+    "inicio": "2026-11-19T10:36:56.202246-06:00",
+    "fin": "2026-11-19T10:37:14.262418-06:00",
+    "duracion_segundos": 18.06,
+    "estado": "error",
+    "error": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "modelo_respondio": null,
+    "tokens": null,
+    "prompt": "logs/llm_few_shot_20261119_092553/prompt_lote_04.txt",
+    "respuesta_bruta": null
+  },
+  {
+    "lote": 4,
+    "ids": [
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "intento": 5,
+    "tipo_ejecucion": "recuperacion",
+    "inicio": "2026-11-19T10:38:34.275307-06:00",
+    "fin": "2026-11-19T10:38:52.165839-06:00",
+    "duracion_segundos": 17.891,
+    "estado": "error",
+    "error": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "modelo_respondio": null,
+    "tokens": null,
+    "prompt": "logs/llm_few_shot_20261119_092553/prompt_lote_04.txt",
+    "respuesta_bruta": null
+  }
+]
