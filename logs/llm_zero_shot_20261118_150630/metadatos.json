@@ -1,0 +1,33 @@
+{
+  "tipo_prompt": "zero-shot",
+  "modelo": "gemini-3.5-flash-lite",
+  "temperatura": 0,
+  "formato_respuesta": "application/json",
+  "total_oraciones": 40,
+  "total_lotes": 8,
+  "tamano_lote": 5,
+  "resultados_obtenidos": 40,
+  "recuperacion_realizada": true,
+  "errores_pendientes": [],
+  "errores": [
+    {
+      "lote": 1,
+      "ids": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "tipo": "ServerError",
+      "mensaje": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+    }
+  ],
+  "inicio": "2026-11-18T15:06:30.955174-06:00",
+  "fin": "2026-11-18T15:06:57.193719-06:00",
+  "duracion_segundos": 26.24,
+  "hash_sha256_corpus": "8e9ec84c5ccb235e48564f50eea44079c6a42d575b723c5f4b3694b4e6160f89",
+  "commit_git": "76648968bf217a27ce8ef841dc5b7177bb560f61",
+  "sistema_operativo": "Windows-10-10.0.19045-SP0",
+  "version_python": "3.13.3"
+}

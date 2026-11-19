@@ -1,0 +1,43 @@
+{
+  "modelo": "gemini-3.5-flash-lite",
+  "tipo_prompt": "zero-shot",
+  "total": 40,
+  "VP": 28,
+  "VN": 12,
+  "FP": 0,
+  "FN": 0,
+  "exactitud": 100.0,
+  "precision": 100.0,
+  "recall": 100.0,
+  "especificidad": 100.0,
+  "f1_score": 100.0,
+  "por_nivel": {
+    "1": {
+      "VP": 12,
+      "VN": 0,
+      "FP": 0,
+      "FN": 0,
+      "total": 12,
+      "correctos": 12,
+      "exactitud": 100.0
+    },
+    "2": {
+      "VP": 16,
+      "VN": 0,
+      "FP": 0,
+      "FN": 0,
+      "total": 16,
+      "correctos": 16,
+      "exactitud": 100.0
+    },
+    "3": {
+      "VP": 0,
+      "VN": 12,
+      "FP": 0,
+      "FN": 0,
+      "total": 12,
+      "correctos": 12,
+      "exactitud": 100.0
+    }
+  }
+}

@@ -1,0 +1,674 @@
+{
+  "resultados": [
+    {
+      "id": 1,
+      "oracion": "El gato negro duerme.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> Adj_m_sg",
+        "Adj_m_sg -> adj_m_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion deriva correctamente desde el simbolo inicial utilizando un determinante masculino singular, un sustantivo masculino singular, un adjetivo masculino singular, un verbo singular y cumpliendo todas las reglas de concordancia.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg El] [n_m_sg gato] [ModNom_m_sg [Adj_m_sg [adj_m_sg negro]]]] [SubOpt_sg ε]] [SV_sg [v_sg duerme] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 2,
+      "oracion": "La gata negra corre.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> Adj_f_sg",
+        "Adj_f_sg -> adj_f_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion presenta un sujeto femenino singular con determinante, sustantivo y adjetivo concordantes, seguido de un verbo singular.",
+      "estructura": "[Oracion [Sujeto_sg [SN_f_sg [det_f_sg La] [n_f_sg gata] [ModNom_f_sg [Adj_f_sg [adj_f_sg negra]]]] [SubOpt_sg ε]] [SV_sg [v_sg corre] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 3,
+      "oracion": "Los gatos negros duermen.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_m_pl SubOpt_pl",
+        "SN_m_pl -> det_m_pl n_m_pl ModNom_m_pl",
+        "ModNom_m_pl -> Adj_m_pl",
+        "Adj_m_pl -> adj_m_pl",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion contiene un sujeto plural masculino que concuerda en numero y genero con su determinante y adjetivo, y con un verbo en plural.",
+      "estructura": "[Oracion [Sujeto_pl [SN_m_pl [det_m_pl Los] [n_m_pl gatos] [ModNom_m_pl [Adj_m_pl [adj_m_pl negros]]]] [SubOpt_pl ε]] [SV_pl [v_pl duermen] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 4,
+      "oracion": "Las gatas negras corren.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_f_pl SubOpt_pl",
+        "SN_f_pl -> det_f_pl n_f_pl ModNom_f_pl",
+        "ModNom_f_pl -> Adj_f_pl",
+        "Adj_f_pl -> adj_f_pl",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion se deriva correctamente usando un sujeto femenino plural con concordancia completa y un verbo en plural.",
+      "estructura": "[Oracion [Sujeto_pl [SN_f_pl [det_f_pl Las] [n_f_pl gatas] [ModNom_f_pl [Adj_f_pl [adj_f_pl negras]]]] [SubOpt_pl ε]] [SV_pl [v_pl corren] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 5,
+      "oracion": "El niño juega.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion deriva mediante un sujeto masculino singular sin modificador nominal adjunto, un verbo singular y sin elementos opcionales adicionales.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg El] [n_m_sg niño] [ModNom_m_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg juega] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 6,
+      "oracion": "La niña duerme.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion cumple con la concordancia de genero femenino singular entre determinante y sustantivo, ademas de la concordancia de numero singular entre el sujeto y el verbo duerme.",
+      "estructura": "[Oracion [Sujeto_sg [SN_f_sg [det_f_sg La] [n_f_sg niña] [ModNom_f_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg duerme] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 7,
+      "oracion": "Un perro corre.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion presenta concordancia masculino singular entre el determinante un, el sustantivo perro, y concordancia de numero con el verbo singular corre.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg Un] [n_m_sg perro] [ModNom_m_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg corre] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 8,
+      "oracion": "Una perra juega.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion cuenta con un sujeto femenino singular (det_f_sg una, n_f_sg perra) y un verbo singular (v_sg juega), cumpliendo estrictamente con las reglas de concordancia y producciones de la gramatica.",
+      "estructura": "[Oracion [Sujeto_sg [SN_f_sg [det_f_sg Una] [n_f_sg perra] [ModNom_f_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg juega] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 9,
+      "oracion": "Los niños juegan.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_m_pl SubOpt_pl",
+        "SN_m_pl -> det_m_pl n_m_pl ModNom_m_pl",
+        "ModNom_m_pl -> ε",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion presenta un sujeto plural masculino (det_m_pl los, n_m_pl niños) y un verbo plural (v_pl juegan), concordando correctamente y permitiendo su derivacion.",
+      "estructura": "[Oracion [Sujeto_pl [SN_m_pl [det_m_pl Los] [n_m_pl niños] [ModNom_m_pl ε]] [SubOpt_pl ε]] [SV_pl [v_pl juegan] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 10,
+      "oracion": "Las niñas duermen.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_f_pl SubOpt_pl",
+        "SN_f_pl -> det_f_pl n_f_pl ModNom_f_pl",
+        "ModNom_f_pl -> ε",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion muestra un sujeto femenino plural (det_f_pl las, n_f_pl niñas) que concuerda en numero plural con el verbo (v_pl duermen), derivandose correctamente desde el simbolo inicial.",
+      "estructura": "[Oracion [Sujeto_pl [SN_f_pl [det_f_pl Las] [n_f_pl niñas] [ModNom_f_pl ε]] [SubOpt_pl ε]] [SV_pl [v_pl duermen] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 11,
+      "oracion": "El perro grande duerme.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> Adj_m_sg",
+        "Adj_m_sg -> adj_inv_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion deriva correctamente desde el simbolo inicial utilizando un determinante masculino singular, un sustantivo masculino singular, un adjetivo invariable singular, un verbo singular y las opciones vacias correspondientes.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg El perro [ModNom_m_sg [Adj_m_sg grande]]] [SubOpt_sg ε]] [SV_sg [v_sg duerme] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 12,
+      "oracion": "La niña grande corre.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> Adj_f_sg",
+        "Adj_f_sg -> adj_inv_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion deriva correctamente con concordancia de genero femenino singular y numero singular entre determinante, sustantivo y adjetivo invariable, seguida de un verbo en singular.",
+      "estructura": "[Oracion [Sujeto_sg [SN_f_sg La niña [ModNom_f_sg [Adj_f_sg grande]]] [SubOpt_sg ε]] [SV_sg [v_sg corre] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 13,
+      "oracion": "La gata muy rápida corre rápidamente en el jardín.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> adv_intens Adj_f_sg",
+        "Adj_f_sg -> adj_f_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> adv_modo",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_m_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε"
+      ],
+      "justificacion": "La oracion deriva correctamente empleando un modificador nominal con adverbio de intensidad y adjetivo femenino singular, un adverbio de modo y una frase preposicional con determinante y sustantivo masculino singular.",
+      "estructura": "[Oracion [Sujeto_sg [SN_f_sg La gata [ModNom_f_sg [adv_intens muy] [Adj_f_sg rápida]]] [SubOpt_sg ε]] [SV_sg [v_sg corre] [RestoSV [AdvOpt rápidamente] [SPOpt [prep en] [SN_Prep [SN_m_sg el jardín [ModNom_m_sg ε]]]]]] .]"
+    },
+    {
+      "id": 14,
+      "oracion": "El perro negro juega tranquilamente bajo la casa.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> Adj_m_sg",
+        "Adj_m_sg -> adj_m_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> adv_modo",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_f_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε"
+      ],
+      "justificacion": "La oracion deriva correctamente con un sujeto masculino singular modificado por un adjetivo calificativo, un verbo singular, un adverbio de modo y una frase preposicional válida.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg El perro [ModNom_m_sg [Adj_m_sg negro]]] [SubOpt_sg ε]] [SV_sg [v_sg juega] [RestoSV [AdvOpt tranquilamente] [SPOpt [prep bajo] [SN_Prep [SN_f_sg la casa [ModNom_f_sg ε]]]]]] .]"
+    },
+    {
+      "id": 15,
+      "oracion": "El gato negro corre rápidamente.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> Adj_m_sg",
+        "Adj_m_sg -> adj_m_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> adv_modo",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion deriva correctamente desde el simbolo inicial con concordancia masculino singular en el sujeto, verbo singular y un adverbio de modo.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg El gato [ModNom_m_sg [Adj_m_sg negro]]] [SubOpt_sg ε]] [SV_sg [v_sg corre] [RestoSV [AdvOpt rápidamente] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 16,
+      "oracion": "El niño juega en el parque.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_m_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε"
+      ],
+      "justificacion": "La oracion deriva correctamente desde el simbolo inicial utilizando un sujeto masculino singular, un verbo en singular y una frase preposicional con el lexico permitido.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg El] [n_m_sg niño] [ModNom_m_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg juega] [RestoSV [AdvOpt ε] [SPOpt [prep en] [SN_Prep [SN_m_sg [det_m_sg el] [n_m_sg parque] [ModNom_m_sg ε]]]]]] .]"
+    },
+    {
+      "id": 17,
+      "oracion": "Los gatos negros duermen tranquilamente.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_m_pl SubOpt_pl",
+        "SN_m_pl -> det_m_pl n_m_pl ModNom_m_pl",
+        "ModNom_m_pl -> Adj_m_pl",
+        "Adj_m_pl -> adj_m_pl",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> adv_modo",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion presenta concordancia en plural masculino para determinante, sustantivo y adjetivo, un verbo plural y un adverbio de modo.",
+      "estructura": "[Oracion [Sujeto_pl [SN_m_pl [det_m_pl Los] [n_m_pl gatos] [ModNom_m_pl [Adj_m_pl [adj_m_pl negros]]]] [SubOpt_pl ε]] [SV_pl [v_pl duermen] [RestoSV [AdvOpt [adv_modo tranquilamente]] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 18,
+      "oracion": "La niña corre rápidamente en la casa.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> adv_modo",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_f_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε"
+      ],
+      "justificacion": "La oracion cumple con la concordancia de genero y numero femenino singular, verbo singular, adverbio de modo y frase preposicional.",
+      "estructura": "[Oracion [Sujeto_sg [SN_f_sg [det_f_sg La] [n_f_sg niña] [ModNom_f_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg corre] [RestoSV [AdvOpt [adv_modo rápidamente]] [SPOpt [prep en] [SN_Prep [SN_f_sg [det_f_sg la] [n_f_sg casa] [ModNom_f_sg ε]]]]]] .]"
+    },
+    {
+      "id": 19,
+      "oracion": "El niño que corre juega en la casa.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> que SV_sg",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_f_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε"
+      ],
+      "justificacion": "La oracion utiliza la clausula subordinada opcional dentro del sujeto mediante 'que SV_sg' y concluye con el sintagma verbal principal.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg El] [n_m_sg niño] [ModNom_m_sg ε]] [SubOpt_sg que [SV_sg [v_sg corre] [RestoSV [AdvOpt ε] [SPOpt ε]]]]] [SV_sg [v_sg juega] [RestoSV [AdvOpt ε] [SPOpt [prep en] [SN_Prep [SN_f_sg [det_f_sg la] [n_f_sg casa] [ModNom_f_sg ε]]]]]] .]"
+    },
+    {
+      "id": 20,
+      "oracion": "El niño observa que la gata duerme.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> que Clausula",
+        "Clausula -> Sujeto_sg SV_sg",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion es generada mediante un verbo que rige una clausula introducida por 'que', conteniendo un sujeto femenino singular y un verbo singular.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg El] [n_m_sg niño] [ModNom_m_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg observa] [RestoSV que [Clausula [Sujeto_sg [SN_f_sg [det_f_sg la] [n_f_sg gata] [ModNom_f_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg duerme] [RestoSV [AdvOpt ε] [SPOpt ε]]]]]] .]"
+    },
+    {
+      "id": 21,
+      "oracion": "La gata muy negra duerme tranquilamente.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> adv_intens Adj_f_sg",
+        "Adj_f_sg -> adj_f_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> adv_modo",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion presenta concordancia completa en genero femenino singular, un modificador nominal con adverbio de intensidad y adjetivo, un verbo singular y un adverbio de modo, derivables correctamente por la gramatica.",
+      "estructura": "[Oracion [Sujeto_sg [SN_f_sg det_f_sg(La) n_f_sg(gata) [ModNom_f_sg adv_intens(muy) [Adj_f_sg adj_f_sg(negra)]]] SubOpt_sg(ε)] [SV_sg v_sg(duerme) [RestoSV [AdvOpt adv_modo(tranquilamente)] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 22,
+      "oracion": "Los perros grandes juegan en el parque.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_m_pl SubOpt_pl",
+        "SN_m_pl -> det_m_pl n_m_pl ModNom_m_pl",
+        "ModNom_m_pl -> Adj_m_pl",
+        "Adj_m_pl -> adj_inv_pl",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_m_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε"
+      ],
+      "justificacion": "La oracion tiene un sujeto plural masculino, un adjetivo invariable plural, un verbo plural y una frase preposicional valida que contiene un sintagma nominal masculino singular.",
+      "estructura": "[Oracion [Sujeto_pl [SN_m_pl det_m_pl(Los) n_m_pl(perros) [ModNom_m_pl [Adj_m_pl adj_inv_pl(grandes)]]] SubOpt_pl(ε)] [SV_pl v_pl(juegan) [RestoSV AdvOpt(ε) [SPOpt prep(en) [SN_Prep [SN_m_sg det_m_sg(el) n_m_sg(parque) ModNom_m_sg(ε)]]]]] .]"
+    },
+    {
+      "id": 23,
+      "oracion": "Las niñas rápidas corren rápidamente.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_f_pl SubOpt_pl",
+        "SN_f_pl -> det_f_pl n_f_pl ModNom_f_pl",
+        "ModNom_f_pl -> Adj_f_pl",
+        "Adj_f_pl -> adj_f_pl",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> adv_modo",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion presenta un sujeto plural femenino con adjetivo femenino plural, concordancia de numero con el verbo plural y un adverbio de modo final.",
+      "estructura": "[Oracion [Sujeto_pl [SN_f_pl det_f_pl(Las) n_f_pl(niñas) [ModNom_f_pl [Adj_f_pl adj_f_pl(rápidas)]]] SubOpt_pl(ε)] [SV_pl v_pl(corren) [RestoSV [AdvOpt adv_modo(rápidamente)] SPOpt(ε)]] .]"
+    },
+    {
+      "id": 24,
+      "oracion": "El perro observa que el gato duerme.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> que Clausula",
+        "Clausula -> Sujeto_sg SV_sg",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion utiliza la estructura de subordinación mediante 'que' seguida de una cláusula completa, cumpliendo con la regla RestoSV -> que Clausula.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg det_m_sg(El) n_m_sg(perro) ModNom_m_sg(ε)] SubOpt_sg(ε)] [SV_sg v_sg(observa) [RestoSV que(que) [Clausula [Sujeto_sg [SN_m_sg det_m_sg(el) n_m_sg(gato) ModNom_m_sg(ε)] SubOpt_sg(ε)] [SV_sg v_sg(duerme) [RestoSV AdvOpt(ε) SPOpt(ε)]]]]] .]"
+    },
+    {
+      "id": 25,
+      "oracion": "Un niño grande juega con la niña.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> Adj_m_sg",
+        "Adj_m_sg -> adj_inv_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_f_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε"
+      ],
+      "justificacion": "La oracion es generable utilizando un sujeto masculino singular con adjetivo invariable, un verbo singular y un complemento preposicional con un sintagma nominal femenino singular.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg det_m_sg(Un) n_m_sg(niño) [ModNom_m_sg [Adj_m_sg adj_inv_sg(grande)]]] SubOpt_sg(ε)] [SV_sg v_sg(juega) [RestoSV AdvOpt(ε) [SPOpt prep(con) [SN_Prep [SN_f_sg det_f_sg(la) n_f_sg(niña) ModNom_f_sg(ε)]]]]] .]"
+    },
+    {
+      "id": 26,
+      "oracion": "Las gatas negras duermen bajo la casa.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl",
+        "Sujeto_pl -> SN_f_pl SubOpt_pl",
+        "SN_f_pl -> det_f_pl n_f_pl ModNom_f_pl",
+        "ModNom_f_pl -> Adj_f_pl",
+        "Adj_f_pl -> adj_f_pl",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_f_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε"
+      ],
+      "justificacion": "La oración cumple estrictamente con la concordancia de género y número femenino plural en el sujeto, verbo plural, adverbio vacío y una frase preposicional válida formada por la preposición bajo y el SN femenino singular.",
+      "estructura": "[Oracion [Sujeto_pl [SN_f_pl [det_f_pl Las] [n_f_pl gatas] [ModNom_f_pl [Adj_f_pl [adj_f_pl negras]]]] [SubOpt_pl ε]] [SV_pl [v_pl duermen] [RestoSV [AdvOpt ε] [SPOpt [prep bajo] [SN_Prep [SN_f_sg [det_f_sg la] [n_f_sg casa] [ModNom_f_sg ε]]]]]] .]"
+    },
+    {
+      "id": 27,
+      "oracion": "El gato que duerme corre en el jardín.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> que SV_sg",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_m_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε"
+      ],
+      "justificacion": "La oración presenta un sujeto masculino singular modificado por una subordinada de relativo introducida por 'que' con un verbo singular, seguido del verbo principal y una frase preposicional.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg El] [n_m_sg gato] [ModNom_m_sg ε]] [SubOpt_sg [que que] [SV_sg [v_sg duerme] [RestoSV [AdvOpt ε] [SPOpt ε]]]]] [SV_sg [v_sg corre] [RestoSV [AdvOpt ε] [SPOpt [prep en] [SN_Prep [SN_m_sg [det_m_sg el] [n_m_sg jardín] [ModNom_m_sg ε]]]]]] .]"
+    },
+    {
+      "id": 28,
+      "oracion": "Los niños que juegan observan que la gata corre.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl",
+        "Sujeto_pl -> SN_m_pl SubOpt_pl",
+        "SN_m_pl -> det_m_pl n_m_pl ModNom_m_pl",
+        "ModNom_m_pl -> ε",
+        "SubOpt_pl -> que SV_pl",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε",
+        "RestoSV -> que Clausula",
+        "Clausula -> Sujeto_sg SV_sg",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "Derivación válida que incluye un sujeto plural masculino con proposición subordinada, verbo plural principal y un complemento de régimen u oración subordinada introducida por 'que'.",
+      "estructura": "[Oracion [Sujeto_pl [SN_m_pl [det_m_pl Los] [n_m_pl niños] [ModNom_m_pl ε]] [SubOpt_pl [que que] [SV_pl [v_pl juegan] [RestoSV [AdvOpt ε] [SPOpt ε]]]]] [SV_pl [v_pl observan] [RestoSV [que que] [Clausula [Sujeto_sg [SN_f_sg [det_f_sg la] [n_f_sg gata] [ModNom_f_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg corre] [RestoSV [AdvOpt ε] [SPOpt ε]]]]]] .]"
+    },
+    {
+      "id": 29,
+      "oracion": "El gato negra duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "Error de concordancia de género: el determinante 'El' y el sustantivo 'gato' son masculinos singulares, mientras que el adjetivo 'negra' es femenino singular. No existe producción para esta combinación en ModNom_m_sg.",
+      "estructura": null
+    },
+    {
+      "id": 30,
+      "oracion": "El niño y la niña duermen.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La gramática no contempla construcciones de coordinación con la conjunción 'y' para formar sujetos compuestos (SNconjunto). No existe una regla de producción que soporte 'SN conj SN'.",
+      "estructura": null
+    },
+    {
+      "id": 31,
+      "oracion": "Los gato negros duermen.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "El determinante plural masculino 'Los' y el adjetivo plural masculino 'negros' no concuerdan en número con el sustantivo singular masculino 'gato'.",
+      "estructura": null
+    },
+    {
+      "id": 32,
+      "oracion": "El gato negro duermen.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "El sujeto es singular ('El gato negro') pero el verbo 'duermen' está conjugado en plural, por lo que no se cumple la concordancia de número entre el sujeto y el verbo.",
+      "estructura": null
+    },
+    {
+      "id": 33,
+      "oracion": "Los gatos que corre duermen.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "Dentro de la opción subordinada del sujeto plural, el verbo 'corre' está en singular, lo cual no concuerda con el sujeto plural 'Los gatos'.",
+      "estructura": null
+    },
+    {
+      "id": 34,
+      "oracion": "La gata negro duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "El adjetivo 'negro' es masculino singular y no concuerda en género con el sustantivo femenino singular 'gata'.",
+      "estructura": null
+    },
+    {
+      "id": 35,
+      "oracion": "El elefante negro duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La palabra 'elefante' no pertenece al léxico proporcionado por la gramática.",
+      "estructura": null
+    },
+    {
+      "id": 36,
+      "oracion": "Gato negro duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "El sustantivo singular masculino requiere un determinante obligatorio según las producciones de SN_m_sg (det_m_sg n_m_sg ModNom_m_sg).",
+      "estructura": null
+    },
+    {
+      "id": 37,
+      "oracion": "El gato duerme en.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La preposición 'en' requiere un SN_Prep completo a continuación, por lo que la oración no puede finalizar con la preposición sola.",
+      "estructura": null
+    },
+    {
+      "id": 38,
+      "oracion": "El niño observa que.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La producción RestoSV -> que Clausula requiere una Clausula completa (Sujeto y SV) después de 'que', la cual está ausente.",
+      "estructura": null
+    },
+    {
+      "id": 39,
+      "oracion": "Los niños y las niñas juegan.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La gramática no contiene producciones que contemplen la conjunción 'y' para coordinar sintagmas nominales (Sujeto compuesto).",
+      "estructura": null
+    },
+    {
+      "id": 40,
+      "oracion": "El gato muy negras duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "Incoherencia de género y número: el núcleo del sujeto 'gato' es masculino singular, mientras que el adjetivo 'negras' es femenino plural.",
+      "estructura": null
+    }
+  ]
+}

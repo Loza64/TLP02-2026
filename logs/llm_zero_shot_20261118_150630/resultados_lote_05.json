@@ -1,0 +1,111 @@
+{
+  "resultados": [
+    {
+      "id": 21,
+      "oracion": "La gata muy negra duerme tranquilamente.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> adv_intens Adj_f_sg",
+        "Adj_f_sg -> adj_f_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> adv_modo",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oración concuerda perfectamente en género femenino y número singular (La gata muy negra) y el verbo concuerda en singular (duerme), seguido de un adverbio de modo (tranquilamente).",
+      "estructura": "[Oracion [Sujeto_sg [SN_f_sg det_f_sg(La) n_f_sg(gata) [ModNom_f_sg adv_intens(muy) [Adj_f_sg adj_f_sg(negra)]]] [SubOpt_sg ε]] [SV_sg v_sg(duerme) [RestoSV [AdvOpt adv_modo(tranquilamente)] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 22,
+      "oracion": "Los perros grandes juegan en el parque.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_m_pl SubOpt_pl",
+        "SN_m_pl -> det_m_pl n_m_pl ModNom_m_pl",
+        "ModNom_m_pl -> Adj_m_pl",
+        "Adj_m_pl -> adj_inv_pl",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_m_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε"
+      ],
+      "justificacion": "El sujeto plural masculino (Los perros grandes) concuerda con el verbo plural (juegan), y el sintagma preposicional se deriva correctamente mediante prep y SN_Prep.",
+      "estructura": "[Oracion [Sujeto_pl [SN_m_pl det_m_pl(Los) n_m_pl(perros) [ModNom_m_pl [Adj_m_pl adj_inv_pl(grandes)]]] [SubOpt_pl ε]] [SV_pl v_pl(juegan) [RestoSV [AdvOpt ε] [SPOpt prep(en) [SN_Prep [SN_m_sg det_m_sg(el) n_m_sg(parque) [ModNom_m_sg ε]]]]]] .]"
+    },
+    {
+      "id": 23,
+      "oracion": "Las niñas rápidas corren rápidamente.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_f_pl SubOpt_pl",
+        "SN_f_pl -> det_f_pl n_f_pl ModNom_f_pl",
+        "ModNom_f_pl -> Adj_f_pl",
+        "Adj_f_pl -> adj_f_pl",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> adv_modo",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "Sujeto femenino plural (Las niñas rápidas) concuerda con el verbo plural (corren) y se complementa con un adverbio de modo válido (rápidamente).",
+      "estructura": "[Oracion [Sujeto_pl [SN_f_pl det_f_pl(Las) n_f_pl(niñas) [ModNom_f_pl [Adj_f_pl adj_f_pl(rapidas)]]] [SubOpt_pl ε]] [SV_pl v_pl(corren) [RestoSV [AdvOpt adv_modo(rapidamente)] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 24,
+      "oracion": "El perro observa que el gato duerme.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> que Clausula",
+        "Clausula -> Sujeto_sg SV_sg",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oración principal contiene una proposición subordinada introducida por 'que' seguida de otra cláusula válida con sujeto y verbo singular.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg det_m_sg(El) n_m_sg(perro) [ModNom_m_sg ε]] [SubOpt_sg ε]] [SV_sg v_sg(observa) [RestoSV que [Clausula [Sujeto_sg [SN_m_sg det_m_sg(el) n_m_sg(gato) [ModNom_m_sg ε]] [SubOpt_sg ε]] [SV_sg v_sg(duerme) [RestoSV [AdvOpt ε] [SPOpt ε]]]]]] .]"
+    },
+    {
+      "id": 25,
+      "oracion": "Un niño grande juega con la niña.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> Adj_m_sg",
+        "Adj_m_sg -> adj_inv_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_f_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε"
+      ],
+      "justificacion": "Sujeto singular masculino (Un niño grande) con concordancia en el verbo (juega) y un sintagma preposicional final bien formado (con la niña).",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg det_m_sg(Un) n_m_sg(niño) [ModNom_m_sg [Adj_m_sg adj_inv_sg(grande)]]] [SubOpt_sg ε]] [SV_sg v_sg(juega) [RestoSV [AdvOpt ε] [SPOpt prep(con) [SN_Prep [SN_f_sg det_f_sg(la) n_f_sg(niña) [ModNom_f_sg ε]]]]]] .]"
+    }
+  ]
+}

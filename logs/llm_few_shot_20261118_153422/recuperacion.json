@@ -1,0 +1,32 @@
+[
+  {
+    "lote": 1,
+    "estado": "recuperado",
+    "intento_exitoso": 1
+  },
+  {
+    "lote": 2,
+    "estado": "recuperado",
+    "intento_exitoso": 1
+  },
+  {
+    "lote": 4,
+    "estado": "recuperado",
+    "intento_exitoso": 1
+  },
+  {
+    "lote": 6,
+    "intento": 1,
+    "error": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+  },
+  {
+    "lote": 6,
+    "intento": 2,
+    "error": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+  },
+  {
+    "lote": 6,
+    "estado": "recuperado",
+    "intento_exitoso": 3
+  }
+]

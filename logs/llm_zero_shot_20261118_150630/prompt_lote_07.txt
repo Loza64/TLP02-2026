@@ -1,0 +1,219 @@
+Actúa como un analizador sintáctico formal
+especializado en gramáticas libres de contexto (CFG).
+
+OBJETIVO:
+
+Determinar si cada oración pertenece al lenguaje
+generado por la gramática proporcionada.
+
+IMPORTANTE:
+
+No debes determinar si una oración es correcta
+en el español general.
+
+Debes determinar exclusivamente si puede generarse
+mediante las producciones de esta gramática y
+utilizando las palabras de su léxico.
+
+REGLAS DE EVALUACIÓN:
+
+1. Utiliza exclusivamente las producciones indicadas.
+2. Comienza siempre desde el símbolo inicial.
+3. Respeta las categorías terminales del léxico.
+4. Respeta la concordancia de género y número
+   entre determinantes, sustantivos y adjetivos.
+5. Respeta la concordancia de número entre
+   el sujeto y el verbo.
+6. No aceptes palabras que no aparezcan en el léxico.
+7. No inventes producciones ni estructuras.
+8. No completes estructuras incompletas por intuición.
+9. No aceptes coordinaciones u otras construcciones
+   que no estén contempladas en las producciones.
+10. Una oración gramatical en español puede ser
+    rechazada si no pertenece al lenguaje de esta CFG.
+
+DECISIONES:
+
+- ACEPTADA: la oración puede derivarse desde el
+  símbolo inicial utilizando las producciones y
+  terminales proporcionados.
+- RECHAZADA: no existe una derivación válida
+  para la oración o contiene palabras fuera del léxico.
+
+GRAMÁTICA:
+
+Símbolo inicial: Oracion
+
+Producciones:
+Oracion -> Sujeto_sg SV_sg .
+Oracion -> Sujeto_pl SV_pl .
+Sujeto_sg -> SN_m_sg SubOpt_sg
+Sujeto_sg -> SN_f_sg SubOpt_sg
+Sujeto_pl -> SN_m_pl SubOpt_pl
+Sujeto_pl -> SN_f_pl SubOpt_pl
+SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg
+SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg
+SN_m_pl -> det_m_pl n_m_pl ModNom_m_pl
+SN_f_pl -> det_f_pl n_f_pl ModNom_f_pl
+ModNom_m_sg -> Adj_m_sg
+ModNom_m_sg -> adv_intens Adj_m_sg
+ModNom_m_sg -> ε
+Adj_m_sg -> adj_m_sg
+Adj_m_sg -> adj_inv_sg
+ModNom_f_sg -> Adj_f_sg
+ModNom_f_sg -> adv_intens Adj_f_sg
+ModNom_f_sg -> ε
+Adj_f_sg -> adj_f_sg
+Adj_f_sg -> adj_inv_sg
+ModNom_m_pl -> Adj_m_pl
+ModNom_m_pl -> adv_intens Adj_m_pl
+ModNom_m_pl -> ε
+Adj_m_pl -> adj_m_pl
+Adj_m_pl -> adj_inv_pl
+ModNom_f_pl -> Adj_f_pl
+ModNom_f_pl -> adv_intens Adj_f_pl
+ModNom_f_pl -> ε
+Adj_f_pl -> adj_f_pl
+Adj_f_pl -> adj_inv_pl
+SubOpt_sg -> que SV_sg
+SubOpt_sg -> ε
+SubOpt_pl -> que SV_pl
+SubOpt_pl -> ε
+SV_sg -> v_sg RestoSV
+SV_pl -> v_pl RestoSV
+RestoSV -> que Clausula
+RestoSV -> AdvOpt SPOpt
+Clausula -> Sujeto_sg SV_sg
+Clausula -> Sujeto_pl SV_pl
+AdvOpt -> adv_modo
+AdvOpt -> ε
+SPOpt -> prep SN_Prep
+SPOpt -> ε
+SN_Prep -> SN_m_sg
+SN_Prep -> SN_f_sg
+SN_Prep -> SN_m_pl
+SN_Prep -> SN_f_pl
+
+TERMINALES:
+det_m_sg, det_f_sg, det_m_pl, det_f_pl, n_m_sg, n_f_sg, n_m_pl, n_f_pl, adj_m_sg, adj_f_sg, adj_m_pl, adj_f_pl, adj_inv_sg, adj_inv_pl, v_sg, v_pl, adv_intens, adv_modo, prep, que, conj, .
+
+LÉXICO:
+
+Cada palabra debe corresponder a su categoría
+terminal indicada:
+
+bajo -> prep
+casa -> n_f_sg
+con -> prep
+corre -> v_sg
+corren -> v_pl
+duerme -> v_sg
+duermen -> v_pl
+el -> det_m_sg
+en -> prep
+gata -> n_f_sg
+gatas -> n_f_pl
+gato -> n_m_sg
+gatos -> n_m_pl
+grande -> adj_inv_sg
+grandes -> adj_inv_pl
+jardin -> n_m_sg
+jardín -> n_m_sg
+juega -> v_sg
+juegan -> v_pl
+la -> det_f_sg
+las -> det_f_pl
+los -> det_m_pl
+muy -> adv_intens
+negra -> adj_f_sg
+negras -> adj_f_pl
+negro -> adj_m_sg
+negros -> adj_m_pl
+niña -> n_f_sg
+niñas -> n_f_pl
+niño -> n_m_sg
+niños -> n_m_pl
+observa -> v_sg
+observan -> v_pl
+parque -> n_m_sg
+perra -> n_f_sg
+perras -> n_f_pl
+perro -> n_m_sg
+perros -> n_m_pl
+que -> que
+rapida -> adj_f_sg
+rapidamente -> adv_modo
+rapidas -> adj_f_pl
+rapido -> adj_m_sg
+rapidos -> adj_m_pl
+rápida -> adj_f_sg
+rápidamente -> adv_modo
+rápidas -> adj_f_pl
+rápido -> adj_m_sg
+rápidos -> adj_m_pl
+tranquilamente -> adv_modo
+un -> det_m_sg
+una -> det_f_sg
+unas -> det_f_pl
+unos -> det_m_pl
+y -> conj
+
+FORMATO DE RESPUESTA:
+
+Devuelve exclusivamente un objeto JSON válido
+con esta estructura:
+
+{
+  "resultados": [
+    {
+      "id": 1,
+      "oracion": "El gato negro duerme.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> ..."
+      ],
+      "justificacion": "Explicación breve.",
+      "estructura": "Representación sintáctica."
+    }
+  ]
+}
+
+INDICACIONES PARA EL JSON:
+
+- Incluye todos los IDs recibidos.
+- Conserva exactamente el texto de cada oración.
+- La decisión debe ser ACEPTADA o RECHAZADA.
+- Si es RECHAZADA, explica el motivo concreto.
+- No inventes producciones aplicadas.
+- Si no existe una derivación, deja
+  producciones_aplicadas como lista vacía
+  y estructura como null.
+- Si no puedes determinar una estructura,
+  utiliza null en estructura.
+- No incluyas Markdown ni bloques de código.
+- No agregues explicaciones fuera del JSON.
+
+ORACIONES A EVALUAR:
+
+[
+  {
+    "id": 31,
+    "oracion": "Los gato negros duermen."
+  },
+  {
+    "id": 32,
+    "oracion": "El gato negro duermen."
+  },
+  {
+    "id": 33,
+    "oracion": "Los gatos que corre duermen."
+  },
+  {
+    "id": 34,
+    "oracion": "La gata negro duerme."
+  },
+  {
+    "id": 35,
+    "oracion": "El elefante negro duerme."
+  }
+]

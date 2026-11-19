@@ -1,0 +1,81 @@
+﻿modo,id,oracion,esperado,decision,reglas_citadas,reglas_inexistentes,detalle_reglas_inexistentes,errores_etiquetado,detalle_etiquetado,arbol_igual_al_parser
+zero-shot,1,El gato negro duerme.,ACEPTADA,ACEPTADA,14,0,,0,,True
+zero-shot,2,La gata negra corre.,ACEPTADA,ACEPTADA,14,0,,0,,True
+zero-shot,3,Los gatos negros duermen.,ACEPTADA,ACEPTADA,14,0,,0,,True
+zero-shot,4,Las gatas negras corren.,ACEPTADA,ACEPTADA,14,0,,0,,True
+zero-shot,5,El niño juega.,ACEPTADA,ACEPTADA,12,0,,0,,True
+zero-shot,6,La niña duerme.,ACEPTADA,ACEPTADA,9,0,,0,,True
+zero-shot,7,Un perro corre.,ACEPTADA,ACEPTADA,9,0,,0,,True
+zero-shot,8,Una perra juega.,ACEPTADA,ACEPTADA,9,0,,0,,True
+zero-shot,9,Los niños juegan.,ACEPTADA,ACEPTADA,9,0,,0,,True
+zero-shot,10,Las niñas duermen.,ACEPTADA,ACEPTADA,9,0,,0,,True
+zero-shot,11,El perro grande duerme.,ACEPTADA,ACEPTADA,10,0,,0,,True
+zero-shot,12,La niña grande corre.,ACEPTADA,ACEPTADA,10,0,,0,,True
+zero-shot,13,La gata muy rápida corre rápidamente en el jardín.,ACEPTADA,ACEPTADA,13,0,,0,,True
+zero-shot,14,El perro negro juega tranquilamente bajo la casa.,ACEPTADA,ACEPTADA,13,0,,0,,True
+zero-shot,15,El gato negro corre rápidamente.,ACEPTADA,ACEPTADA,10,0,,0,,True
+zero-shot,16,El niño juega en el parque.,ACEPTADA,ACEPTADA,12,0,,0,,True
+zero-shot,17,Los gatos negros duermen tranquilamente.,ACEPTADA,ACEPTADA,10,0,,0,,True
+zero-shot,18,La niña corre rápidamente en la casa.,ACEPTADA,ACEPTADA,12,0,,0,,True
+zero-shot,19,El niño que corre juega en la casa.,ACEPTADA,ACEPTADA,16,0,,0,,True
+zero-shot,20,El niño observa que la gata duerme.,ACEPTADA,ACEPTADA,16,0,,0,,True
+zero-shot,21,La gata muy negra duerme tranquilamente.,ACEPTADA,ACEPTADA,10,0,,0,,True
+zero-shot,22,Los perros grandes juegan en el parque.,ACEPTADA,ACEPTADA,13,0,,0,,True
+zero-shot,23,Las niñas rápidas corren rápidamente.,ACEPTADA,ACEPTADA,10,0,,2,rápidas:palabra_omitida_o_alterada | rápidamente:palabra_omitida_o_alterada,False
+zero-shot,24,El perro observa que el gato duerme.,ACEPTADA,ACEPTADA,16,0,,0,,True
+zero-shot,25,Un niño grande juega con la niña.,ACEPTADA,ACEPTADA,13,0,,0,,True
+zero-shot,26,Las gatas negras duermen bajo la casa.,ACEPTADA,ACEPTADA,13,0,,0,,False
+zero-shot,27,El gato que duerme corre en el jardín.,ACEPTADA,ACEPTADA,16,0,,0,,False
+zero-shot,28,Los niños que juegan observan que la gata corre.,ACEPTADA,ACEPTADA,20,0,,0,,False
+zero-shot,29,El gato negra duerme.,RECHAZADA,RECHAZADA,0,0,,0,,
+zero-shot,30,El niño y la niña duermen.,RECHAZADA,RECHAZADA,0,0,,0,,
+zero-shot,31,Los gato negros duermen.,RECHAZADA,RECHAZADA,0,0,,0,,
+zero-shot,32,El gato negro duermen.,RECHAZADA,RECHAZADA,0,0,,0,,
+zero-shot,33,Los gatos que corre duermen.,RECHAZADA,RECHAZADA,0,0,,0,,
+zero-shot,34,La gata negro duerme.,RECHAZADA,RECHAZADA,0,0,,0,,
+zero-shot,35,El elefante negro duerme.,RECHAZADA,RECHAZADA,0,0,,0,,
+zero-shot,36,Gato negro duerme.,RECHAZADA,RECHAZADA,0,0,,0,,
+zero-shot,37,El gato duerme en.,RECHAZADA,RECHAZADA,0,0,,0,,
+zero-shot,38,El niño observa que.,RECHAZADA,RECHAZADA,0,0,,0,,
+zero-shot,39,Los niños y las niñas juegan.,RECHAZADA,RECHAZADA,0,0,,0,,
+zero-shot,40,El gato muy negras duerme.,RECHAZADA,RECHAZADA,0,0,,0,,
+few-shot,1,El gato negro duerme.,ACEPTADA,ACEPTADA,10,0,,0,,True
+few-shot,2,La gata negra corre.,ACEPTADA,ACEPTADA,10,0,,0,,True
+few-shot,3,Los gatos negros duermen.,ACEPTADA,ACEPTADA,10,0,,0,,True
+few-shot,4,Las gatas negras corren.,ACEPTADA,ACEPTADA,10,0,,0,,True
+few-shot,5,El niño juega.,ACEPTADA,ACEPTADA,9,0,,0,,True
+few-shot,6,La niña duerme.,ACEPTADA,ACEPTADA,9,0,,0,,True
+few-shot,7,Un perro corre.,ACEPTADA,ACEPTADA,9,0,,0,,True
+few-shot,8,Una perra juega.,ACEPTADA,ACEPTADA,9,0,,0,,True
+few-shot,9,Los niños juegan.,ACEPTADA,ACEPTADA,9,0,,0,,True
+few-shot,10,Las niñas duermen.,ACEPTADA,ACEPTADA,9,0,,0,,True
+few-shot,11,El perro grande duerme.,ACEPTADA,ACEPTADA,10,0,,3,El:sin_categoria | perro:sin_categoria | grande:sin_categoria,False
+few-shot,12,La niña grande corre.,ACEPTADA,ACEPTADA,10,0,,3,La:sin_categoria | niña:sin_categoria | grande:sin_categoria,False
+few-shot,13,La gata muy rápida corre rápidamente en el jardín.,ACEPTADA,ACEPTADA,13,0,,6,La:sin_categoria | gata:sin_categoria | rápida:sin_categoria | rápidamente:sin_categoria | el:sin_categoria | jardín:sin_categoria,False
+few-shot,14,El perro negro juega tranquilamente bajo la casa.,ACEPTADA,ACEPTADA,13,0,,6,El:sin_categoria | perro:sin_categoria | negro:sin_categoria | tranquilamente:sin_categoria | la:sin_categoria | casa:sin_categoria,False
+few-shot,15,El gato negro corre rápidamente.,ACEPTADA,ACEPTADA,10,0,,4,El:sin_categoria | gato:sin_categoria | negro:sin_categoria | rápidamente:sin_categoria,False
+few-shot,16,El niño juega en el parque.,ACEPTADA,ACEPTADA,12,0,,0,,True
+few-shot,17,Los gatos negros duermen tranquilamente.,ACEPTADA,ACEPTADA,10,0,,0,,True
+few-shot,18,La niña corre rápidamente en la casa.,ACEPTADA,ACEPTADA,12,0,,0,,True
+few-shot,19,El niño que corre juega en la casa.,ACEPTADA,ACEPTADA,16,0,,0,,True
+few-shot,20,El niño observa que la gata duerme.,ACEPTADA,ACEPTADA,16,0,,0,,True
+few-shot,21,La gata muy negra duerme tranquilamente.,ACEPTADA,ACEPTADA,10,0,,0,,True
+few-shot,22,Los perros grandes juegan en el parque.,ACEPTADA,ACEPTADA,13,0,,0,,True
+few-shot,23,Las niñas rápidas corren rápidamente.,ACEPTADA,ACEPTADA,10,0,,0,,True
+few-shot,24,El perro observa que el gato duerme.,ACEPTADA,ACEPTADA,16,0,,0,,True
+few-shot,25,Un niño grande juega con la niña.,ACEPTADA,ACEPTADA,13,0,,0,,True
+few-shot,26,Las gatas negras duermen bajo la casa.,ACEPTADA,ACEPTADA,13,1,Oracion -> Sujeto_pl SV_pl,0,,True
+few-shot,27,El gato que duerme corre en el jardín.,ACEPTADA,ACEPTADA,12,1,Oracion -> Sujeto_sg SV_sg,0,,True
+few-shot,28,Los niños que juegan observan que la gata corre.,ACEPTADA,ACEPTADA,19,1,Oracion -> Sujeto_pl SV_pl,0,,True
+few-shot,29,El gato negra duerme.,RECHAZADA,RECHAZADA,0,0,,0,,
+few-shot,30,El niño y la niña duermen.,RECHAZADA,RECHAZADA,0,0,,0,,
+few-shot,31,Los gato negros duermen.,RECHAZADA,RECHAZADA,0,0,,0,,
+few-shot,32,El gato negro duermen.,RECHAZADA,RECHAZADA,0,0,,0,,
+few-shot,33,Los gatos que corre duermen.,RECHAZADA,RECHAZADA,0,0,,0,,
+few-shot,34,La gata negro duerme.,RECHAZADA,RECHAZADA,0,0,,0,,
+few-shot,35,El elefante negro duerme.,RECHAZADA,RECHAZADA,0,0,,0,,
+few-shot,36,Gato negro duerme.,RECHAZADA,RECHAZADA,0,0,,0,,
+few-shot,37,El gato duerme en.,RECHAZADA,RECHAZADA,0,0,,0,,
+few-shot,38,El niño observa que.,RECHAZADA,RECHAZADA,0,0,,0,,
+few-shot,39,Los niños y las niñas juegan.,RECHAZADA,RECHAZADA,0,0,,0,,
+few-shot,40,El gato muy negras duerme.,RECHAZADA,RECHAZADA,0,0,,0,,
