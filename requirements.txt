@@ -14,3 +14,6 @@ torch==2.15.0
 # --- Fase 2: evaluación con LLM (llm/) ---
 google-genai==3.5.0
 python-dotenv==1.2.4
+# --- Fase 2: script de evaluación, tablas y gráficas (evaluacion/) ---
+matplotlib==3.11.2
+numpy==2.5.5

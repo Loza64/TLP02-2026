@@ -1,219 +1,125 @@
-# Evaluación con modelos de lenguaje (Gemini)
+# LLM mediante API (Fase 2, enfoque D)
 
-## Descripción
+Se evalúa si un LLM respeta una gramática formal cuando se le entregan explícitamente sus
+reglas. El modelo recibe la CFG del español de la Fase 1 y decide, para cada oración de
+`corpus/corpus_pruebas.csv`, si **pertenece al lenguaje generado por la gramática** (no si es
+correcta en el español general).
 
-Este módulo incorpora una evaluación complementaria del parser LL(1) del español mediante un modelo de lenguaje de Google Gemini.
+| Modalidad | Qué recibe |
+|---|---|
+| **Zero-shot** | Instrucciones + todas las producciones + símbolo inicial + terminales + léxico. Sin ejemplos. |
+| **Few-shot** | Exactamente lo mismo, más 4 ejemplos resueltos (2 ACEPTADA, 2 RECHAZADA) con la justificación de por qué cumplen o no la gramática. Ninguno pertenece al corpus. |
 
-El objetivo es comprobar si un modelo de lenguaje puede clasificar las oraciones del corpus según su pertenencia al lenguaje definido por nuestra gramática libre de contexto (CFG).
+Las dos modalidades salen de la misma función (`llm/prompts.py`), así que las instrucciones
+son idénticas; la única diferencia es el bloque `EJEMPLOS RESUELTOS`
+(`tests/test_llm_evaluacion.py` lo comprueba).
 
-Se implementaron dos estrategias de prompting:
+## Prompts exactos
 
-- **Zero-Shot:** el modelo recibe las instrucciones, las producciones de la gramática y el léxico, sin ejemplos resueltos.
-- **Few-Shot:** utiliza las mismas instrucciones, gramática y léxico, pero incorpora cuatro ejemplos resueltos para orientar la clasificación.
+- `llm/prompt_zero_shot.txt`
+- `llm/prompt_few_shot.txt`
 
-Ambas estrategias se ejecutan sobre las mismas 40 oraciones de `corpus/corpus_pruebas.csv`.
+Son el texto completo enviado a la API. El marcador `<<ORACIONES_A_EVALUAR>>` se sustituye
+por el JSON con las 5 oraciones del lote (`[{"id": ..., "oracion": ...}]`). El prompt
+efectivamente enviado en cada llamada se guarda además como `prompt_lote_XX.txt`.
 
-**Importante:** la clasificación no busca determinar si una oración es gramaticalmente correcta en todo el español, sino si pertenece al lenguaje reconocido por la gramática implementada.
+Los `.txt` se generan desde `espanol/grammar.py` y `espanol/lexer.py`:
 
-## Requisitos
+```bash
+python -m llm.prompts              # regenerar
+python -m llm.prompts --verificar  # comprobar que están al día
+```
 
-- Python 3.10 o superior.
-- Una clave de API de Google Gemini.
-- Dependencias:
-  - `google-genai==3.5.0`
-  - `python-dotenv==1.2.4`
+`ejecutar_llm.py` se niega a correr si los `.txt` no coinciden con lo que genera el código,
+de modo que el archivo versionado siempre es el prompt real.
 
-Estas dependencias están incluidas en `requirements.txt`.
+Para cada oración se pide: ID, decisión (ACEPTADA/RECHAZADA), producciones aplicadas,
+justificación y estructura sintáctica.
 
 ## Configuración
 
-Desde la raíz del proyecto, instalar las dependencias:
-
 ```bash
 python -m pip install -r requirements.txt
+cp .env.example .env        # Windows: copy .env.example .env
 ```
 
-Crear un archivo `.env` en la raíz del repositorio y agregar la clave de API:
+En `.env` (ignorado por git):
 
 ```env
-GEMINI_API_KEY=TU_CLAVE_DE_API
+GEMINI_API_KEY=tu_clave
+GEMINI_MODEL=gemini-3.5-flash-lite   # opcional
 ```
-
-El archivo `.env` está incluido en `.gitignore` para evitar publicar información sensible.
-
-## Modelo y configuración experimental
 
 | Parámetro | Valor |
 |---|---|
-| Proveedor | Google Gemini |
+| Proveedor / SDK | Google Gemini / `google-genai` 3.5.0 |
 | Modelo | `gemini-3.5-flash-lite` |
-| Temperatura | `0` |
-| Formato de respuesta | `application/json` |
-| Corpus | 40 oraciones |
-| Tamaño de lote | 5 oraciones |
-| Total de lotes | 8 |
-| Estrategias | Zero-Shot y Few-Shot |
-| Ejemplos Few-Shot | 4 |
-
-La temperatura 0 se utiliza para reducir la variabilidad de las respuestas. Cada lote se envía mediante la API y se valida que los resultados contengan los identificadores esperados, decisiones válidas y las oraciones originales sin modificaciones.
-
+| `temperature` | 0 |
+| `response_mime_type` | `application/json` |
+| Tamaño de lote | 5 oraciones (8 llamadas por modalidad) |
+| Reintentos | hasta 5 intentos por lote, espera exponencial de 10, 20, 40 y 80 s |
 
 ## Ejecución
 
-Los experimentos y su evaluación se ejecutan de forma independiente.
-
-### 1. Zero-Shot
-
-Ejecutar el experimento:
-
 ```bash
-python -m llm.ejecutar_zero_shot
+python -m llm.ejecutar_llm ambos        # zero-shot y luego few-shot
+python -m llm.ejecutar_llm zero-shot
+python -m llm.ejecutar_llm few-shot
+python -m evaluacion.evaluar            # métricas, tablas y gráficas
 ```
 
-Si algún lote falla por problemas temporales de conexión, recuperar los resultados:
+Cada respuesta se valida antes de aceptarla: JSON válido, exactamente los IDs del lote,
+decisión ACEPTADA o RECHAZADA y la oración sin modificar. Si una validación o la API fallan,
+el intento queda registrado y se reintenta. Las respuestas **nunca se reconstruyen**: si un
+lote no se obtiene, queda en `lotes_pendientes` y el comando termina con código 1.
 
-```bash
-python -m llm.recuperar_lote
-```
+## Evidencia generada
 
-Evaluar los resultados:
+`logs/llm_<modo>_<AAAAMMDD_HHMMSS>/`:
 
-```bash
-python -m llm.evaluar_llm zero-shot
-```
-
-### 2. Few-Shot
-
-Ejecutar el experimento:
-
-```bash
-python -m llm.ejecutar_few_shot
-```
-
-Si algún lote falla por problemas temporales de conexión, recuperar los resultados:
-
-```bash
-python -m llm.recuperar_few_shot
-```
-
-Evaluar los resultados:
-
-```bash
-python -m llm.evaluar_llm few-shot
-```
-
-### Archivos generados
-
-Cada ejecución almacena sus resultados en una carpeta independiente dentro de `logs/`.
-
-Entre los archivos generados se encuentran:
-
-- `resultados.json`: clasificación obtenida para las 40 oraciones.
-- Archivos de prompts y respuestas originales de cada lote.
-- `metadatos.json`: información del experimento y su ejecución.
-- `metricas.json`: métricas generales y resultados por nivel.
-- `detalle_evaluacion.csv`: clasificación individual de cada oración.
-
-El evaluador utiliza el experimento más reciente de la modalidad indicada. Al ejecutarlo nuevamente, actualiza `metricas.json` y `detalle_evaluacion.csv` de esa carpeta, sin modificar los resultados originales.
-
-
-## Prompts
-
-Los prompts se construyen dinámicamente a partir de las producciones de `espanol/grammar.py` y las categorías léxicas de `espanol/lexer.py`.
-
-El archivo `prompts.py` contiene:
-
-- Las instrucciones para determinar si una oración pertenece al lenguaje.
-- La gramática y el léxico utilizados por el parser.
-- Cuatro ejemplos para la estrategia Few-Shot.
-
-Los ejemplos Few-Shot son independientes de las 40 oraciones del corpus, evitando utilizar casos de evaluación como ejemplos de referencia.
-
-## Resultados experimentales
-
-Ambas estrategias obtuvieron los mismos resultados sobre el corpus de 40 oraciones.
-
-| Métrica | Zero-Shot | Few-Shot |
-|---|---:|---:|
-| Verdaderos positivos (VP) | 28 | 28 |
-| Verdaderos negativos (VN) | 12 | 12 |
-| Falsos positivos (FP) | 0 | 0 |
-| Falsos negativos (FN) | 0 | 0 |
-| Exactitud | 100 % | 100 % |
-| Precisión | 100 % | 100 % |
-| Recall | 100 % | 100 % |
-| Especificidad | 100 % | 100 % |
-| F1-score | 100 % | 100 % |
-
-### Resultados por nivel
-
-| Nivel | Total | Zero-Shot | Few-Shot |
-|---|---:|---:|---:|
-| Nivel 1 | 12 | 12/12 | 12/12 |
-| Nivel 2 | 16 | 16/16 | 16/16 |
-| Nivel 3 | 12 | 12/12 | 12/12 |
-
-Los resultados muestran que ambas estrategias clasificaron correctamente las 40 oraciones. En este corpus no se observó una mejora medible al incorporar ejemplos mediante Few-Shot.
-
-## Registros y evidencia experimental
-
-Cada ejecución genera una carpeta independiente dentro de `logs/`.
-
-Las carpetas correspondientes a los experimentos realizados son:
-
-- `logs/llm_zero_shot_20261118_150630/`
-- `logs/llm_few_shot_20261118_153422/`
-
-Cada carpeta contiene, según la estrategia y el proceso de recuperación:
-
-| Archivo | Descripción |
+| Archivo | Contenido |
 |---|---|
-| `prompt_lote_XX.txt` | Prompt enviado al modelo para cada lote. |
-| `respuesta_bruta_lote_XX.txt` | Respuesta original recibida de la API. |
-| `resultados_lote_XX.json` | Resultados validados de cada lote. |
-| `resultados.json` | Resultados consolidados de las 40 oraciones. |
-| `metadatos.json` | Información de la ejecución, modelo, parámetros, tiempos, errores y hash del corpus. |
-| `recuperacion.json` | Registro de intentos de recuperación, cuando está disponible. |
-| `metricas.json` | Métricas calculadas por el evaluador, cuando se genera. |
-| `detalle_evaluacion.csv` | Comparación entre la clasificación esperada y la obtenida, cuando se genera. |
+| `prompt_lote_XX.txt` | Prompt exacto enviado en el lote XX |
+| `respuesta_bruta_lote_XX_intento_N.txt` | Respuesta completa de la API, sin tocar, de cada intento |
+| `llamadas.json` | **Una entrada por llamada**: lote, IDs, intento, timestamp de inicio y fin, duración, estado, error, versión del modelo que respondió y tokens usados |
+| `metadatos.json` | Modelo, parámetros, número de ejemplos, hash SHA-256 del prompt y del corpus, inicio/fin, versiones de Python y `google-genai`, sistema operativo y commit |
+| `resultados.json` | Resultados validados de las 40 oraciones |
 
-Los metadatos incluyen información como el modelo utilizado, la temperatura, el tamaño del corpus, la cantidad de lotes, las marcas de tiempo, la duración, la versión de Python, el sistema operativo y el hash SHA-256 del corpus.
+`logs/llm_zero_shot.json` y `logs/llm_few_shot.json` reúnen metadatos, llamadas y resultados
+de la última ejecución, y son los que lee `evaluacion/evaluar.py`.
 
-### Recuperación de solicitudes
+### Ejecuciones preliminares
 
-Durante las ejecuciones se presentaron errores temporales de disponibilidad del servicio Gemini (HTTP 503). Los lotes afectados se recuperaron mediante los scripts correspondientes.
+`logs/llm_zero_shot_20261118_150630/` y `logs/llm_few_shot_20261118_153422/` se generaron con
+los scripts anteriores (commit `1934c0e`). Se conservan como evidencia, pero **no cumplen el
+protocolo final**: no registran el timestamp de cada llamada, el zero-shot no registró su
+reintento y, sobre todo, **las dos modalidades no usaron las mismas instrucciones** (el
+zero-shot se envió con una redacción distinta del texto). Mientras no existan
+`logs/llm_*_shot.json`, la evaluación usa estas carpetas y lo avisa.
 
-Las dos ejecuciones finalizaron con:
+## Cómo se evalúa al LLM
 
-- 40 de 40 resultados obtenidos.
-- Ningún lote pendiente.
-- Resultados consolidados y disponibles para evaluación.
+`evaluacion/evaluar.py` aplica al LLM la misma metodología que a los demás enfoques:
 
-Los errores iniciales se conservaron en los metadatos como evidencia de las incidencias durante la ejecución.
+- **VP/VN/FP/FN, precisión, recall y rechazo correcto**: comparando su decisión con la
+  etiqueta esperada (positivo = ACEPTADA).
+- **Errores de etiquetado**: mismo criterio que `nlp/` (categoría frente al léxico de la CFG).
+  En cada oración aceptada, cada palabra debe aparecer en la `estructura` bajo su terminal
+  (`det_m_sg`, `n_f_pl`, …). Se cuentan tres tipos: `categoria_incorrecta`, `sin_categoria`
+  (la palabra cuelga directamente de un no terminal) y `palabra_omitida_o_alterada` (no
+  aparece o aparece cambiada, p. ej. sin tilde). Se aceptan las dos notaciones que usa el
+  modelo: `[det_m_sg El]` y `det_m_sg(El)`.
+- **Cumplimiento de la CFG** (`evaluacion/cumplimiento_llm.csv`): reglas citadas en
+  `producciones_aplicadas` que no existen en la gramática (las reglas léxicas válidas, como
+  `det_m_sg -> el`, no cuentan como error) y si el árbol devuelto es idéntico al del parser
+  propio (ignorando ε).
+
+Los resultados están en `evaluacion/tabla_comparativa.md`. El análisis está en
+`docs/informe/fase2_llm_resultados.md`.
 
 ## Limitaciones
 
-- La evaluación utiliza un corpus de 40 oraciones, por lo que los resultados no garantizan el mismo rendimiento en otros conjuntos de datos.
-- El modelo clasifica según la gramática y el léxico proporcionados; no realiza una evaluación general de la corrección gramatical del español.
-- Los resultados pueden depender del modelo, sus instrucciones y la disponibilidad del servicio externo.
-- La igualdad de resultados entre Zero-Shot y Few-Shot no demuestra que ambas estrategias tengan el mismo rendimiento en otros corpus.
-
-## Estructura del módulo
-
-```text
-
-llm/
-├── prompts.py
-├── probar_gemini.py
-├── probar_prompt.py
-├── probar_few_shot.py
-├── ejecutar_zero_shot.py
-├── ejecutar_few_shot.py
-├── evaluar_llm.py
-├── recuperar_lote.py
-├── recuperar_few_shot.py
-└── README.md
-```
-
-Los registros experimentales se almacenan en `logs/`, fuera de esta carpeta.
-
+- 40 oraciones: los resultados no se generalizan a otros corpus.
+- El servicio externo puede devolver errores 503; quedan registrados en `llamadas.json`.
+- Aun con temperatura 0, la salida del modelo no es determinista entre ejecuciones; por eso se
+  guarda la evidencia de cada una y nunca se reconstruye.

@@ -1,0 +1,282 @@
+{
+  "corpus": "corpus/corpus_pruebas.csv",
+  "positivo": "ACEPTADA",
+  "formulas": {
+    "precision": "VP / (VP + FP)",
+    "recall": "VP / (VP + FN)",
+    "rechazo_correcto": "VN / (VN + FP)",
+    "exactitud": "(VP + VN) / total"
+  },
+  "enfoques": {
+    "parser_propio": {
+      "fuente": "logs/parser_propio.json",
+      "herramienta": "parser propio LL(1) (CFG del español, Fase 1)",
+      "nota_etiquetado": "0 por construccion: el parser asigna las categorias desde el lexico de la CFG, que es la referencia.",
+      "VP": 28,
+      "VN": 12,
+      "FP": 0,
+      "FN": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "rechazo_correcto": 100.0,
+      "exactitud": 100.0,
+      "errores_etiquetado": 0,
+      "oraciones_con_error_etiquetado": 0,
+      "por_nivel": {
+        "1": {
+          "VP": 12,
+          "VN": 0,
+          "FP": 0,
+          "FN": 0,
+          "errores_etiquetado": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "rechazo_correcto": null,
+          "exactitud": 100.0
+        },
+        "2": {
+          "VP": 16,
+          "VN": 0,
+          "FP": 0,
+          "FN": 0,
+          "errores_etiquetado": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "rechazo_correcto": null,
+          "exactitud": 100.0
+        },
+        "3": {
+          "VP": 0,
+          "VN": 12,
+          "FP": 0,
+          "FN": 0,
+          "errores_etiquetado": 0,
+          "precision": null,
+          "recall": null,
+          "rechazo_correcto": 100.0,
+          "exactitud": 100.0
+        }
+      }
+    },
+    "spacy": {
+      "fuente": "logs/spacy.json",
+      "herramienta": "spaCy 3.8.18 (es_core_news_sm)",
+      "nota_etiquetado": "POS de la herramienta frente al lexico de la CFG (criterio de nlp/comun.py).",
+      "VP": 23,
+      "VN": 9,
+      "FP": 3,
+      "FN": 5,
+      "precision": 88.46,
+      "recall": 82.14,
+      "rechazo_correcto": 75.0,
+      "exactitud": 80.0,
+      "errores_etiquetado": 8,
+      "oraciones_con_error_etiquetado": 7,
+      "por_nivel": {
+        "1": {
+          "VP": 10,
+          "VN": 0,
+          "FP": 0,
+          "FN": 2,
+          "errores_etiquetado": 2,
+          "precision": 100.0,
+          "recall": 83.33,
+          "rechazo_correcto": null,
+          "exactitud": 83.33
+        },
+        "2": {
+          "VP": 13,
+          "VN": 0,
+          "FP": 0,
+          "FN": 3,
+          "errores_etiquetado": 4,
+          "precision": 100.0,
+          "recall": 81.25,
+          "rechazo_correcto": null,
+          "exactitud": 81.25
+        },
+        "3": {
+          "VP": 0,
+          "VN": 9,
+          "FP": 3,
+          "FN": 0,
+          "errores_etiquetado": 2,
+          "precision": 0.0,
+          "recall": null,
+          "rechazo_correcto": 75.0,
+          "exactitud": 75.0
+        }
+      }
+    },
+    "segunda_herramienta": {
+      "fuente": "logs/segunda_herramienta.json",
+      "herramienta": "HuggingFace Transformers 5.23.0 (mrm8488/bert-spanish-cased-finetuned-pos, mrm8488/bert-spanish-cased-finetuned-pos-syntax)",
+      "nota_etiquetado": "POS de la herramienta frente al lexico de la CFG (criterio de nlp/comun.py).",
+      "VP": 28,
+      "VN": 5,
+      "FP": 7,
+      "FN": 0,
+      "precision": 80.0,
+      "recall": 100.0,
+      "rechazo_correcto": 41.67,
+      "exactitud": 82.5,
+      "errores_etiquetado": 0,
+      "oraciones_con_error_etiquetado": 0,
+      "por_nivel": {
+        "1": {
+          "VP": 12,
+          "VN": 0,
+          "FP": 0,
+          "FN": 0,
+          "errores_etiquetado": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "rechazo_correcto": null,
+          "exactitud": 100.0
+        },
+        "2": {
+          "VP": 16,
+          "VN": 0,
+          "FP": 0,
+          "FN": 0,
+          "errores_etiquetado": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "rechazo_correcto": null,
+          "exactitud": 100.0
+        },
+        "3": {
+          "VP": 0,
+          "VN": 5,
+          "FP": 7,
+          "FN": 0,
+          "errores_etiquetado": 0,
+          "precision": 0.0,
+          "recall": null,
+          "rechazo_correcto": 41.67,
+          "exactitud": 41.67
+        }
+      }
+    },
+    "llm_zero_shot": {
+      "fuente": "logs/llm_zero_shot_20261118_150630",
+      "herramienta": "Google Gemini (gemini-3.5-flash-lite, temperatura 0)",
+      "nota_etiquetado": "Categoria de cada palabra en la estructura devuelta frente al lexico de la CFG.",
+      "VP": 28,
+      "VN": 12,
+      "FP": 0,
+      "FN": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "rechazo_correcto": 100.0,
+      "exactitud": 100.0,
+      "errores_etiquetado": 2,
+      "oraciones_con_error_etiquetado": 1,
+      "por_nivel": {
+        "1": {
+          "VP": 12,
+          "VN": 0,
+          "FP": 0,
+          "FN": 0,
+          "errores_etiquetado": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "rechazo_correcto": null,
+          "exactitud": 100.0
+        },
+        "2": {
+          "VP": 16,
+          "VN": 0,
+          "FP": 0,
+          "FN": 0,
+          "errores_etiquetado": 2,
+          "precision": 100.0,
+          "recall": 100.0,
+          "rechazo_correcto": null,
+          "exactitud": 100.0
+        },
+        "3": {
+          "VP": 0,
+          "VN": 12,
+          "FP": 0,
+          "FN": 0,
+          "errores_etiquetado": 0,
+          "precision": null,
+          "recall": null,
+          "rechazo_correcto": 100.0,
+          "exactitud": 100.0
+        }
+      }
+    },
+    "llm_few_shot": {
+      "fuente": "logs/llm_few_shot_20261118_153422",
+      "herramienta": "Google Gemini (gemini-3.5-flash-lite, temperatura 0)",
+      "nota_etiquetado": "Categoria de cada palabra en la estructura devuelta frente al lexico de la CFG.",
+      "VP": 28,
+      "VN": 12,
+      "FP": 0,
+      "FN": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "rechazo_correcto": 100.0,
+      "exactitud": 100.0,
+      "errores_etiquetado": 22,
+      "oraciones_con_error_etiquetado": 5,
+      "por_nivel": {
+        "1": {
+          "VP": 12,
+          "VN": 0,
+          "FP": 0,
+          "FN": 0,
+          "errores_etiquetado": 6,
+          "precision": 100.0,
+          "recall": 100.0,
+          "rechazo_correcto": null,
+          "exactitud": 100.0
+        },
+        "2": {
+          "VP": 16,
+          "VN": 0,
+          "FP": 0,
+          "FN": 0,
+          "errores_etiquetado": 16,
+          "precision": 100.0,
+          "recall": 100.0,
+          "rechazo_correcto": null,
+          "exactitud": 100.0
+        },
+        "3": {
+          "VP": 0,
+          "VN": 12,
+          "FP": 0,
+          "FN": 0,
+          "errores_etiquetado": 0,
+          "precision": null,
+          "recall": null,
+          "rechazo_correcto": 100.0,
+          "exactitud": 100.0
+        }
+      }
+    }
+  },
+  "cumplimiento_llm": {
+    "llm_zero_shot": {
+      "reglas_citadas": 346,
+      "reglas_inexistentes": 0,
+      "arboles_comparables": 28,
+      "arboles_identicos_al_parser": 24,
+      "errores_etiquetado_por_tipo": {
+        "palabra_omitida_o_alterada": 2
+      }
+    },
+    "llm_few_shot": {
+      "reglas_citadas": 322,
+      "reglas_inexistentes": 3,
+      "arboles_comparables": 28,
+      "arboles_identicos_al_parser": 23,
+      "errores_etiquetado_por_tipo": {
+        "sin_categoria": 22
+      }
+    }
+  }
+}

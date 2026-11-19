@@ -1,4 +1,4 @@
-# Proyecto TLP02-2026 — Fase 1
+# Proyecto TLP02-2026 — Fases 1 y 2
 
 ## Descripción
 
@@ -19,7 +19,8 @@ El parser **solo comprueba sintaxis**: no verifica que las variables estén decl
   sistema suele ser 3.9 y choca con el nombre del paquete `parser/`).
 - Las pruebas usan `unittest` (incluido en Python). El parser de C++ y la extensión al español
   no requieren dependencias externas.
-- spaCy solo hace falta para la comparación NLP (`nlp/`).
+- spaCy y Transformers solo hacen falta para la comparación NLP (`nlp/`); `google-genai` y
+  `python-dotenv` para el LLM (`llm/`); `matplotlib` y `numpy` para la evaluación (`evaluacion/`).
 
 ## Instalación
 
@@ -153,10 +154,87 @@ lexer o el análisis predictivo. El motivo de cada rechazo se clasifica en
 `falta_determinante` o `estructura_no_contemplada`, junto con la regla de la gramática que lo
 decide.
 
+# Fase 2: LLM mediante API (Gemini)
+
+El LLM recibe la gramática completa (`espanol/grammar.py`) y el léxico (`espanol/lexer.py`)
+y decide si cada oración pertenece al lenguaje. Hay dos modalidades con **las mismas
+instrucciones**; few-shot solo añade 4 ejemplos resueltos (2 aceptados, 2 rechazados, ninguno
+del corpus).
+
+**Configuración** (no subir claves al repositorio):
+
+```bash
+cp .env.example .env      # Windows: copy .env.example .env
+# editar .env y colocar GEMINI_API_KEY
+```
+
+**Ejecución:**
+
+```bash
+python -m llm.ejecutar_llm ambos       # o: zero-shot / few-shot
+```
+
+| Elemento | Ubicación |
+|---|---|
+| Prompt zero-shot exacto | `llm/prompt_zero_shot.txt` |
+| Prompt few-shot exacto | `llm/prompt_few_shot.txt` |
+| Código | `llm/ejecutar_llm.py`, `llm/prompts.py` |
+| Log consolidado (lo lee la evaluación) | `logs/llm_zero_shot.json`, `logs/llm_few_shot.json` |
+| Evidencia original de cada ejecución | `logs/llm_<modo>_<AAAAMMDD_HHMMSS>/` |
+
+En los `.txt`, el marcador `<<ORACIONES_A_EVALUAR>>` se sustituye por las 5 oraciones de
+cada lote; el prompt exacto de cada llamada queda en `prompt_lote_XX.txt`. Si se modifica
+la gramática, regenerar los `.txt` con `python -m llm.prompts` (el ejecutor se niega a
+correr si no coinciden con el código).
+
+Cada llamada a la API (incluidos los reintentos por errores 503) queda en `llamadas.json`
+con timestamp de inicio y fin, estado, error, versión del modelo que respondió y tokens
+usados. Modelo, parámetros (`temperature=0`, `response_mime_type=application/json`, lotes
+de 5), versiones y hash del corpus quedan en `metadatos.json`. Detalles en
+[`llm/README.md`](llm/README.md).
+
+# Fase 2: evaluación, tablas y gráficas
+
+```bash
+python -m evaluacion.evaluar
+```
+
+Lee los cinco logs (`logs/parser_propio.json`, `logs/spacy.json`,
+`logs/segunda_herramienta.json`, `logs/llm_zero_shot.json`, `logs/llm_few_shot.json`),
+compara cada decisión con la etiqueta de `corpus/corpus_pruebas.csv` y **regenera** todas
+las tablas y gráficas. No hay resultados escritos a mano: con los mismos logs produce
+exactamente los mismos archivos.
+
+| Archivo | Contenido |
+|---|---|
+| `evaluacion/resultados.csv` | Tabla comparativa: precisión, recall, rechazo correcto, VP, VN, FP, FN, errores de etiquetado y exactitud por enfoque |
+| `evaluacion/tabla_comparativa.md` | Las mismas tablas en Markdown, para el informe |
+| `evaluacion/resultados_por_nivel.csv` | VP/VN/FP/FN y errores por nivel de complejidad |
+| `evaluacion/resultados_por_oracion.csv` | Decisión y clasificación de los 5 enfoques en cada oración |
+| `evaluacion/cumplimiento_llm.csv` | Reglas citadas por el LLM que no existen en la CFG, errores de etiquetado y si su árbol coincide con el del parser |
+| `evaluacion/resultados.json` | Todo lo anterior |
+| `evaluacion/graficas/metricas_comparativas.png` | Barras agrupadas: precisión, recall y rechazo correcto |
+| `evaluacion/graficas/errores_comparativos.png` | FP, FN y errores de etiquetado |
+| `evaluacion/graficas/errores_por_nivel.png` | Errores de clasificación por nivel |
+
+Fórmulas (positivo = ACEPTADA): Precisión = VP/(VP+FP), Recall = VP/(VP+FN),
+Rechazo correcto = VN/(VN+FP).
+
+## Versiones utilizadas
+
+| Componente | Versión |
+|---|---|
+| Python | 3.15.2 (parser, NLP, evaluación) |
+| spaCy / modelo | 3.8.18 / `es_core_news_sm` 3.8.0 |
+| Transformers / torch | 5.23.0 / 2.15.0 (CPU) |
+| google-genai / python-dotenv | 3.5.0 / 1.2.4 |
+| Modelo LLM | `gemini-3.5-flash-lite`, temperatura 0 |
+| matplotlib / numpy | 3.11.2 / 2.5.5 |
+
 ## Pruebas
 
 ```bash
-# C++ + español + corpus de la Fase 2 (41 pruebas)
+# C++ + español + corpus + LLM y evaluación de la Fase 2 (57 pruebas)
 python -m unittest discover -s tests -t . -v
 
 # Solo la extensión al español
@@ -175,27 +253,14 @@ comportamiento del lexer; precedencia/asociatividad en el AST; y la extensión a
 (`tests/test_espanol.py`: oraciones válidas, discordancias y el conflicto LL(1) de la
 coordinación) y, en `tests/test_corpus.py`, que las 40 oraciones del corpus coincidan con su
 etiqueta, que los motivos de rechazo se clasifiquen bien y que se generen el log y los
-árboles. Resultado esperado: `OK` (41 pruebas).
+árboles; y, en `tests/test_llm_evaluacion.py`, las fórmulas de las métricas, que los
+prompts `.txt` coincidan con el código y compartan instrucciones, la validación de las
+respuestas del LLM y que la evaluación reproduzca los resúmenes de cada log.
+Resultado esperado: `OK` (57 pruebas).
 
 Para agregar un caso de C++, basta con crear un archivo `.cpp` en `tests/valid/` o
 `tests/invalid/`. Para el español, se añade una línea en `examples/espanol_valid.txt` o
 `examples/espanol_invalid.txt`.
-
-### Evaluación con modelos de lenguaje (Gemini)
-
-Se incorporó una evaluación adicional utilizando Gemini 3.5 Flash-Lite mediante dos estrategias de prompting:
-
-- **Zero-Shot:** clasificación utilizando las instrucciones, la gramática y el léxico, sin ejemplos resueltos.
-- **Few-Shot:** clasificación utilizando las mismas instrucciones, gramática y léxico, incorporando cuatro ejemplos resueltos.
-
-Ambas modalidades se evaluaron sobre las 40 oraciones del corpus y obtuvieron un **100 % de exactitud**, con 28 verdaderos positivos, 12 verdaderos negativos y ningún error de clasificación.
-
-Los scripts, requisitos de configuración, metodología, instrucciones de ejecución y resultados detallados se encuentran en [`llm/README.md`](llm/README.md).
-
-Los registros completos de ejecución se encuentran en:
-
-- `logs/llm_zero_shot_20261118_150630/`
-- `logs/llm_few_shot_20261118_153422/`
 
 ## Estructura
 
@@ -220,21 +285,26 @@ TLP02-2026/
 ├── corpus/
 │   ├── corpus_pruebas.csv       # 40 oraciones con etiqueta esperada
 │   └── criterios_diseno_corpus.md
-├── llm/                    # Fase 2: evaluación con Gemini (Zero-Shot y Few-Shot)
-│   ├── ejecutar_zero_shot.py   # Ejecución del experimento Zero-Shot
-│   ├── ejecutar_few_shot.py    # Ejecución del experimento Few-Shot
-│   ├── evaluar_llm.py          # Evaluación de métricas para ambas modalidades
-│   ├── recuperar_lote.py       # Recuperación de lotes Zero-Shot
-│   ├── recuperar_few_shot.py   # Recuperación de lotes Few-Shot
-│   ├── prompts.py              # Construcción de prompts y ejemplos Few-Shot
-│   ├── probar_gemini.py        # Prueba de conexión con Gemini
-│   └── README.md               # Documentación de la evaluación con LLM
+├── .env.example           # plantilla sin credenciales (copiar a .env)
+├── llm/                   # Fase 2: LLM mediante API (Gemini)
+│   ├── prompt_zero_shot.txt    # prompt zero-shot exacto
+│   ├── prompt_few_shot.txt     # prompt few-shot exacto
+│   ├── prompts.py              # genera los prompts desde la gramática y el léxico
+│   ├── ejecutar_llm.py         # ejecuta zero-shot / few-shot y guarda la evidencia
+│   └── README.md
+├── evaluacion/            # Fase 2: métricas, tablas y gráficas de los 5 enfoques
+│   ├── evaluar.py
+│   ├── resultados.csv, tabla_comparativa.md, resultados_*.csv, cumplimiento_llm.csv
+│   └── graficas/
 ├── logs/
 │   ├── parser_propio.json       # log completo del parser propio
 │   ├── parser_propio.txt
 │   ├── parser_propio_resultados.csv
 │   ├── spacy.json               # log de spaCy (nlp/spacy_comparison.py)
 │   ├── segunda_herramienta.json # log de Transformers (nlp/segunda_herramienta.py)
+│   ├── llm_zero_shot.json       # log consolidado del LLM (llm/ejecutar_llm.py)
+│   ├── llm_few_shot.json
+│   ├── llm_<modo>_<fecha>/      # prompts, respuestas brutas y llamadas de cada ejecución
 │   └── arboles/                 # árboles de las oraciones aceptadas
 ├── nlp/                   # Fase 2: herramientas modernas de NLP (ver nlp/README.md)
 │   ├── spacy_comparison.py     # spaCy + es_core_news_sm -> logs/spacy.json
@@ -246,6 +316,7 @@ TLP02-2026/
 │   ├── test_parser.py
 │   ├── test_espanol.py
 │   ├── test_corpus.py
+│   ├── test_llm_evaluacion.py  # prompts, validación de respuestas y evaluación
 │   ├── valid/             # programas que deben aceptarse
 │   └── invalid/           # programas que deben rechazarse
 ├── examples/              # un caso por línea, para la demo

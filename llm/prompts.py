@@ -8,6 +8,8 @@ Experimentos:
 """
 
 import json
+import sys
+from pathlib import Path
 
 from espanol.grammar import START, PRODUCTIONS, TERMINALS
 from espanol.lexer import LEXICON
@@ -109,7 +111,20 @@ Justificacion: {ejemplo["justificacion"]}
 # 4. Construir el prompt base
 # --------------------------------------------------
 
-def construir_prompt(oraciones, incluir_ejemplos=False):
+MARCADOR_ORACIONES = "<<ORACIONES_A_EVALUAR>>"
+
+RUTA_PLANTILLAS = {
+    "zero-shot": Path(__file__).resolve().parent / "prompt_zero_shot.txt",
+    "few-shot": Path(__file__).resolve().parent / "prompt_few_shot.txt",
+}
+
+
+def construir_plantilla(incluir_ejemplos=False):
+    """
+    Devuelve el prompt completo con un marcador en lugar de las oraciones.
+    Es exactamente el texto que se envia a la API; solo cambia el bloque
+    final de oraciones de cada lote.
+    """
 
     gramatica = formatear_gramatica()
     lexico = formatear_lexico()
@@ -234,10 +249,18 @@ INDICACIONES PARA EL JSON:
 
 ORACIONES A EVALUAR:
 
-{json.dumps(oraciones, ensure_ascii=False, indent=2)}
+{MARCADOR_ORACIONES}
 """
 
     return instrucciones.strip()
+
+
+def construir_prompt(oraciones, incluir_ejemplos=False):
+    plantilla = construir_plantilla(incluir_ejemplos)
+    return plantilla.replace(
+        MARCADOR_ORACIONES,
+        json.dumps(oraciones, ensure_ascii=False, indent=2)
+    )
 
 
 # --------------------------------------------------
@@ -250,3 +273,43 @@ def construir_prompt_zero_shot(oraciones):
 
 def construir_prompt_few_shot(oraciones):
     return construir_prompt(oraciones, incluir_ejemplos=True)
+
+
+def plantilla_por_modo(modo):
+    return construir_plantilla(incluir_ejemplos=(modo == "few-shot"))
+
+
+def exportar_plantillas():
+    """Escribe llm/prompt_zero_shot.txt y llm/prompt_few_shot.txt."""
+    for modo, ruta in RUTA_PLANTILLAS.items():
+        ruta.write_text(plantilla_por_modo(modo) + "\n", encoding="utf-8")
+        print(f"Plantilla {modo} escrita en {ruta.name}")
+
+
+def verificar_plantillas():
+    """
+    Comprueba que los .txt versionados coinciden con el prompt que genera
+    el codigo. Devuelve la lista de modos desactualizados.
+    """
+    desactualizados = []
+    for modo, ruta in RUTA_PLANTILLAS.items():
+        if not ruta.exists():
+            desactualizados.append(modo)
+            continue
+        en_disco = ruta.read_text(encoding="utf-8").rstrip("\n")
+        if en_disco != plantilla_por_modo(modo):
+            desactualizados.append(modo)
+    return desactualizados
+
+
+if __name__ == "__main__":
+    # python -m llm.prompts            -> regenera los .txt
+    # python -m llm.prompts --verificar -> solo comprueba
+    if "--verificar" in sys.argv:
+        pendientes = verificar_plantillas()
+        if pendientes:
+            print("Plantillas desactualizadas:", ", ".join(pendientes))
+            sys.exit(1)
+        print("Plantillas al dia.")
+    else:
+        exportar_plantillas()

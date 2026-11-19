@@ -1,0 +1,16 @@
+﻿enfoque,nivel,VP,VN,FP,FN,errores_clasificacion,errores_etiquetado,exactitud
+Parser propio,1,12,0,0,0,0,0,100.00
+Parser propio,2,16,0,0,0,0,0,100.00
+Parser propio,3,0,12,0,0,0,0,100.00
+spaCy,1,10,0,0,2,2,2,83.33
+spaCy,2,13,0,0,3,3,4,81.25
+spaCy,3,0,9,3,0,3,2,75.00
+HuggingFace,1,12,0,0,0,0,0,100.00
+HuggingFace,2,16,0,0,0,0,0,100.00
+HuggingFace,3,0,5,7,0,7,0,41.67
+LLM zero-shot,1,12,0,0,0,0,0,100.00
+LLM zero-shot,2,16,0,0,0,0,2,100.00
+LLM zero-shot,3,0,12,0,0,0,0,100.00
+LLM few-shot,1,12,0,0,0,0,6,100.00
+LLM few-shot,2,16,0,0,0,0,16,100.00
+LLM few-shot,3,0,12,0,0,0,0,100.00
