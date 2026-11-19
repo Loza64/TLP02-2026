@@ -1,0 +1,71 @@
+{
+  "tipo_prompt": "few-shot",
+  "modelo": "gemini-3.5-flash-lite",
+  "temperatura": 0,
+  "formato_respuesta": "application/json",
+  "total_oraciones": 40,
+  "total_lotes": 8,
+  "tamano_lote": 5,
+  "ejemplos_few_shot": 4,
+  "resultados_obtenidos": 40,
+  "errores": [
+    {
+      "lote": 1,
+      "ids": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "tipo": "ServerError",
+      "mensaje": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+    },
+    {
+      "lote": 2,
+      "ids": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "tipo": "ServerError",
+      "mensaje": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+    },
+    {
+      "lote": 4,
+      "ids": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "tipo": "ServerError",
+      "mensaje": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+    },
+    {
+      "lote": 6,
+      "ids": [
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "tipo": "ServerError",
+      "mensaje": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+    }
+  ],
+  "inicio": "2026-11-18T15:34:22.236161-06:00",
+  "fin": "2026-11-18T15:34:48.629969-06:00",
+  "duracion_segundos": 26.39,
+  "hash_sha256_corpus": "8e9ec84c5ccb235e48564f50eea44079c6a42d575b723c5f4b3694b4e6160f89",
+  "commit_git": "76648968bf217a27ce8ef841dc5b7177bb560f61",
+  "sistema_operativo": "Windows-10-10.0.19045-SP0",
+  "version_python": "3.13.3",
+  "recuperacion_realizada": true,
+  "errores_pendientes": [],
+  "recuperacion": "recuperacion.json"
+}

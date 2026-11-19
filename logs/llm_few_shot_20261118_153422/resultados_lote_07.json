@@ -1,0 +1,44 @@
+{
+  "resultados": [
+    {
+      "id": 31,
+      "oracion": "Los gato negros duermen.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "El determinante plural masculino 'Los' y el adjetivo plural masculino 'negros' no concuerdan en número con el sustantivo singular masculino 'gato'.",
+      "estructura": null
+    },
+    {
+      "id": 32,
+      "oracion": "El gato negro duermen.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "El sujeto es singular ('El gato negro') pero el verbo 'duermen' está conjugado en plural, por lo que no se cumple la concordancia de número entre el sujeto y el verbo.",
+      "estructura": null
+    },
+    {
+      "id": 33,
+      "oracion": "Los gatos que corre duermen.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "Dentro de la opción subordinada del sujeto plural, el verbo 'corre' está en singular, lo cual no concuerda con el sujeto plural 'Los gatos'.",
+      "estructura": null
+    },
+    {
+      "id": 34,
+      "oracion": "La gata negro duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "El adjetivo 'negro' es masculino singular y no concuerda en género con el sustantivo femenino singular 'gata'.",
+      "estructura": null
+    },
+    {
+      "id": 35,
+      "oracion": "El elefante negro duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La palabra 'elefante' no pertenece al léxico proporcionado por la gramática.",
+      "estructura": null
+    }
+  ]
+}

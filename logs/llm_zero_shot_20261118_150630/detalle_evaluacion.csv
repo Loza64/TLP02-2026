@@ -1,0 +1,41 @@
+﻿id,oracion,nivel,esperado,predicho,categoria,correcto
+1,El gato negro duerme.,1,ACEPTADA,ACEPTADA,VP,True
+2,La gata negra corre.,1,ACEPTADA,ACEPTADA,VP,True
+3,Los gatos negros duermen.,1,ACEPTADA,ACEPTADA,VP,True
+4,Las gatas negras corren.,1,ACEPTADA,ACEPTADA,VP,True
+5,El niño juega.,1,ACEPTADA,ACEPTADA,VP,True
+6,La niña duerme.,1,ACEPTADA,ACEPTADA,VP,True
+7,Un perro corre.,1,ACEPTADA,ACEPTADA,VP,True
+8,Una perra juega.,1,ACEPTADA,ACEPTADA,VP,True
+9,Los niños juegan.,1,ACEPTADA,ACEPTADA,VP,True
+10,Las niñas duermen.,1,ACEPTADA,ACEPTADA,VP,True
+11,El perro grande duerme.,1,ACEPTADA,ACEPTADA,VP,True
+12,La niña grande corre.,1,ACEPTADA,ACEPTADA,VP,True
+13,La gata muy rápida corre rápidamente en el jardín.,2,ACEPTADA,ACEPTADA,VP,True
+14,El perro negro juega tranquilamente bajo la casa.,2,ACEPTADA,ACEPTADA,VP,True
+15,El gato negro corre rápidamente.,2,ACEPTADA,ACEPTADA,VP,True
+16,El niño juega en el parque.,2,ACEPTADA,ACEPTADA,VP,True
+17,Los gatos negros duermen tranquilamente.,2,ACEPTADA,ACEPTADA,VP,True
+18,La niña corre rápidamente en la casa.,2,ACEPTADA,ACEPTADA,VP,True
+19,El niño que corre juega en la casa.,2,ACEPTADA,ACEPTADA,VP,True
+20,El niño observa que la gata duerme.,2,ACEPTADA,ACEPTADA,VP,True
+21,La gata muy negra duerme tranquilamente.,2,ACEPTADA,ACEPTADA,VP,True
+22,Los perros grandes juegan en el parque.,2,ACEPTADA,ACEPTADA,VP,True
+23,Las niñas rápidas corren rápidamente.,2,ACEPTADA,ACEPTADA,VP,True
+24,El perro observa que el gato duerme.,2,ACEPTADA,ACEPTADA,VP,True
+25,Un niño grande juega con la niña.,2,ACEPTADA,ACEPTADA,VP,True
+26,Las gatas negras duermen bajo la casa.,2,ACEPTADA,ACEPTADA,VP,True
+27,El gato que duerme corre en el jardín.,2,ACEPTADA,ACEPTADA,VP,True
+28,Los niños que juegan observan que la gata corre.,2,ACEPTADA,ACEPTADA,VP,True
+29,El gato negra duerme.,3,RECHAZADA,RECHAZADA,VN,True
+30,El niño y la niña duermen.,3,RECHAZADA,RECHAZADA,VN,True
+31,Los gato negros duermen.,3,RECHAZADA,RECHAZADA,VN,True
+32,El gato negro duermen.,3,RECHAZADA,RECHAZADA,VN,True
+33,Los gatos que corre duermen.,3,RECHAZADA,RECHAZADA,VN,True
+34,La gata negro duerme.,3,RECHAZADA,RECHAZADA,VN,True
+35,El elefante negro duerme.,3,RECHAZADA,RECHAZADA,VN,True
+36,Gato negro duerme.,3,RECHAZADA,RECHAZADA,VN,True
+37,El gato duerme en.,3,RECHAZADA,RECHAZADA,VN,True
+38,El niño observa que.,3,RECHAZADA,RECHAZADA,VN,True
+39,Los niños y las niñas juegan.,3,RECHAZADA,RECHAZADA,VN,True
+40,El gato muy negras duerme.,3,RECHAZADA,RECHAZADA,VN,True

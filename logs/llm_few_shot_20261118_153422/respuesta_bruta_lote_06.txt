@@ -1,0 +1,91 @@
+{
+  "resultados": [
+    {
+      "id": 26,
+      "oracion": "Las gatas negras duermen bajo la casa.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl",
+        "Sujeto_pl -> SN_f_pl SubOpt_pl",
+        "SN_f_pl -> det_f_pl n_f_pl ModNom_f_pl",
+        "ModNom_f_pl -> Adj_f_pl",
+        "Adj_f_pl -> adj_f_pl",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_f_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε"
+      ],
+      "justificacion": "La oración cumple estrictamente con la concordancia de género y número femenino plural en el sujeto, verbo plural, adverbio vacío y una frase preposicional válida formada por la preposición bajo y el SN femenino singular.",
+      "estructura": "[Oracion [Sujeto_pl [SN_f_pl [det_f_pl Las] [n_f_pl gatas] [ModNom_f_pl [Adj_f_pl [adj_f_pl negras]]]] [SubOpt_pl ε]] [SV_pl [v_pl duermen] [RestoSV [AdvOpt ε] [SPOpt [prep bajo] [SN_Prep [SN_f_sg [det_f_sg la] [n_f_sg casa] [ModNom_f_sg ε]]]]]] .]"
+    },
+    {
+      "id": 27,
+      "oracion": "El gato que duerme corre en el jardín.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> que SV_sg",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_m_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε"
+      ],
+      "justificacion": "La oración presenta un sujeto masculino singular modificado por una subordinada de relativo introducida por 'que' con un verbo singular, seguido del verbo principal y una frase preposicional.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg El] [n_m_sg gato] [ModNom_m_sg ε]] [SubOpt_sg [que que] [SV_sg [v_sg duerme] [RestoSV [AdvOpt ε] [SPOpt ε]]]]] [SV_sg [v_sg corre] [RestoSV [AdvOpt ε] [SPOpt [prep en] [SN_Prep [SN_m_sg [det_m_sg el] [n_m_sg jardín] [ModNom_m_sg ε]]]]]] .]"
+    },
+    {
+      "id": 28,
+      "oracion": "Los niños que juegan observan que la gata corre.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl",
+        "Sujeto_pl -> SN_m_pl SubOpt_pl",
+        "SN_m_pl -> det_m_pl n_m_pl ModNom_m_pl",
+        "ModNom_m_pl -> ε",
+        "SubOpt_pl -> que SV_pl",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε",
+        "RestoSV -> que Clausula",
+        "Clausula -> Sujeto_sg SV_sg",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "Derivación válida que incluye un sujeto plural masculino con proposición subordinada, verbo plural principal y un complemento de régimen u oración subordinada introducida por 'que'.",
+      "estructura": "[Oracion [Sujeto_pl [SN_m_pl [det_m_pl Los] [n_m_pl niños] [ModNom_m_pl ε]] [SubOpt_pl [que que] [SV_pl [v_pl juegan] [RestoSV [AdvOpt ε] [SPOpt ε]]]]] [SV_pl [v_pl observan] [RestoSV [que que] [Clausula [Sujeto_sg [SN_f_sg [det_f_sg la] [n_f_sg gata] [ModNom_f_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg corre] [RestoSV [AdvOpt ε] [SPOpt ε]]]]]] .]"
+    },
+    {
+      "id": 29,
+      "oracion": "El gato negra duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "Error de concordancia de género: el determinante 'El' y el sustantivo 'gato' son masculinos singulares, mientras que el adjetivo 'negra' es femenino singular. No existe producción para esta combinación en ModNom_m_sg.",
+      "estructura": null
+    },
+    {
+      "id": 30,
+      "oracion": "El niño y la niña duermen.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La gramática no contempla construcciones de coordinación con la conjunción 'y' para formar sujetos compuestos (SNconjunto). No existe una regla de producción que soporte 'SN conj SN'.",
+      "estructura": null
+    }
+  ]
+}

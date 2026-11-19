@@ -118,7 +118,7 @@ xdg-open nlp/results/arboles_dependencias_nlp.html
 start nlp/results/arboles_dependencias_nlp.html
 ```
 
-### Fase 2: parser propio con el corpus de prueba
+# Fase 2: parser propio con el corpus de prueba
 
 Ejecuta las 40 oraciones de `corpus/corpus_pruebas.csv` con el parser LL(1) del español y
 guarda la evidencia en `logs/`. No requiere dependencias externas.
@@ -181,6 +181,22 @@ Para agregar un caso de C++, basta con crear un archivo `.cpp` en `tests/valid/`
 `tests/invalid/`. Para el español, se añade una línea en `examples/espanol_valid.txt` o
 `examples/espanol_invalid.txt`.
 
+### Evaluación con modelos de lenguaje (Gemini)
+
+Se incorporó una evaluación adicional utilizando Gemini 3.5 Flash-Lite mediante dos estrategias de prompting:
+
+- **Zero-Shot:** clasificación utilizando las instrucciones, la gramática y el léxico, sin ejemplos resueltos.
+- **Few-Shot:** clasificación utilizando las mismas instrucciones, gramática y léxico, incorporando cuatro ejemplos resueltos.
+
+Ambas modalidades se evaluaron sobre las 40 oraciones del corpus y obtuvieron un **100 % de exactitud**, con 28 verdaderos positivos, 12 verdaderos negativos y ningún error de clasificación.
+
+Los scripts, requisitos de configuración, metodología, instrucciones de ejecución y resultados detallados se encuentran en [`llm/README.md`](llm/README.md).
+
+Los registros completos de ejecución se encuentran en:
+
+- `logs/llm_zero_shot_20261118_150630/`
+- `logs/llm_few_shot_20261118_153422/`
+
 ## Estructura
 
 ```
@@ -204,6 +220,15 @@ TLP02-2026/
 ├── corpus/
 │   ├── corpus_pruebas.csv       # 40 oraciones con etiqueta esperada
 │   └── criterios_diseno_corpus.md
+├── llm/                    # Fase 2: evaluación con Gemini (Zero-Shot y Few-Shot)
+│   ├── ejecutar_zero_shot.py   # Ejecución del experimento Zero-Shot
+│   ├── ejecutar_few_shot.py    # Ejecución del experimento Few-Shot
+│   ├── evaluar_llm.py          # Evaluación de métricas para ambas modalidades
+│   ├── recuperar_lote.py       # Recuperación de lotes Zero-Shot
+│   ├── recuperar_few_shot.py   # Recuperación de lotes Few-Shot
+│   ├── prompts.py              # Construcción de prompts y ejemplos Few-Shot
+│   ├── probar_gemini.py        # Prueba de conexión con Gemini
+│   └── README.md               # Documentación de la evaluación con LLM
 ├── logs/
 │   ├── parser_propio.json       # log completo del parser propio
 │   ├── parser_propio.txt

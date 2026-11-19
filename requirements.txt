@@ -10,3 +10,7 @@ transformers==5.23.0
 # torch solo CPU (más liviano); instalar ANTES con:
 #   pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
 torch==2.15.0
+
+# --- Fase 2: evaluación con LLM (llm/) ---
+google-genai==3.5.0
+python-dotenv==1.2.4

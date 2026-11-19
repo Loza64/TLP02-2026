@@ -1,0 +1,44 @@
+{
+  "resultados": [
+    {
+      "id": 36,
+      "oracion": "Gato negro duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La oración carece de determinante inicial, el cual es obligatorio en las reglas de SN_m_sg.",
+      "estructura": null
+    },
+    {
+      "id": 37,
+      "oracion": "El gato duerme en.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La preposición 'en' requiere un SN_Prep a continuación según la regla SPOpt -> prep SN_Prep, pero la oración termina abruptamente.",
+      "estructura": null
+    },
+    {
+      "id": 38,
+      "oracion": "El niño observa que.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La conjunción 'que' requiere una Cláusula completa a continuación según la regla RestoSV -> que Clausula, pero la oración finaliza sin ella.",
+      "estructura": null
+    },
+    {
+      "id": 39,
+      "oracion": "Los niños y las niñas juegan.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La gramática no contempla producciones para la conjunción 'y' ni para la coordinación de sintagmas nominales.",
+      "estructura": null
+    },
+    {
+      "id": 40,
+      "oracion": "El gato muy negras duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "Error de concordancia de género y número: 'muy negras' es femenino plural mientras que 'gato' es masculino singular.",
+      "estructura": null
+    }
+  ]
+}
