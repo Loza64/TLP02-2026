@@ -1,0 +1,45 @@
+{
+  "enfoque": "LLM mediante API",
+  "modo": "few-shot",
+  "proveedor": "Google Gemini",
+  "modelo": "gemini-3.5-flash-lite",
+  "parametros": {
+    "temperature": 0,
+    "response_mime_type": "application/json",
+    "tamano_lote": 5,
+    "max_intentos_por_lote": 5,
+    "espera_base_segundos": 10
+  },
+  "ejemplos_few_shot": 4,
+  "prompt_plantilla": "llm/prompt_few_shot.txt",
+  "prompt_plantilla_sha256": "7827e82c404d2357e5e13327c6790ac68a405532a6308494b844cbfe87fe5178",
+  "corpus": "corpus/corpus_pruebas.csv",
+  "corpus_sha256": "8e9ec84c5ccb235e48564f50eea44079c6a42d575b723c5f4b3694b4e6160f89",
+  "total_oraciones": 40,
+  "total_lotes": 8,
+  "total_llamadas": 37,
+  "llamadas_fallidas": 29,
+  "resultados_obtenidos": 40,
+  "lotes_pendientes": [],
+  "inicio": "2026-11-19T09:25:53.347060-06:00",
+  "fin": "2026-11-19T09:34:37.812251-06:00",
+  "duracion_segundos": 524.47,
+  "entorno": {
+    "python": "3.13.3",
+    "sistema_operativo": "Windows-10-10.0.19045-SP0",
+    "google_genai": "3.5.0",
+    "commit_git": "950e2ccb1580d7ee9202635580376271837aafad"
+  },
+  "carpeta_evidencia": "logs/llm_few_shot_20261119_092553",
+  "ultima_recuperacion": {
+    "inicio": "2026-11-19T10:46:32.718295-06:00",
+    "fin": "2026-11-19T10:47:28.865776-06:00",
+    "duracion_segundos": 56.15,
+    "carpeta": "logs/llm_few_shot_20261119_092553/recuperaciones/recuperacion_20261119_104632",
+    "lotes_intentados": [
+      4
+    ],
+    "lotes_pendientes": [],
+    "llamadas_realizadas": 3
+  }
+}

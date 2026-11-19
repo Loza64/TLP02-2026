@@ -1,0 +1,258 @@
+Actua como un analizador sintactico formal
+especializado en gramatica libre de contexto (CFG).
+
+OBJETIVO:
+
+Determinar si cada oracion pertenece al lenguaje
+generado por la gramatica proporcionada.
+
+IMPORTANTE:
+
+No debes determinar si una oracion es correcta
+en el espanol general.
+
+Debes determinar exclusivamente si puede generarse
+mediante las producciones de esta gramatica y
+utilizando las palabras de su lexico.
+
+REGLAS DE EVALUACION:
+
+1. Utiliza exclusivamente las producciones indicadas.
+2. Comienza siempre desde el simbolo inicial.
+3. Respeta las categorias terminales del lexico.
+4. Respeta la concordancia de genero y numero
+   entre determinantes, sustantivos y adjetivos.
+5. Respeta la concordancia de numero entre
+   el sujeto y el verbo.
+6. No aceptes palabras que no aparezcan en el lexico.
+7. No inventes producciones ni estructuras.
+8. No completes estructuras incompletas por intuicion.
+9. No aceptes coordinaciones u otras construcciones
+   que no esten contempladas en las producciones.
+10. Una oracion gramatical en espanol puede ser
+    rechazada si no pertenece al lenguaje de esta CFG.
+
+DECISIONES:
+
+- ACEPTADA: la oracion puede derivarse desde el
+  simbolo inicial utilizando las producciones y
+  terminales proporcionados.
+- RECHAZADA: no existe una derivacion valida
+  para la oracion o contiene palabras fuera del lexico.
+
+GRAMATICA:
+
+Simbolo inicial: Oracion
+
+Producciones:
+Oracion -> Sujeto_sg SV_sg .
+Oracion -> Sujeto_pl SV_pl .
+Sujeto_sg -> SN_m_sg SubOpt_sg
+Sujeto_sg -> SN_f_sg SubOpt_sg
+Sujeto_pl -> SN_m_pl SubOpt_pl
+Sujeto_pl -> SN_f_pl SubOpt_pl
+SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg
+SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg
+SN_m_pl -> det_m_pl n_m_pl ModNom_m_pl
+SN_f_pl -> det_f_pl n_f_pl ModNom_f_pl
+ModNom_m_sg -> Adj_m_sg
+ModNom_m_sg -> adv_intens Adj_m_sg
+ModNom_m_sg -> ε
+Adj_m_sg -> adj_m_sg
+Adj_m_sg -> adj_inv_sg
+ModNom_f_sg -> Adj_f_sg
+ModNom_f_sg -> adv_intens Adj_f_sg
+ModNom_f_sg -> ε
+Adj_f_sg -> adj_f_sg
+Adj_f_sg -> adj_inv_sg
+ModNom_m_pl -> Adj_m_pl
+ModNom_m_pl -> adv_intens Adj_m_pl
+ModNom_m_pl -> ε
+Adj_m_pl -> adj_m_pl
+Adj_m_pl -> adj_inv_pl
+ModNom_f_pl -> Adj_f_pl
+ModNom_f_pl -> adv_intens Adj_f_pl
+ModNom_f_pl -> ε
+Adj_f_pl -> adj_f_pl
+Adj_f_pl -> adj_inv_pl
+SubOpt_sg -> que SV_sg
+SubOpt_sg -> ε
+SubOpt_pl -> que SV_pl
+SubOpt_pl -> ε
+SV_sg -> v_sg RestoSV
+SV_pl -> v_pl RestoSV
+RestoSV -> que Clausula
+RestoSV -> AdvOpt SPOpt
+Clausula -> Sujeto_sg SV_sg
+Clausula -> Sujeto_pl SV_pl
+AdvOpt -> adv_modo
+AdvOpt -> ε
+SPOpt -> prep SN_Prep
+SPOpt -> ε
+SN_Prep -> SN_m_sg
+SN_Prep -> SN_f_sg
+SN_Prep -> SN_m_pl
+SN_Prep -> SN_f_pl
+
+TERMINALES:
+det_m_sg, det_f_sg, det_m_pl, det_f_pl, n_m_sg, n_f_sg, n_m_pl, n_f_pl, adj_m_sg, adj_f_sg, adj_m_pl, adj_f_pl, adj_inv_sg, adj_inv_pl, v_sg, v_pl, adv_intens, adv_modo, prep, que, conj, .
+
+LEXICO:
+
+Cada palabra debe corresponder a su categoria
+terminal indicada:
+
+bajo -> prep
+casa -> n_f_sg
+con -> prep
+corre -> v_sg
+corren -> v_pl
+duerme -> v_sg
+duermen -> v_pl
+el -> det_m_sg
+en -> prep
+gata -> n_f_sg
+gatas -> n_f_pl
+gato -> n_m_sg
+gatos -> n_m_pl
+grande -> adj_inv_sg
+grandes -> adj_inv_pl
+jardin -> n_m_sg
+jardín -> n_m_sg
+juega -> v_sg
+juegan -> v_pl
+la -> det_f_sg
+las -> det_f_pl
+los -> det_m_pl
+muy -> adv_intens
+negra -> adj_f_sg
+negras -> adj_f_pl
+negro -> adj_m_sg
+negros -> adj_m_pl
+niña -> n_f_sg
+niñas -> n_f_pl
+niño -> n_m_sg
+niños -> n_m_pl
+observa -> v_sg
+observan -> v_pl
+parque -> n_m_sg
+perra -> n_f_sg
+perras -> n_f_pl
+perro -> n_m_sg
+perros -> n_m_pl
+que -> que
+rapida -> adj_f_sg
+rapidamente -> adv_modo
+rapidas -> adj_f_pl
+rapido -> adj_m_sg
+rapidos -> adj_m_pl
+rápida -> adj_f_sg
+rápidamente -> adv_modo
+rápidas -> adj_f_pl
+rápido -> adj_m_sg
+rápidos -> adj_m_pl
+tranquilamente -> adv_modo
+un -> det_m_sg
+una -> det_f_sg
+unas -> det_f_pl
+unos -> det_m_pl
+y -> conj
+
+
+EJEMPLOS RESUELTOS:
+
+Los siguientes ejemplos muestran como aplicar
+las reglas de la gramatica.
+
+Utilizalos como referencia para realizar el analisis,
+pero evalua cada nueva oracion de manera independiente.
+
+Ejemplo 1:
+
+Oracion: Unos perros grandes corren en el parque.
+Decision: ACEPTADA
+Justificacion: La oracion puede derivarse mediante las producciones para sujeto plural masculino, adjetivo invariable, verbo plural y frase preposicional.
+
+Ejemplo 2:
+
+Oracion: La perra corre tranquilamente bajo la casa.
+Decision: ACEPTADA
+Justificacion: La oracion presenta un sujeto femenino singular, un verbo singular, un adverbio de modo y una frase preposicional permitidos por la gramatica.
+
+Ejemplo 3:
+
+Oracion: La gato negro duerme.
+Decision: RECHAZADA
+Justificacion: El determinante femenino singular no concuerda con el sustantivo masculino singular. No existe una produccion que permita esa combinacion.
+
+Ejemplo 4:
+
+Oracion: La perra corren.
+Decision: RECHAZADA
+Justificacion: El sujeto es femenino singular, pero el verbo esta conjugado en plural. No se cumple la concordancia entre sujeto y verbo.
+
+IMPORTANTE:
+Los ejemplos son demostraciones del procedimiento.
+No debes asumir que las oraciones nuevas tienen
+la misma estructura o decision que estos ejemplos.
+
+
+FORMATO DE RESPUESTA:
+
+Devuelve exclusivamente un objeto JSON valido
+con esta estructura:
+
+{
+  "resultados": [
+    {
+      "id": 1,
+      "oracion": "El gato negro duerme.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> ..."
+      ],
+      "justificacion": "Explicacion breve.",
+      "estructura": "Representacion sintactica."
+    }
+  ]
+}
+
+INDICACIONES PARA EL JSON:
+
+- Incluye todos los IDs recibidos.
+- Conserva exactamente el texto de cada oracion.
+- La decision debe ser ACEPTADA o RECHAZADA.
+- Si es RECHAZADA, explica el motivo concreto.
+- No inventes producciones aplicadas.
+- Si no existe una derivacion, deja
+  producciones_aplicadas como lista vacia
+  y estructura como null.
+- Si no puedes determinar una estructura,
+  utiliza null en estructura.
+- No incluyas Markdown ni bloques de codigo.
+- No agregues explicaciones fuera del JSON.
+
+ORACIONES A EVALUAR:
+
+[
+  {
+    "id": 26,
+    "oracion": "Las gatas negras duermen bajo la casa."
+  },
+  {
+    "id": 27,
+    "oracion": "El gato que duerme corre en el jardín."
+  },
+  {
+    "id": 28,
+    "oracion": "Los niños que juegan observan que la gata corre."
+  },
+  {
+    "id": 29,
+    "oracion": "El gato negra duerme."
+  },
+  {
+    "id": 30,
+    "oracion": "El niño y la niña duermen."
+  }
+]

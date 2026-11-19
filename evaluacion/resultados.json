@@ -159,7 +159,7 @@
       }
     },
     "llm_zero_shot": {
-      "fuente": "logs/llm_zero_shot_20261118_150630",
+      "fuente": "logs/llm_zero_shot.json",
       "herramienta": "Google Gemini (gemini-3.5-flash-lite, temperatura 0)",
       "nota_etiquetado": "Categoria de cada palabra en la estructura devuelta frente al lexico de la CFG.",
       "VP": 28,
@@ -170,8 +170,8 @@
       "recall": 100.0,
       "rechazo_correcto": 100.0,
       "exactitud": 100.0,
-      "errores_etiquetado": 2,
-      "oraciones_con_error_etiquetado": 1,
+      "errores_etiquetado": 62,
+      "oraciones_con_error_etiquetado": 10,
       "por_nivel": {
         "1": {
           "VP": 12,
@@ -189,7 +189,7 @@
           "VN": 0,
           "FP": 0,
           "FN": 0,
-          "errores_etiquetado": 2,
+          "errores_etiquetado": 62,
           "precision": 100.0,
           "recall": 100.0,
           "rechazo_correcto": null,
@@ -209,7 +209,7 @@
       }
     },
     "llm_few_shot": {
-      "fuente": "logs/llm_few_shot_20261118_153422",
+      "fuente": "logs/llm_few_shot.json",
       "herramienta": "Google Gemini (gemini-3.5-flash-lite, temperatura 0)",
       "nota_etiquetado": "Categoria de cada palabra en la estructura devuelta frente al lexico de la CFG.",
       "VP": 28,
@@ -220,7 +220,7 @@
       "recall": 100.0,
       "rechazo_correcto": 100.0,
       "exactitud": 100.0,
-      "errores_etiquetado": 22,
+      "errores_etiquetado": 31,
       "oraciones_con_error_etiquetado": 5,
       "por_nivel": {
         "1": {
@@ -228,7 +228,7 @@
           "VN": 0,
           "FP": 0,
           "FN": 0,
-          "errores_etiquetado": 6,
+          "errores_etiquetado": 0,
           "precision": 100.0,
           "recall": 100.0,
           "rechazo_correcto": null,
@@ -239,7 +239,7 @@
           "VN": 0,
           "FP": 0,
           "FN": 0,
-          "errores_etiquetado": 16,
+          "errores_etiquetado": 31,
           "precision": 100.0,
           "recall": 100.0,
           "rechazo_correcto": null,
@@ -261,21 +261,30 @@
   },
   "cumplimiento_llm": {
     "llm_zero_shot": {
-      "reglas_citadas": 346,
+      "reglas_citadas": 327,
       "reglas_inexistentes": 0,
+      "arboles_aceptados": 28,
+      "arboles_mal_formados": 0,
+      "arboles_reconocidos": 28,
       "arboles_comparables": 28,
-      "arboles_identicos_al_parser": 24,
+      "arboles_identicos_al_parser": 18,
+      "porcentaje_arboles_identicos": 64.29,
       "errores_etiquetado_por_tipo": {
-        "palabra_omitida_o_alterada": 2
+        "palabra_omitida_o_alterada": 31,
+        "sin_categoria": 31
       }
     },
     "llm_few_shot": {
-      "reglas_citadas": 322,
+      "reglas_citadas": 327,
       "reglas_inexistentes": 3,
-      "arboles_comparables": 28,
-      "arboles_identicos_al_parser": 23,
+      "arboles_aceptados": 28,
+      "arboles_mal_formados": 2,
+      "arboles_reconocidos": 26,
+      "arboles_comparables": 26,
+      "arboles_identicos_al_parser": 21,
+      "porcentaje_arboles_identicos": 80.77,
       "errores_etiquetado_por_tipo": {
-        "sin_categoria": 22
+        "palabra_omitida_o_alterada": 31
       }
     }
   }

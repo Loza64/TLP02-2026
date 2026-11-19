@@ -1,0 +1,44 @@
+{
+  "resultados": [
+    {
+      "id": 36,
+      "oracion": "Gato negro duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La oracion carece de un determinante obligatorio para el sintagma nominal singular (det_m_sg n_m_sg ModNom_m_sg).",
+      "estructura": null
+    },
+    {
+      "id": 37,
+      "oracion": "El gato duerme en.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La preposicion 'en' requiere un SN_Prep despues para completar SPOpt, pero la oracion termina abruptamente despues de la preposicion.",
+      "estructura": null
+    },
+    {
+      "id": 38,
+      "oracion": "El niño observa que.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La conjuncion/relativo 'que' en RestoSV requiere una Clausula completa despues de ella, y la oracion termina sin dicha clausula.",
+      "estructura": null
+    },
+    {
+      "id": 39,
+      "oracion": "Los niños y las niñas juegan.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La gramatica no contiene producciones que contemplen la conjuncion 'y' para coordinar sintagmas nominales.",
+      "estructura": null
+    },
+    {
+      "id": 40,
+      "oracion": "El gato muy negras duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "Error de concordancia de genero y numero entre el sustantivo 'gato' (masculino singular) y el adjetivo intensificado 'muy negras' (femenino plural).",
+      "estructura": null
+    }
+  ]
+}

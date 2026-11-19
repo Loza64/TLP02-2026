@@ -1,0 +1,96 @@
+{
+  "resultados": [
+    {
+      "id": 26,
+      "oracion": "Las gatas negras duermen bajo la casa.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_f_pl SubOpt_pl",
+        "SN_f_pl -> det_f_pl n_f_pl ModNom_f_pl",
+        "ModNom_f_pl -> Adj_f_pl",
+        "Adj_f_pl -> adj_f_pl",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_f_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε"
+      ],
+      "justificacion": "La oracion es derivada correctamente respetando la concordancia de genero y numero plural en el sujeto femenino, el verbo y el sintagma preposicional final.",
+      "estructura": "[Oracion [Sujeto_pl [SN_f_pl [det_f_pl Las] [n_f_pl gatas] [ModNom_f_pl [Adj_f_pl [adj_f_pl negras]]]] [SubOpt_pl ε]] [SV_pl [v_pl duermen] [RestoSV [AdvOpt ε] [SPOpt [prep bajo] [SN_Prep [SN_f_sg [det_f_sg la] [n_f_sg casa] [ModNom_f_sg ε]]]]]] .]"
+    },
+    {
+      "id": 27,
+      "oracion": "El gato que duerme corre en el jardín.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> que SV_sg",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_m_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε"
+      ],
+      "justificacion": "Derivacion valida utilizando la opcion de subordinada con 'que' en el sujeto, seguida del verbo principal, y un sintagma preposicional final con lugar.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg El] [n_m_sg gato] [ModNom_m_sg ε]] [SubOpt_sg que [SV_sg [v_sg duerme] [RestoSV [AdvOpt ε] [SPOpt ε]]]]] [SV_sg [v_sg corre] [RestoSV [AdvOpt ε] [SPOpt [prep en] [SN_Prep [SN_m_sg [det_m_sg el] [n_m_sg jardín] [ModNom_m_sg ε]]]]]] .]"
+    },
+    {
+      "id": 28,
+      "oracion": "Los niños que juegan observan que la gata corre.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_m_pl SubOpt_pl",
+        "SN_m_pl -> det_m_pl n_m_pl ModNom_m_pl",
+        "ModNom_m_pl -> ε",
+        "SubOpt_pl -> que SV_pl",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> que Clausula",
+        "Clausula -> Sujeto_sg SV_sg",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "Derivacion valida con proposicion subordinada de relativo en el sujeto y una clausula subordinada introducida por 'que' despues del verbo principal.",
+      "estructura": "[Oracion [Sujeto_pl [SN_m_pl [det_m_pl Los] [n_m_pl niños] [ModNom_m_pl ε]] [SubOpt_pl que [SV_pl [v_pl juegan] [RestoSV [AdvOpt ε] [SPOpt ε]]]]] [SV_pl [v_pl observan] [RestoSV [que que] [Clausula [Sujeto_sg [SN_f_sg [det_f_sg la] [n_f_sg gata] [ModNom_f_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg corre] [RestoSV [AdvOpt ε] [SPOpt ε]]]]]] .]"
+    },
+    {
+      "id": 29,
+      "oracion": "El gato negra duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "Error de concordancia de genero: el determinante y el sustantivo son masculinos ('El gato', det_m_sg n_m_sg) mientras que el adjetivo es femenino ('negra', adj_f_sg). La gramatica exige ModNom_m_sg para sustantivos masculinos singular.",
+      "estructura": null
+    },
+    {
+      "id": 30,
+      "oracion": "El niño y la niña duermen.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La gramatica no contiene producciones que contemplen la conjuncion 'y' para coordinar sintagmas nominales dentro del sujeto.",
+      "estructura": null
+    }
+  ]
+}

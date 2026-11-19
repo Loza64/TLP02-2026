@@ -9,21 +9,21 @@
 8,1,determinante_indefinido_sg,Una perra juega.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
 9,1,plural_sin_adjetivo,Los niños juegan.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
 10,1,plural_sin_adjetivo,Las niñas duermen.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
-11,1,adjetivo_invariable_sg,El perro grande duerme.,ACEPTADA,ACEPTADA,VP,0,RECHAZADA,FN,1,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,3
-12,1,adjetivo_invariable_sg,La niña grande corre.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,3
-13,2,intensificador_adv_modo_SP,La gata muy rápida corre rápidamente en el jardín.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,6
-14,2,adv_modo_SP_bajo,El perro negro juega tranquilamente bajo la casa.,ACEPTADA,ACEPTADA,VP,0,RECHAZADA,FN,2,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,6
-15,2,adverbio_de_modo,El gato negro corre rápidamente.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,1,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,4
-16,2,frase_preposicional,El niño juega en el parque.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
-17,2,plural_con_adv_modo,Los gatos negros duermen tranquilamente.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
-18,2,adv_modo_y_SP,La niña corre rápidamente en la casa.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
-19,2,relativa_de_sujeto,El niño que corre juega en la casa.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
-20,2,completiva_basica,El niño observa que la gata duerme.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
-21,2,intensificador_y_adv_modo,La gata muy negra duerme tranquilamente.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
-22,2,adj_invariable_pl_y_SP,Los perros grandes juegan en el parque.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
-23,2,plural_femenino_con_adv,Las niñas rápidas corren rápidamente.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,2,ACEPTADA,VP,0
-24,2,completiva_sujeto_masculino,El perro observa que el gato duerme.,ACEPTADA,ACEPTADA,VP,0,RECHAZADA,FN,1,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
-25,2,SP_con_y_adj_invariable,Un niño grande juega con la niña.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
+11,1,adjetivo_invariable_sg,El perro grande duerme.,ACEPTADA,ACEPTADA,VP,0,RECHAZADA,FN,1,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
+12,1,adjetivo_invariable_sg,La niña grande corre.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
+13,2,intensificador_adv_modo_SP,La gata muy rápida corre rápidamente en el jardín.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
+14,2,adv_modo_SP_bajo,El perro negro juega tranquilamente bajo la casa.,ACEPTADA,ACEPTADA,VP,0,RECHAZADA,FN,2,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
+15,2,adverbio_de_modo,El gato negro corre rápidamente.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,1,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
+16,2,frase_preposicional,El niño juega en el parque.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,6,ACEPTADA,VP,6
+17,2,plural_con_adv_modo,Los gatos negros duermen tranquilamente.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,5,ACEPTADA,VP,5
+18,2,adv_modo_y_SP,La niña corre rápidamente en la casa.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,7,ACEPTADA,VP,7
+19,2,relativa_de_sujeto,El niño que corre juega en la casa.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,7,ACEPTADA,VP,7
+20,2,completiva_basica,El niño observa que la gata duerme.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,6,ACEPTADA,VP,6
+21,2,intensificador_y_adv_modo,La gata muy negra duerme tranquilamente.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,6,ACEPTADA,VP,0
+22,2,adj_invariable_pl_y_SP,Los perros grandes juegan en el parque.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,7,ACEPTADA,VP,0
+23,2,plural_femenino_con_adv,Las niñas rápidas corren rápidamente.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,5,ACEPTADA,VP,0
+24,2,completiva_sujeto_masculino,El perro observa que el gato duerme.,ACEPTADA,ACEPTADA,VP,0,RECHAZADA,FN,1,ACEPTADA,VP,0,ACEPTADA,VP,6,ACEPTADA,VP,0
+25,2,SP_con_y_adj_invariable,Un niño grande juega con la niña.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,7,ACEPTADA,VP,0
 26,2,plural_femenino_con_SP,Las gatas negras duermen bajo la casa.,ACEPTADA,ACEPTADA,VP,0,RECHAZADA,FN,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
 27,2,relativa_y_SP,El gato que duerme corre en el jardín.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0
 28,2,relativa_y_completiva,Los niños que juegan observan que la gata corre.,ACEPTADA,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0,ACEPTADA,VP,0

@@ -1,0 +1,98 @@
+{
+  "resultados": [
+    {
+      "id": 1,
+      "oracion": "El gato negro duerme.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> Adj_m_sg",
+        "Adj_m_sg -> adj_m_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion presenta concordancia perfecta en genero masculino y numero singular entre determinante, sustantivo y adjetivo, ademas de concordancia de singular con el verbo.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg El] [n_m_sg gato] [ModNom_m_sg [Adj_m_sg [adj_m_sg negro]]]] [SubOpt_sg ε]] [SV_sg [v_sg duerme] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 2,
+      "oracion": "La gata negra corre.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> Adj_f_sg",
+        "Adj_f_sg -> adj_f_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion presenta concordancia en genero femenino y numero singular entre determinante, sustantivo y adjetivo, junto con un verbo singular.",
+      "estructura": "[Oracion [Sujeto_sg [SN_f_sg [det_f_sg La] [n_f_sg gata] [ModNom_f_sg [Adj_f_sg [adj_f_sg negra]]]] [SubOpt_sg ε]] [SV_sg [v_sg corre] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 3,
+      "oracion": "Los gatos negros duermen.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_m_pl SubOpt_pl",
+        "SN_m_pl -> det_m_pl n_m_pl ModNom_m_pl",
+        "ModNom_m_pl -> Adj_m_pl",
+        "Adj_m_pl -> adj_m_pl",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion presenta concordancia en genero masculino y numero plural entre determinante, sustantivo y adjetivo, ademas de concordancia en plural con el verbo.",
+      "estructura": "[Oracion [Sujeto_pl [SN_m_pl [det_m_pl Los] [n_m_pl gatos] [ModNom_m_pl [Adj_m_pl [adj_m_pl negros]]]] [SubOpt_pl ε]] [SV_pl [v_pl duermen] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 4,
+      "oracion": "Las gatas negras corren.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_f_pl SubOpt_pl",
+        "SN_f_pl -> det_f_pl n_f_pl ModNom_f_pl",
+        "ModNom_f_pl -> Adj_f_pl",
+        "Adj_f_pl -> adj_f_pl",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion presenta concordancia en genero femenino y numero plural entre determinante, sustantivo y adjetivo, y concordancia de plural con el verbo.",
+      "estructura": "[Oracion [Sujeto_pl [SN_f_pl [det_f_pl Las] [n_f_pl gatas] [ModNom_f_pl [Adj_f_pl [adj_f_pl negras]]]] [SubOpt_pl ε]] [SV_pl [v_pl corren] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 5,
+      "oracion": "El niño juega.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion presenta un sujeto masculino singular sin modificador nominal y un verbo singular.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg El] [n_m_sg niño] [ModNom_m_sg ε]] [SubOpt_sg ε]] [SV_sg [v_sg juega] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    }
+  ]
+}

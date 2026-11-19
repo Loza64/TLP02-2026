@@ -1,0 +1,115 @@
+{
+  "resultados": [
+    {
+      "id": 16,
+      "oracion": "El niño juega en el parque.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_m_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε"
+      ],
+      "justificacion": "La oracion deriva correctamente desde el simbolo inicial utilizando determinante masculino singular, nombre masculino singular, verbo singular y un sintagma preposicional con la estructura permitida.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg det_m_sg n_m_sg ModNom_m_sg] SubOpt_sg] [SV_sg v_sg [RestoSV AdvOpt [SPOpt prep [SN_Prep SN_m_sg]]]] .]"
+    },
+    {
+      "id": 17,
+      "oracion": "Los gatos negros duermen tranquilamente.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_pl SV_pl .",
+        "Sujeto_pl -> SN_m_pl SubOpt_pl",
+        "SN_m_pl -> det_m_pl n_m_pl ModNom_m_pl",
+        "ModNom_m_pl -> Adj_m_pl",
+        "Adj_m_pl -> adj_m_pl",
+        "SubOpt_pl -> ε",
+        "SV_pl -> v_pl RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> adv_modo",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion concuerda en genero masculino y numero plural entre determinante, nombre y adjetivo, y concuerda el sujeto plural con el verbo plural seguido de adverbio de modo.",
+      "estructura": "[Oracion [Sujeto_pl [SN_m_pl det_m_pl n_m_pl [ModNom_m_pl [Adj_m_pl adj_m_pl]]] SubOpt_pl] [SV_pl v_pl [RestoSV [AdvOpt adv_modo] SPOpt]] .]"
+    },
+    {
+      "id": 18,
+      "oracion": "La niña corre rápidamente en la casa.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> adv_modo",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_f_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε"
+      ],
+      "justificacion": "La oracion deriva correctamente mediante determinante femenino singular, nombre femenino singular, verbo singular, adverbio de modo y un sintagma preposicional.",
+      "estructura": "[Oracion [Sujeto_sg [SN_f_sg det_f_sg n_f_sg ModNom_f_sg] SubOpt_sg] [SV_sg v_sg [RestoSV [AdvOpt adv_modo] [SPOpt prep [SN_Prep SN_f_sg]]]] .]"
+    },
+    {
+      "id": 19,
+      "oracion": "El niño que corre juega en la casa.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> que SV_sg",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_f_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε"
+      ],
+      "justificacion": "Contiene una proposicion subordinada de relativo introducida por 'que' y un verbo singular, cumpliendo con la regla SubOpt_sg -> que SV_sg.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg det_m_sg n_m_sg ModNom_m_sg] [SubOpt_sg que [SV_sg v_sg [RestoSV AdvOpt SPOpt]]]] [SV_sg v_sg [RestoSV AdvOpt [SPOpt prep [SN_Prep SN_f_sg]]]] .]"
+    },
+    {
+      "id": 20,
+      "oracion": "El niño observa que la gata duerme.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> que Clausula",
+        "Clausula -> Sujeto_sg SV_sg",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "Deriva mediante la produccion RestoSV -> que Clausula, donde la clausula interna tiene su propio sujeto femenino singular y verbo singular.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg det_m_sg n_m_sg ModNom_m_sg] SubOpt_sg] [SV_sg v_sg [RestoSV que [Clausula [Sujeto_sg [SN_f_sg det_f_sg n_f_sg ModNom_f_sg] SubOpt_sg] [SV_sg v_sg [RestoSV AdvOpt SPOpt]]]]] .]"
+    }
+  ]
+}

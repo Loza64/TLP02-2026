@@ -88,14 +88,20 @@ lote no se obtiene, queda en `lotes_pendientes` y el comando termina con código
 `logs/llm_zero_shot.json` y `logs/llm_few_shot.json` reúnen metadatos, llamadas y resultados
 de la última ejecución, y son los que lee `evaluacion/evaluar.py`.
 
-### Ejecuciones preliminares
+### Ejecuciones preliminares y ejecución final
 
-`logs/llm_zero_shot_20261118_150630/` y `logs/llm_few_shot_20261118_153422/` se generaron con
-los scripts anteriores (commit `1934c0e`). Se conservan como evidencia, pero **no cumplen el
-protocolo final**: no registran el timestamp de cada llamada, el zero-shot no registró su
-reintento y, sobre todo, **las dos modalidades no usaron las mismas instrucciones** (el
-zero-shot se envió con una redacción distinta del texto). Mientras no existan
-`logs/llm_*_shot.json`, la evaluación usa estas carpetas y lo avisa.
+Las carpetas `logs/llm_zero_shot_20261118_150630/` y `logs/llm_few_shot_20261118_153422/` corresponden a ejecuciones preliminares realizadas con versiones anteriores de los scripts (commit `1934c0e`). Se conservan como evidencia histórica, pero no se utilizan como fuente principal de los resultados finales porque no cumplen completamente el protocolo de registro establecido.
+
+Las ejecuciones utilizadas para la evaluación final son:
+
+- `logs/llm_zero_shot_20261119_085801/`
+- `logs/llm_few_shot_20261119_092553/`
+
+Ambas utilizaron el mismo modelo, temperatura, instrucciones y configuración experimental, diferenciándose únicamente por los ejemplos incluidos en el prompt.
+
+La ejecución Few-Shot presentó inicialmente un fallo de disponibilidad del servicio (HTTP 503) en el lote 4. Este lote se recuperó posteriormente mediante el mecanismo de recuperación implementado, conservando la carpeta original, los resultados obtenidos y el registro de los nuevos intentos. Finalmente, ambas modalidades completaron las 40 oraciones.
+
+Los archivos consolidados `logs/llm_zero_shot.json` y `logs/llm_few_shot.json` son las fuentes utilizadas por `evaluacion/evaluar.py` para generar los resultados cuantitativos.
 
 ## Cómo se evalúa al LLM
 

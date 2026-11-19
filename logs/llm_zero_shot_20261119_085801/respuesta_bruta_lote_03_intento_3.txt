@@ -1,0 +1,105 @@
+{
+  "resultados": [
+    {
+      "id": 11,
+      "oracion": "El perro grande duerme.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> Adj_m_sg",
+        "Adj_m_sg -> adj_inv_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion cumple con la concordancia de genero masculino y numero singular entre determinante (El), sustantivo (perro) y adjetivo invariable (grande), seguido del verbo en singular (duerme) y el punto final.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg El] [n_m_sg perro] [ModNom_m_sg [Adj_m_sg [adj_inv_sg grande]]]] [SubOpt_sg ε]] [SV_sg [v_sg duerme] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 12,
+      "oracion": "La niña grande corre.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> Adj_f_sg",
+        "Adj_f_sg -> adj_inv_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> ε",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "La oracion cumple con la concordancia de genero femenino y numero singular entre determinante (La), sustantivo (niña) y adjetivo invariable (grande), seguido del verbo en singular (corre) y el punto final.",
+      "estructura": "[Oracion [Sujeto_sg [SN_f_sg [det_f_sg La] [n_f_sg niña] [ModNom_f_sg [Adj_f_sg [adj_inv_sg grande]]]] [SubOpt_sg ε]] [SV_sg [v_sg corre] [RestoSV [AdvOpt ε] [SPOpt ε]]] .]"
+    },
+    {
+      "id": 13,
+      "oracion": "La gata muy rápida corre rápidamente en el jardín.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_f_sg SubOpt_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> adv_intens Adj_f_sg",
+        "Adj_f_sg -> adj_f_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> adv_modo",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_m_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> ε"
+      ],
+      "justificacion": "Derivacion valida utilizando determinante femenino singular (La), sustantivo (gata), modificador nominal con adverbio de intensidad (muy) y adjetivo femenino (rápida), verbo singular (corre), adverbio de modo (rápidamente) y preposición (en) con sintagma nominal masculino singular (el jardín).",
+      "estructura": "[Oracion [Sujeto_sg [SN_f_sg [det_f_sg La] [n_f_sg gata] [ModNom_f_sg [adv_intens muy] [Adj_f_sg [adj_f_sg rápida]]]] [SubOpt_sg ε]] [SV_sg [v_sg corre] [RestoSV [AdvOpt [adv_modo rápidamente]] [SPOpt [prep en] [SN_Prep [SN_m_sg [det_m_sg el] [n_m_sg jardín] [ModNom_m_sg ε]]]]]] .]"
+    },
+    {
+      "id": 14,
+      "oracion": "El perro negro juega tranquilamente bajo la casa.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> Adj_m_sg",
+        "Adj_m_sg -> adj_m_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> adv_modo",
+        "SPOpt -> prep SN_Prep",
+        "SN_Prep -> SN_f_sg",
+        "SN_f_sg -> det_f_sg n_f_sg ModNom_f_sg",
+        "ModNom_f_sg -> ε"
+      ],
+      "justificacion": "Derivación válida respetando la concordancia de género y número masculino singular para el sujeto (El perro negro), verbo en singular (juega), adverbio de modo (tranquilamente) y sintagma preposicional (bajo la casa).",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg El] [n_m_sg perro] [ModNom_m_sg [Adj_m_sg [adj_m_sg negro]]]] [SubOpt_sg ε]] [SV_sg [v_sg juega] [RestoSV [AdvOpt [adv_modo tranquilamente]] [SPOpt [prep bajo] [SN_Prep [SN_f_sg [det_f_sg la] [n_f_sg casa] [ModNom_f_sg ε]]]]]] .]"
+    },
+    {
+      "id": 15,
+      "oracion": "El gato negro corre rápidamente.",
+      "decision": "ACEPTADA",
+      "producciones_aplicadas": [
+        "Oracion -> Sujeto_sg SV_sg .",
+        "Sujeto_sg -> SN_m_sg SubOpt_sg",
+        "SN_m_sg -> det_m_sg n_m_sg ModNom_m_sg",
+        "ModNom_m_sg -> Adj_m_sg",
+        "Adj_m_sg -> adj_m_sg",
+        "SubOpt_sg -> ε",
+        "SV_sg -> v_sg RestoSV",
+        "RestoSV -> AdvOpt SPOpt",
+        "AdvOpt -> adv_modo",
+        "SPOpt -> ε"
+      ],
+      "justificacion": "Derivacion valida con sujeto masculino singular (El gato negro), verbo singular (corre), adverbio de modo (rápidamente) y ausencia opcional de sintagma preposicional.",
+      "estructura": "[Oracion [Sujeto_sg [SN_m_sg [det_m_sg El] [n_m_sg gato] [ModNom_m_sg [Adj_m_sg [adj_m_sg negro]]]] [SubOpt_sg ε]] [SV_sg [v_sg corre] [RestoSV [AdvOpt [adv_modo rápidamente]] [SPOpt ε]]] .]"
+    }
+  ]
+}

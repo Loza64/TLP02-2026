@@ -1,0 +1,44 @@
+{
+  "resultados": [
+    {
+      "id": 36,
+      "oracion": "Gato negro duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "El sujeto requiere obligatoriamente un determinante (det_m_sg) según las producciones de SN_m_sg, por lo que un sustantivo sin determinante al inicio no puede derivarse.",
+      "estructura": null
+    },
+    {
+      "id": 37,
+      "oracion": "El gato duerme en.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La preposición 'en' requiere obligatoriamente un SN_Prep completando la frase preposicional, por lo que la oración no puede terminar en preposición.",
+      "estructura": null
+    },
+    {
+      "id": 38,
+      "oracion": "El niño observa que.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La producción RestoSV -> que Clausula exige que la conjunción 'que' vaya seguida de una Clausula completa, la cual no está presente.",
+      "estructura": null
+    },
+    {
+      "id": 39,
+      "oracion": "Los niños y las niñas juegan.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "La conjunción copulativa 'y' no forma parte de las producciones de la gramática libre de contexto proporcionada para coordinar sintagmas nominales.",
+      "estructura": null
+    },
+    {
+      "id": 40,
+      "oracion": "El gato muy negras duerme.",
+      "decision": "RECHAZADA",
+      "producciones_aplicadas": [],
+      "justificacion": "Falta de concordancia de género y número entre el modificador nominal masculino singular ('muy negras', que es femenino plural) y el sustantivo masculino singular.",
+      "estructura": null
+    }
+  ]
+}

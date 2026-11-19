@@ -6,5 +6,5 @@ VP,28,23,28,28,28
 VN,12,9,5,12,12
 FP,0,3,7,0,0
 FN,0,5,0,0,0
-Errores de etiquetado,0,8,0,2,22
+Errores de etiquetado,0,8,0,62,31
 Exactitud (%),100.00,80.00,82.50,100.00,100.00
